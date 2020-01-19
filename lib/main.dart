@@ -6,6 +6,9 @@ import 'package:mobile_app_dev/Screens/loginScreen.dart';
 
 
 void main() => runApp(DevicePreview(builder: (context) => MyApp()));
+//activate for Device Preview
+
+//void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
   @override
@@ -13,11 +16,15 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       locale: DevicePreview.of(context).locale,
       builder: DevicePreview.appBuilder,
+    //activate for device preview
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.black,
         secondaryHeaderColor: Colors.orange,
         backgroundColor: Colors.white,
+        textTheme: TextTheme(
+            display1: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800, fontFamily: null)
+        )
       ),
       home: myLoginScreen(),
     );
