@@ -5,17 +5,17 @@ import 'package:mobile_app_dev/Screens/loginScreen.dart';
 
 
 
-void main() => runApp(DevicePreview(builder: (context) => MyApp()));
+//void main() => runApp(DevicePreview(builder: (context) => MyApp()));
 //activate for Device Preview
 
-//void main() => runApp(MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: DevicePreview.of(context).locale,
-      builder: DevicePreview.appBuilder,
+//      locale: DevicePreview.of(context).locale,
+//      builder: DevicePreview.appBuilder,
     //activate for device preview
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

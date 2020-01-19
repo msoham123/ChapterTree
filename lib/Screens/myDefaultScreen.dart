@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/settingsScreen.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
+import 'package:mobile_app_dev/UI/sizing_information.dart';
 
 import 'eventScreen.dart';
 import 'homeScreen.dart';
@@ -9,19 +11,23 @@ import 'messageScreen.dart';
 
 
 class MyDefaultPage extends StatefulWidget {
-  MyDefaultPage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+  SizingInformation sizingInformation;
+  MyDefaultPage(SizingInformation sizingInformation){
+    this.sizingInformation = sizingInformation;
+  }
   @override
-  _MyDefaultPageState createState() => _MyDefaultPageState();
+  _MyDefaultPageState createState() => _MyDefaultPageState(sizingInformation);
 }
 
 class _MyDefaultPageState extends State<MyDefaultPage> {
   int currentIndex = 0;
   int _counter = 0;
   PageController pageController;
+  SizingInformation sizingInformation;
 
+  _MyDefaultPageState(SizingInformation sizingInformation){
+    this.sizingInformation = sizingInformation;
+  }
 
 
   @override
@@ -46,8 +52,9 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
+        title : Image.asset('images/treeicon.png',scale: 1.3,),
         centerTitle: true,
-        title: Text('ChapterTree'),
+        titleSpacing: 12,
       ),
       body: Center(
         child: PageView(

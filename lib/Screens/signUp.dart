@@ -1,5 +1,6 @@
+import 'package:giffy_dialog/giffy_dialog.dart';
+import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
-import 'package:mobile_app_dev/Screens/signUp.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +12,18 @@ import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
 import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 
-class myLoginScreen extends StatefulWidget{
+class mySignUpScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return new myLoginState();
+    return new mySignUpState();
   }
 }
 
-class myLoginState extends State<myLoginScreen>{
+class mySignUpState extends State<mySignUpScreen>{
   MediaQueryData myHeightPercent;
   TextEditingController userController, passwordController;
+  String user, password;
+
 
   void initState() {
     super.initState();
@@ -34,7 +37,6 @@ class myLoginState extends State<myLoginScreen>{
     passwordController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class myLoginState extends State<myLoginScreen>{
                             Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/10,right: 0,top: 0,bottom:0),),
 
                             Flexible(
-                              child: Text("Welcome back, user!",
+                              child: Text("Create an account",
                               style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
                               ),
                               fit: FlexFit.tight,
@@ -113,14 +115,14 @@ class myLoginState extends State<myLoginScreen>{
                                 prefixIcon: Icon(Icons.email,color: Colors.white,),
                                 fillColor: Colors.white,
                                 labelText: null,
-                                hintText: null,
+                                hintText: 'Please enter an email',
                                 labelStyle: null,
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
                                 errorBorder: InputBorder.none,
                                 disabledBorder: InputBorder.none,
-//                            hintStyle: TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
+                                hintStyle: TextStyle(fontSize: 18, color: Colors.black),
                               ),
                               style: TextStyle(fontSize: 25, color: Colors.white),
                               cursorWidth: 4,
@@ -151,14 +153,14 @@ class myLoginState extends State<myLoginScreen>{
                                 prefixIcon: Icon(Icons.lock, color: Colors.white,),
                                 fillColor: Colors.white,
                                 labelText: null,
-                                hintText: null,
+                                hintText: 'Choose a password',
                                 labelStyle: null,
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
                                 errorBorder: InputBorder.none,
                                 disabledBorder: InputBorder.none,
-//                            hintStyle: TextStyle(fontSize: 12, color: Theme.of(context).primaryColor),
+                                hintStyle: TextStyle(fontSize: 18, color: Colors.black),
                               ),
                               style: TextStyle(fontSize: 25, color: Colors.white),
                               cursorWidth: 4,
@@ -173,12 +175,28 @@ class myLoginState extends State<myLoginScreen>{
 
                       Container(
                         width: sizingInformation.myScreenSize.width/1.3,
-                        child: SimpleRoundOnlyIconButton(
-                          icon: Icon(Icons.keyboard_tab),
-                          iconColor: Colors.white,
+                        child: SimpleRoundButton(
+                          buttonText: Text('Sign Me Up!',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 20
+                            ),
+                          ),
                           backgroundColor: Colors.blueAccent,
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation)));
+                            user = userController.text;
+                            password = passwordController.text;
+
+                            print(userController.text);
+                            showDialog(
+                                context: context,builder: (_) => AssetGiffyDialog(
+                              description: Text('To confirm, your email will be $user, and your password will be $password. You will be able to change the password later.'),
+                              title: Text("Welcome to ChapterTree"),
+                              onOkButtonPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation))),
+                              entryAnimation: EntryAnimation.BOTTOM,
+                              image: Image.asset('gifs/welcome.gif'),
+                            ));
                           },
                         ) ,
                       ),
@@ -187,7 +205,7 @@ class myLoginState extends State<myLoginScreen>{
                         width: sizingInformation.myScreenSize.width/1.3,
                         child: SimpleRoundButton(
                           backgroundColor: Colors.white,
-                          buttonText: Text('Sign up for an account',
+                          buttonText: Text('Never mind',
                             style: TextStyle(
                                 color: Colors.blueGrey,
                                 fontWeight: FontWeight.w800,
@@ -195,7 +213,7 @@ class myLoginState extends State<myLoginScreen>{
                             ),
                           ),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => mySignUpScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => myLoginScreen()));
                           },
                         ),
                       ),
