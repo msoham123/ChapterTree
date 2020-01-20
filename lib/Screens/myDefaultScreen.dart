@@ -5,7 +5,7 @@ import 'package:mobile_app_dev/Screens/settingsScreen.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
-import 'eventScreen.dart';
+import 'chapterScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
 
@@ -52,7 +52,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
-        title : Image.asset('images/treeicon.png',scale: 1.3,),
+        title : Image.asset('assets/images/treeicon.png',scale: 1.3,),
         centerTitle: true,
         titleSpacing: 12,
       ),

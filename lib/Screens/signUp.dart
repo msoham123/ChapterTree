@@ -85,7 +85,7 @@ class mySignUpState extends State<mySignUpScreen>{
                             Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/10,right: 0,top: 0,bottom:0),),
 
                             Flexible(
-                              child: Image.asset('images/treeicon.png', scale: 0.2,),
+                              child: Image.asset('assets/images/treeicon.png', scale: 0.2,),
                               fit: FlexFit.tight,
                             ),
 

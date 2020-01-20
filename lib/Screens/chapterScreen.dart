@@ -41,7 +41,7 @@ class myEventState extends State<myEventScreen>{
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 flexContainer(
-                  myChild: Text("Events Page"),
+                  myChild: Text("Chapter Page"),
                 ),
 
               ],
