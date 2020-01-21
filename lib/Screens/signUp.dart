@@ -195,7 +195,7 @@ class mySignUpState extends State<mySignUpScreen>{
                               title: Text("Welcome to ChapterTree"),
                               onOkButtonPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation))),
                               entryAnimation: EntryAnimation.BOTTOM,
-                              image: Image.asset('gifs/welcome.gif'),
+                              image: Image.asset('assets/gifs/welcome.gif'),
                             ));
                           },
                         ) ,
