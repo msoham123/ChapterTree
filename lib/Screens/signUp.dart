@@ -260,19 +260,22 @@ class mySignUpState extends State<mySignUpScreen> {
                                 showDialog(
                                     context: context,
                                     builder: (_) => AssetGiffyDialog(
-                                      description: Text(
-                                          'To confirm, your email will be $email, and your password will be $password. You will be able to change the password later.'),
-                                      title: Text("Welcome to ChapterTree"),
-                                      onOkButtonPressed: () => Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
+                                          description: Text(
+                                              'To confirm, your email will be $email, and your password will be $password. You will be able to change the password later.'),
+                                          title: Text("Welcome to ChapterTree"),
+                                          onOkButtonPressed: () =>
+                                              Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
                                               builder: (context) =>
                                                   MyDefaultPage(
-                                                      sizingInformation))),
-                                      entryAnimation: EntryAnimation.BOTTOM,
-                                      image: Image.asset(
-                                          'assets/gifs/welcome.gif'),
-                                    ));
+                                                      sizingInformation),
+                                            ),
+                                          ),
+                                          entryAnimation: EntryAnimation.BOTTOM,
+                                          image: Image.asset(
+                                              'assets/gifs/welcome.gif'),
+                                        ));
 
                                 setState(() {
                                   showSpinner = false;
