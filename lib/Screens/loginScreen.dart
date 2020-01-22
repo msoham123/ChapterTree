@@ -247,6 +247,10 @@ class myLoginState extends State<myLoginScreen> {
                                     await _auth.signInWithEmailAndPassword(
                                         email: email, password: password);
                                 if (user != null) {
+                                  setState(() {
+                                    showSpinner = true;
+                                  });
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -255,9 +259,6 @@ class myLoginState extends State<myLoginScreen> {
                                     ),
                                   );
                                 }
-                                setState(() {
-                                  showSpinner = true;
-                                });
                               } catch (e) {
                                 print(e);
                                 // Handle error
