@@ -226,25 +226,26 @@ class myLoginState extends State<myLoginScreen> {
                             )),
 
                         Padding(
-                            padding: EdgeInsets.only(
-                                left: 0,
-                                right: 0,
-                                top: sizingInformation.myScreenSize.height / 22,
-                                bottom: 0)),
+                          padding: EdgeInsets.only(
+                              left: 0,
+                              right: 0,
+                              top: sizingInformation.myScreenSize.height / 22,
+                              bottom: 0),
+                        ),
 // Backend stuff
                         Container(
                           width: sizingInformation.myScreenSize.width / 1.5,
                           child: SimpleRoundButton(
                             backgroundColor: Colors.blueAccent,
-                            buttonText: Text("LOGIN",
+                            buttonText: Text(
+                              "LOGIN",
                               style: kAuthButtonDecoration,
                             ),
-
                             onPressed: () async {
                               try {
                                 final user =
-                                await _auth.signInWithEmailAndPassword(
-                                    email: email, password: password);
+                                    await _auth.signInWithEmailAndPassword(
+                                        email: email, password: password);
                                 if (user != null) {
                                   Navigator.push(
                                     context,
@@ -280,8 +281,7 @@ class myLoginState extends State<myLoginScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      mySignUpScreen(),
+                                  builder: (context) => mySignUpScreen(),
                                 ),
                               );
                             },
