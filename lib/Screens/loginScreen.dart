@@ -246,9 +246,6 @@ class myLoginState extends State<myLoginScreen> {
                                 final user =
                                 await _auth.signInWithEmailAndPassword(
                                     email: email, password: password);
-                                print(
-                                  "Hello"
-                                );
                                 if (user != null) {
                                   Navigator.push(
                                     context,
@@ -263,7 +260,7 @@ class myLoginState extends State<myLoginScreen> {
                                 });
                               } catch (e) {
                                 print(e);
-                                // Handle error
+                                // Handle erro
                               }
                             },
                           ),
