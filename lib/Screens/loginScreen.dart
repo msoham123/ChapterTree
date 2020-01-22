@@ -10,6 +10,7 @@ import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
 import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
 
@@ -236,9 +237,7 @@ class myLoginState extends State<myLoginScreen> {
                           child: SimpleRoundButton(
                             backgroundColor: Colors.blueAccent,
                             buttonText: Text("LOGIN",
-                              style: TextStyle(
-                                  color: Colors.white
-                              ),
+                              style: kAuthButtonDecoration,
                             ),
 
                             onPressed: () async {
@@ -260,7 +259,7 @@ class myLoginState extends State<myLoginScreen> {
                                 });
                               } catch (e) {
                                 print(e);
-                                // Handle erro
+                                // Handle error
                               }
                             },
                           ),

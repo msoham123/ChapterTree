@@ -12,7 +12,9 @@ import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
 import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:mobile_app_dev/Utils/constants.dart';
 
 class mySignUpScreen extends StatefulWidget {
   @override
@@ -233,14 +235,11 @@ class mySignUpState extends State<mySignUpScreen> {
                               bottom: 0)),
 
                       Container(
-                        width: sizingInformation.myScreenSize.width / 1.3,
+                        width: sizingInformation.myScreenSize.width / 1.5,
                         child: SimpleRoundButton(
                           buttonText: Text(
                             'Sign Me Up!',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                                fontSize: 20),
+                            style: kAuthButtonDecoration,
                           ),
                           backgroundColor: Colors.blueAccent,
                           onPressed: () async {
