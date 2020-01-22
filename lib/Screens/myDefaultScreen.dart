@@ -1,43 +1,46 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/settingsScreen.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'chapterScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
 
+FirebaseUser loggedInUser;
 
 class MyDefaultPage extends StatefulWidget {
   SizingInformation sizingInformation;
-  MyDefaultPage(SizingInformation sizingInformation){
+
+  MyDefaultPage(SizingInformation sizingInformation) {
     this.sizingInformation = sizingInformation;
   }
+
   @override
   _MyDefaultPageState createState() => _MyDefaultPageState(sizingInformation);
 }
 
 class _MyDefaultPageState extends State<MyDefaultPage> {
   int currentIndex = 0;
-  int _counter = 0;
   PageController pageController;
   SizingInformation sizingInformation;
+  final _auth = FirebaseAuth.instance;
 
-  _MyDefaultPageState(SizingInformation sizingInformation){
+  _MyDefaultPageState(SizingInformation sizingInformation) {
     this.sizingInformation = sizingInformation;
   }
-
 
   @override
   initState() {
     super.initState();
     pageController = new PageController(
-      initialPage: currentIndex,
-      keepPage: true,
-      viewportFraction: 1,
+        initialPage: currentIndex,
+        keepPage: true,
+        viewportFraction: 1
     );
+    getCurrentUser();
   }
 
   @override
@@ -46,15 +49,43 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
     super.dispose();
   }
 
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
-        title : Image.asset('assets/images/treeicon.png',scale: 1.3,),
+        title: Image.asset(
+          'assets/images/treeicon.png',
+          scale: 1.3,
+        ),
         centerTitle: true,
         titleSpacing: 12,
+        actions: <Widget>[
+          Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  _auth.signOut();
+                  Navigator.pop(context);
+                },
+                //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+              );
+            },
+          )
+        ],
       ),
       body: Center(
         child: PageView(
@@ -65,10 +96,10 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             });
           },
           children: <Widget>[
-              myHomeScreen(),
-              myEventScreen(),
-              myMessageScreen(),
-              mySettingsScreen(),
+            myHomeScreen(),
+            myEventScreen(),
+            myMessageScreen(),
+            mySettingsScreen(),
           ],
         ),
       ),
