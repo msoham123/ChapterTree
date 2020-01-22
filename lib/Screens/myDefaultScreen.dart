@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/settingsScreen.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
@@ -37,10 +38,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
   initState() {
     super.initState();
     pageController = new PageController(
-        initialPage: currentIndex,
-        keepPage: true,
-        viewportFraction: 1
-    );
+        initialPage: currentIndex, keepPage: true, viewportFraction: 1);
     getCurrentUser();
   }
 
@@ -80,7 +78,12 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
                 icon: const Icon(Icons.close),
                 onPressed: () {
                   _auth.signOut();
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => myLoginScreen(),
+                    ),
+                  );
                 },
                 //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
               );
