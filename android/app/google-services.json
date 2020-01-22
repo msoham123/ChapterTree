@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "583254639940",
+    "firebase_url": "https://fbla2020-b50d0.firebaseio.com",
+    "project_id": "fbla2020-b50d0",
+    "storage_bucket": "fbla2020-b50d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583254639940:android:448ec754b42b2a8805c311",
+        "android_client_info": {
+          "package_name": "ml.aryanvichare.fbla2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583254639940-g117lkk02te1tqa3gvjs6ovg66pdcfoo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE6ApxNyX0NtJwIepoz7oQ4w3Jo6rNp4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583254639940-g117lkk02te1tqa3gvjs6ovg66pdcfoo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "583254639940-51kak333mqlpmrqbbgcr1mvgthlktt8h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ml.aryanvichare.fblaapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
