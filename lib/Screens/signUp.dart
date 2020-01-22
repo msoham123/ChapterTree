@@ -299,10 +299,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                 fontSize: 15),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => myLoginScreen()));
+                            Navigator.pop(context);
                           },
                         ),
                       ),
