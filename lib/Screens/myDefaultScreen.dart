@@ -50,7 +50,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.blue,
         title : Image.asset('assets/images/treeicon.png',scale: 1.3,),
         centerTitle: true,
