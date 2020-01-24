@@ -1,8 +1,10 @@
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
+import 'package:mobile_app_dev/UI/cards.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/UI/flexible_container.dart';
+import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:snaplist/snaplist.dart';
 
@@ -15,8 +17,17 @@ class myHomeScreen extends StatefulWidget{
 
 class myHomeState extends State<myHomeScreen>{
   MediaQueryData myHeightPercent;
-
   PageController _pageController;
+
+  Widget cardBuilder(SizingInformation sizingInformation){
+    List<Widget> list = new List<Widget>();
+    for(var i = 0; i < 10; i++){
+      list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
+      list.add(Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/15,bottom:0)));
+    }
+    return new Column(children: list);
+
+  }
 
   @override
   void initState() {
@@ -53,73 +64,8 @@ class myHomeState extends State<myHomeScreen>{
 
                     Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
+                    cardBuilder(sizingInformation),
 
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Event(
-                      titleText: Text("California Bay Section", style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.w800),),
-                      descriptionText: Text("A prestigious event where the schools battle it out.", style: TextStyle(fontSize: 15, color: Colors.black, fontWeight: FontWeight.w800),),
-                      myWidget: Image.asset('assets/images/sacramento.png'),
-                      sizingInformation: sizingInformation,
-                      onPressed: (){},
-                    ),
 
 
                   ],

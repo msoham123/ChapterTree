@@ -25,6 +25,7 @@ dependencies:
   undraw:
   snaplist:
   animated_text_kit:
+  settings_ui: ^0.2.0
   firebase_core:
   firebase_auth:
   cloud_firestore:
