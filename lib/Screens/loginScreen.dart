@@ -26,6 +26,10 @@ class myLoginState extends State<myLoginScreen> {
   String email = "", password = "";
   bool showSpinner = false;
 
+  Future sleep1() {
+    return new Future.delayed(const Duration(seconds: 5), () => "1");
+  }
+
   void initState() {
     super.initState();
     userController = TextEditingController();
@@ -246,11 +250,8 @@ class myLoginState extends State<myLoginScreen> {
                                 final user =
                                     await _auth.signInWithEmailAndPassword(
                                         email: email, password: password);
+                                this.setState((){showSpinner=true;});
                                 if (user != null) {
-                                  setState(() {
-                                    showSpinner = true;
-                                  });
-
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
