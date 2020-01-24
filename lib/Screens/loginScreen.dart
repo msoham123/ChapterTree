@@ -1,18 +1,13 @@
-import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
-import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
+import 'package:mobile_app_dev/Screens/signUp.dart';
 import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
-import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
-import 'package:mobile_app_dev/UI/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:mobile_app_dev/Screens/signUp.dart';
 
 class myLoginScreen extends StatefulWidget {
   @override

@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -18,6 +19,7 @@ class myHomeScreen extends StatefulWidget{
 class myHomeState extends State<myHomeScreen>{
   MediaQueryData myHeightPercent;
   PageController _pageController;
+  Builder itemBuilder;
 
   Widget cardBuilder(SizingInformation sizingInformation){
     List<Widget> list = new List<Widget>();
@@ -25,7 +27,7 @@ class myHomeState extends State<myHomeScreen>{
       list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
       list.add(Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/15,bottom:0)));
     }
-    return new Column(children: list);
+    return new Row(children: list);
 
   }
 
@@ -64,7 +66,24 @@ class myHomeState extends State<myHomeScreen>{
 
                     Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
-                    cardBuilder(sizingInformation),
+                    Container(
+                      height: sizingInformation.myScreenSize.height/1.8,
+                      width: sizingInformation.myScreenSize.width/10,
+                      child:  ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext context, int index){
+                          List<Widget> list = new List<Widget>();
+                          for(var i = 0; i < 10; i++){
+                            list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
+                            list.add(Padding(padding: EdgeInsets.only(left: 0,right:  sizingInformation.myScreenSize.width/15,top:0,bottom:0)));
+                          }
+                          return new Row(children: list);
+                        },
+                      ),
+                    ),
+
+
+
 
 
 
