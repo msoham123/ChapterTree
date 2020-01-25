@@ -53,22 +53,6 @@ class myEventState extends State<myEventScreen>{
 
                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
-                  eventCard(),
-//                  Container(
-//                    height: sizingInformation.myScreenSize.height/1.8,
-//                    width: sizingInformation.myScreenSize.width/10,
-//                    child:  ListView.builder(
-//                      scrollDirection: Axis.horizontal,
-//                      itemBuilder: (BuildContext context, int index){
-//                        List<Widget> EventList = new List<Widget>();
-//                        for(var i = 0; i < 10; i++){
-//                          EventList.add(eventCard());
-//                          EventList.add(Padding(padding: EdgeInsets.only(left: 0,right:  sizingInformation.myScreenSize.width/15,top:0,bottom:0)));
-//                        }
-//                        return new Row(children: EventList);
-//                      },
-//                    ),
-//                  ),
 
 
 

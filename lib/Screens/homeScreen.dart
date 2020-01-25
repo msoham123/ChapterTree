@@ -1,4 +1,5 @@
 import 'package:flutter/rendering.dart';
+import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -58,32 +59,34 @@ class myHomeState extends State<myHomeScreen>{
                 child: ListView(
                   children: <Widget>[
 
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
+                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/19,bottom:0)),
 
-                    Center(
-                      child : Text("My Events", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w800),),
-                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Your Events',
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
 
                     Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
                     Container(
-                      height: sizingInformation.myScreenSize.height/1.8,
-                      width: sizingInformation.myScreenSize.width/10,
-                      child:  ListView.builder(
+                      height: sizingInformation.myScreenSize.height,
+                      child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index){
-                          List<Widget> list = new List<Widget>();
-                          for(var i = 0; i < 10; i++){
-                            list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
-                            list.add(Padding(padding: EdgeInsets.only(left: 0,right:  sizingInformation.myScreenSize.width/15,top:0,bottom:0)));
-                          }
-                          return new Row(children: list);
-                        },
-                      ),
-                    ),
-
-
-
+                        itemCount: 10,
+                        itemBuilder: (BuildContext context, int index) {
+                          return eventCard(sizingInformation);
+                    },
+                  ),
+                ),
 
 
 
