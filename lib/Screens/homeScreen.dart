@@ -1,4 +1,6 @@
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +67,7 @@ class myHomeState extends State<myHomeScreen>{
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            'Your Events',
+                            'Competitive Events',
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.bold,
@@ -78,16 +80,80 @@ class myHomeState extends State<myHomeScreen>{
                     Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
                     Container(
-                      height: sizingInformation.myScreenSize.height,
+                      height: sizingInformation.myScreenSize.height/3,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
                           return eventCard(sizingInformation);
-                    },
-                  ),
-                ),
+                          },
+                      ),
+                    ),
 
+                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Calendar',
+                          style: TextStyle(
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Container(
+                        margin: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                            style: BorderStyle.solid,
+                          )
+                        ),
+                        child: CalendarCarousel(
+                          onDayPressed: (DateTime date, List<Event> events) {
+                            this.setState(() => date = DateTime.now());
+                          },
+                          weekendTextStyle: TextStyle(
+                            color: Colors.blueAccent,
+                          ),
+                          thisMonthDayBorderColor: Colors.grey,
+                          customDayBuilder: (
+                              bool isSelectable,
+                              int index,
+                              bool isSelectedDay,
+                              bool isToday,
+                              bool isPrevMonthDay,
+                              TextStyle textStyle,
+                              bool isNextMonthDay,
+                              bool isThisMonthDay,
+                              DateTime day,
+                              ) {
+                            return null;
+                            /// If you return null, [CalendarCarousel] will build container for current [day] with default function.
+                            /// This way you can build custom containers for specific days only, leaving rest as default.
+
+                            // Example: every 15th of month, we have a flight, we can place an icon in the container like that:
+//                            if (day.day == 8) {
+////                              return Center(
+////                                child: Icon(Icons.map),
+////                              );
+////                            } else {
+////                              return null;
+////                            }
+                          },
+                          weekFormat: false,
+                          markedDatesMap: null,
+                          height: sizingInformation.myScreenSize.height/1.5,
+                          selectedDateTime: DateTime.now(),
+                          daysHaveCircularBorder: true, /// null for not rendering any border, true for circular border, false for rectangular border
+                        ),
+                      ),
 
 
                   ],

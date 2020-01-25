@@ -64,47 +64,47 @@ class eventCard extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.all(10.0),
-        width: sizingInformation.myScreenSize.width/1.75,
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Positioned(
-              bottom: 15.0,
-              child: Container(
-                height: 120.0,
-                width: 200.0,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Bay Section',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      Text(
-                        "I like pies because they are good",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
+              margin: EdgeInsets.all(10.0),
+      width: sizingInformation.myScreenSize.width/1.75,
+      child: Stack(
+        alignment: Alignment.topCenter,
+        children: <Widget>[
+//          Positioned(
+//            bottom: 15.0,
+//            child: Container(
+//              height: 120.0,
+//              width: 200.0,
+//              decoration: BoxDecoration(
+//                color: Colors.white,
+//                borderRadius: BorderRadius.circular(10.0),
+//              ),
+//              child: Padding(
+//                padding: EdgeInsets.all(10.0),
+//                child: Column(
+//                  mainAxisAlignment: MainAxisAlignment.end,
+//                  crossAxisAlignment: CrossAxisAlignment.start,
+//                  children: <Widget>[
+//                    Text(
+//                      'Bay Section',
+//                      style: TextStyle(
+//                        fontSize: 22.0,
+//                        fontWeight: FontWeight.w600,
+//                        letterSpacing: 1.2,
+//                      ),
+//                    ),
+//                    Text(
+//                      "I like pies because they are good",
+//                      style: TextStyle(
+//                        color: Colors.grey,
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//              ),
+//            ),
+//          ),
+          Container(
+            decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20.0),
                 boxShadow: [
