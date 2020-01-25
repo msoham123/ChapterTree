@@ -9,7 +9,6 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 
 import 'chapterScreen.dart';
-//import 'homeScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
 
@@ -103,7 +102,6 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           },
           children: <Widget>[
             myHomeScreen(),
-            myEventScreen(),
             myMessageScreen(),
             myQuestionScreen(),
             mySettingsScreen(),
