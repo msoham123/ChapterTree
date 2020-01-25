@@ -1,6 +1,6 @@
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
-import 'package:mobile_app_dev/Screens/Navigation.dart';
+import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
