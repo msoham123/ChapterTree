@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
 
@@ -10,7 +11,58 @@ class eventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: (){
+        showDialog(
+            context: context,
+            builder: (BuildContext context){
+              return AlertDialog(
+                title: Center(child: Text('Event Details')),
+                content: Container(
+                  height: sizingInformation.myScreenSize.height/1.8,
+                  child: Column(
+                    children: <Widget>[
+                      eventCard(sizingInformation),
+                      Container(
+                        height: sizingInformation.myScreenSize.height/8.1,
+                        child: ListView(
+                          children: <Widget>[
+                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts."),
+                          ],
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/70,bottom:0)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RaisedButton(
+                            color: Colors.green,
+                            child: Text("Sign Up"),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          RaisedButton(
+                            color: Colors.blue,
+                            child: Text("Back"),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+        );
+      },
       child: Container(
         margin: EdgeInsets.all(10.0),
         width: sizingInformation.myScreenSize.width/1.75,
