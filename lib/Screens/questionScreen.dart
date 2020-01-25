@@ -124,7 +124,8 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: sizingInformation.myScreenSize.height/8,
+                    height: sizingInformation.myScreenSize.height/12,
+                    width: sizingInformation.myScreenSize.width/5,
                     child: SimpleRoundOnlyIconButton(
                       backgroundColor: Colors.red,
                       icon: Icon(Icons.email),

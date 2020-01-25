@@ -31,7 +31,6 @@ class myHomeState extends State<myHomeScreen>{
       list.add(Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/15,bottom:0)));
     }
     return new Row(children: list);
-
   }
 
   @override

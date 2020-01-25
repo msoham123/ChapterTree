@@ -29,10 +29,6 @@ class BackgroundWidget extends StatelessWidget{
           ),
         ),
       );
-
-
-
-
   }
 }
 

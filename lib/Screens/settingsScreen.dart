@@ -7,18 +7,19 @@ import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:settings_ui/settings_ui.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:mobile_app_dev/UI/flare_button_animation.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return new mySettingsState();
-  }
+  State<StatefulWidget> createState() => mySettingsState();
 }
 
 class mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
-  bool switchValue=true;
+  bool switchValue = true;
+  bool isOpen = false;
 
   @override
   void initState() {
@@ -37,35 +38,47 @@ class mySettingsState extends State<mySettingsScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  color: Colors.white,
-                  child: ListView(
-                    children: <Widget>[
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: sizingInformation.myScreenSize.height / 25,
-                              bottom: 0)),
-
-
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: sizingInformation.myScreenSize.height / 25,
-                              bottom: 0)),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+          backgroundColor: Color.fromARGB(255, 102, 18, 222),
+          body: Align(
+            child: ButtonAnimationFlare(),
+            alignment: Alignment.center,
           ),
+        );
+      },
+    );
+  }
+}
+
+//Scaffold(
+//body: Column(
+//mainAxisAlignment: MainAxisAlignment.center,
+//children: <Widget>[
+//Expanded(
+//child: Container(
+//alignment: Alignment.center,
+//color: Colors.white,
+//child: ListView(
+//children: <Widget>[
+//Padding(
+//padding: EdgeInsets.only(
+//left: 0,
+//right: 0,
+//top: sizingInformation.myScreenSize.height / 25,
+//bottom: 0)),
+//
+//
+//Padding(
+//padding: EdgeInsets.only(
+//left: 0,
+//right: 0,
+//top: sizingInformation.myScreenSize.height / 25,
+//bottom: 0)),
+//],
+//),
+//),
+//),
+//],
+//),
 //          body: Column(
 //            mainAxisAlignment: MainAxisAlignment.center,
 //            children: <Widget>[
@@ -95,8 +108,4 @@ class mySettingsState extends State<mySettingsScreen> {
 //              ),
 //            ],
 //          ),
-        );
-      },
-    );
-  }
-}
+//);
