@@ -9,7 +9,7 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 
 import 'chapterScreen.dart';
-import 'homeScreen.dart';
+//import 'homeScreen.dart';
 import 'messageScreen.dart';  
 
 FirebaseUser loggedInUser;
@@ -101,7 +101,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             });
           },
           children: <Widget>[
-            myHomeScreen(),
+//            myHomeScreen(),
             myEventScreen(),
             myMessageScreen(),
             myQuestionScreen(),
@@ -122,12 +122,12 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           pageController.jumpToPage(index);
         },
         items: [
-          BottomNavyBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-            activeColor: Colors.lightBlue,
-            textAlign: TextAlign.center,
-          ),
+//          BottomNavyBarItem(
+//            icon: Icon(Icons.home),
+//            title: Text('Home'),
+//            activeColor: Colors.lightBlue,
+//            textAlign: TextAlign.center,
+//          ),
           BottomNavyBarItem(
             icon: Icon(Icons.assignment_ind),
             title: Text('Chapter'),

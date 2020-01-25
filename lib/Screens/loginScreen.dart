@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
+import 'package:mobile_app_dev/Screens/Navigation.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
 import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
