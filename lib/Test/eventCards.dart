@@ -18,7 +18,8 @@ class eventCard extends StatelessWidget {
               return AlertDialog(
                 title: Center(child: Text('Event Details')),
                 content: Container(
-                  height: sizingInformation.myScreenSize.height/2,
+                  height: sizingInformation.myScreenSize.height/1.8,
+                  width: sizingInformation.myScreenSize.width/1.3,
                   child: Column(
                     children: <Widget>[
                       AbsorbPointer(child: eventCard(sizingInformation)),
@@ -64,11 +65,11 @@ class eventCard extends StatelessWidget {
         );
       },
       child: Container(
-              margin: EdgeInsets.all(10.0),
-      width: sizingInformation.myScreenSize.width/1.75,
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: <Widget>[
+        margin: EdgeInsets.all(10.0),
+        width: sizingInformation.myScreenSize.width/1.75,
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: <Widget>[
 //          Positioned(
 //            bottom: 15.0,
 //            child: Container(
@@ -103,8 +104,8 @@ class eventCard extends StatelessWidget {
 //              ),
 //            ),
 //          ),
-          Container(
-            decoration: BoxDecoration(
+            Container(
+              decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20.0),
                 boxShadow: [
@@ -172,4 +173,3 @@ class eventCard extends StatelessWidget {
     );
   }
 }
-
