@@ -26,7 +26,7 @@ class eventCard extends StatelessWidget {
                         height: sizingInformation.myScreenSize.height/8.1,
                         child: ListView(
                           children: <Widget>[
-                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts."),
+                            Text("Fremont High School is a high school located in Sunnyvale, California. Therefore, eat donuts."),
                           ],
                         ),
                       ),
