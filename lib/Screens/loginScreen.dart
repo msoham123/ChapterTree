@@ -1,18 +1,13 @@
-import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
-import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/myDefaultScreen.dart';
+import 'package:mobile_app_dev/Screens/signUp.dart';
 import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
-import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
-import 'package:mobile_app_dev/UI/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:mobile_app_dev/Screens/signUp.dart';
 
 class myLoginScreen extends StatefulWidget {
   @override
@@ -25,6 +20,10 @@ class myLoginState extends State<myLoginScreen> {
   TextEditingController userController, passwordController;
   String email = "", password = "";
   bool showSpinner = false;
+
+  Future sleep1() {
+    return new Future.delayed(const Duration(seconds: 5), () => "1");
+  }
 
   void initState() {
     super.initState();
@@ -246,11 +245,8 @@ class myLoginState extends State<myLoginScreen> {
                                 final user =
                                     await _auth.signInWithEmailAndPassword(
                                         email: email, password: password);
+                                this.setState((){showSpinner=true;});
                                 if (user != null) {
-                                  setState(() {
-                                    showSpinner = true;
-                                  });
-
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

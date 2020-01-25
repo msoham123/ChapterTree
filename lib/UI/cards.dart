@@ -18,7 +18,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: sizingInformation.myScreenSize.width/13),
-      width: sizingInformation.myScreenSize.width/0.3,
+      width: sizingInformation.myScreenSize.width/1.25,
       padding: EdgeInsets.all(25.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
