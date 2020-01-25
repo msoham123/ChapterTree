@@ -8,25 +8,39 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:snaplist/snaplist.dart';
 
-class myHomeScreen extends StatefulWidget{
+class myHomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return new myHomeState();
   }
 }
 
-class myHomeState extends State<myHomeScreen>{
+class myHomeState extends State<myHomeScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
 
-  Widget cardBuilder(SizingInformation sizingInformation){
+  Widget cardBuilder(SizingInformation sizingInformation) {
     List<Widget> list = new List<Widget>();
-    for(var i = 0; i < 10; i++){
-      list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
-      list.add(Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/15,bottom:0)));
+    for (var i = 0; i < 10; i++) {
+      list.add(
+        CardWidget(
+          sizingInformation,
+          'SLC : California',
+          'State Leadership Conference for the state of California.',
+          Image.asset('assets/images/sacramento.png'),
+        ),
+      );
+      list.add(
+        Padding(
+          padding: EdgeInsets.only(
+              left: 0,
+              right: 0,
+              top: sizingInformation.myScreenSize.height / 15,
+              bottom: 0),
+        ),
+      );
     }
     return new Column(children: list);
-
   }
 
   @override
@@ -43,37 +57,48 @@ class myHomeState extends State<myHomeScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(builder: (context, sizingInformation) {
-      return Scaffold(
-
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.white,
-                child: ListView(
-                  children: <Widget>[
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    Center(
-                      child : Text("My Events", style: TextStyle(fontSize: 30, color: Colors.black, fontWeight: FontWeight.w800),),
-                    ),
-
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-                    cardBuilder(sizingInformation),
-
-
-
-                  ],
+    return BaseWidget(
+      builder: (context, sizingInformation) {
+        return Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  color: Colors.white,
+                  child: ListView(
+                    children: <Widget>[
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 0,
+                              right: 0,
+                              top: sizingInformation.myScreenSize.height / 25,
+                              bottom: 0)),
+                      Center(
+                        child: Text(
+                          "My Events",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w800),
+                        ),
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: 0,
+                              right: 0,
+                              top: sizingInformation.myScreenSize.height / 25,
+                              bottom: 0)),
+                      cardBuilder(sizingInformation),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      );
-    },);}}
-
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
