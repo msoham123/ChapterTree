@@ -106,7 +106,7 @@ class myHomeState extends State<myHomeScreen>{
                       ],
                     ),
 
-                    Container(
+                    Container( //date
                         margin: EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           border: Border.all(
