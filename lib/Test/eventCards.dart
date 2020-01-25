@@ -31,7 +31,7 @@ class eventCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/70,bottom:0)),
+                      Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/90,bottom:0)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[

@@ -10,7 +10,8 @@ import 'package:mobile_app_dev/Screens/questionScreen.dart';
 
 import 'chapterScreen.dart';
 //import 'homeScreen.dart';
-import 'messageScreen.dart';  
+import 'homeScreen.dart';
+import 'messageScreen.dart';
 
 FirebaseUser loggedInUser;
 
@@ -101,7 +102,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             });
           },
           children: <Widget>[
-//            myHomeScreen(),
+            myHomeScreen(),
             myEventScreen(),
             myMessageScreen(),
             myQuestionScreen(),
