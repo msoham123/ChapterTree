@@ -111,10 +111,9 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
           ),
           RaisedButton(
             onPressed: () {
-//              launch(
-//                  'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
-//              );
-            launch('mailto:aryanvichare10@gmail.com');
+              launch(
+                  'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
+              );
             },
             textColor: Colors.white,
             padding: const EdgeInsets.all(0.0),
