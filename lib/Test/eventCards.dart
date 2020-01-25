@@ -18,7 +18,7 @@ class eventCard extends StatelessWidget {
               return AlertDialog(
                 title: Center(child: Text('Event Details')),
                 content: Container(
-                  height: sizingInformation.myScreenSize.height/1.8,
+                  height: sizingInformation.myScreenSize.height/2,
                   child: Column(
                     children: <Widget>[
                       AbsorbPointer(child: eventCard(sizingInformation)),

@@ -6,6 +6,7 @@ import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
+import 'package:mobile_app_dev/Screens/questionScreen.dart';
 
 import 'chapterScreen.dart';
 import 'homeScreen.dart';
@@ -103,6 +104,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             myHomeScreen(),
             myEventScreen(),
             myMessageScreen(),
+            myQuestionScreen(),
             mySettingsScreen(),
           ],
         ),
@@ -138,6 +140,12 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
               'Messages',
             ),
             activeColor: Colors.green,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.question_answer),
+            title: Text('Questions'),
+            activeColor: Colors.orangeAccent,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
