@@ -21,7 +21,7 @@ class eventCard extends StatelessWidget {
                   height: sizingInformation.myScreenSize.height/1.8,
                   child: Column(
                     children: <Widget>[
-                      eventCard(sizingInformation),
+                      AbsorbPointer(child: eventCard(sizingInformation)),
                       Container(
                         height: sizingInformation.myScreenSize.height/8.1,
                         child: ListView(
