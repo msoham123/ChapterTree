@@ -24,7 +24,6 @@ class myMessageState extends State<myMessageScreen> {
   final messageTextController = TextEditingController();
   String messageText = "";
 
-  MediaQueryData myHeightPercent;
   PageController _pageController;
 
   @override

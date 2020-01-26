@@ -38,10 +38,23 @@ class mySettingsState extends State<mySettingsScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 102, 18, 222),
-          body: Align(
-            child: ButtonAnimationFlare(),
-            alignment: Alignment.center,
+          body: Column(
+            children: <Widget>[
+              SizedBox(height: 18.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Settings',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         );
       },

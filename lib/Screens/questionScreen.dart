@@ -115,7 +115,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                             ),
                                           ),
                                         ),
-                                        Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/15,right: 0,top: 0,bottom:0)),
+                                        SizedBox(width: sizingInformation.myScreenSize.width/15),
                                         Text(
                                             'Ask A Question',
                                             style: TextStyle(
