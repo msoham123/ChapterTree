@@ -43,17 +43,22 @@ class _myChapterScreen extends State<myChapterScreen> {
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
-          body: StreamBuilder(
-              stream: _firestore.collection('members').orderBy('count', descending: true).snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return const Text('Loading...');
-                return ListView.builder(
-                  itemExtent: 80.0,
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context, index) =>
-                      _buildListItem(context, snapshot.data.documents[index]),
-                );
-              }));
+        body: StreamBuilder<QuerySnapshot>(
+          stream: _firestore
+              .collection('members')
+              .orderBy('count', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return const Text('Loading...');
+            return ListView.builder(
+              itemExtent: 80.0,
+              itemCount: snapshot.data.documents.length,
+              itemBuilder: (context, index) =>
+                  _buildListItem(context, snapshot.data.documents[index]),
+            );
+          },
+        ),
+      );
     });
   }
 
@@ -62,9 +67,7 @@ class _myChapterScreen extends State<myChapterScreen> {
       child: Center(
         child: GestureDetector(
           onDoubleTap: () {
-            document.reference.updateData({
-              'count': document['count'] + 1
-            });
+            document.reference.updateData({'count': document['count'] + 1});
           },
           child: ListTile(
             leading: Image.asset('./assets/images/fbla.png'),
