@@ -67,9 +67,22 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.blue,
-        title: Image.asset(
-          'assets/images/treeicon.png',
-          scale: 1.3,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'ChapterTree',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Image.asset(
+              'assets/images/treeicon.png',
+              scale: 1.3,
+            ),
+          ],
         ),
         centerTitle: true,
         titleSpacing: 12,
@@ -160,4 +173,3 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
     );
   }
 }
-
