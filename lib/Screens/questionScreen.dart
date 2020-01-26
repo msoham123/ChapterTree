@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -215,6 +217,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                   Container(
                     child: GestureDetector(
                       onTap: (){
+                        Completer<WebViewController> _controller = Completer<WebViewController>();
                         showBottomSheet(context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
@@ -266,16 +269,19 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                   SizedBox(height: sizingInformation.myScreenSize.height/25),
 
                                   Expanded(
-                                    child: ListView(
-                                      children: <Widget>[
-                                        WebView(
-                                                  initialUrl: 'https://www.fbla-pbl.org/about/',
-                                                  javascriptMode: JavascriptMode.unrestricted,
-                                          onWebViewCreated: (WebViewController webViewController) {
-                                            _controller.complete(webViewController);
-                                          },
-                                                ),
-                                      ]
+                                    child: Scaffold(
+                                      body: WebView(
+                                        initialUrl: "https://www.fbla-pbl.org/about/",
+                                        gestureNavigationEnabled: true,
+                                        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                                          Factory<VerticalDragGestureRecognizer>(
+                                                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
+                                          ),
+                                        },
+                                        onWebViewCreated: (WebViewController webViewController) {
+                                          _controller.complete(webViewController);
+                                        },
+                                      ),
                                     ),
                                   ),
 

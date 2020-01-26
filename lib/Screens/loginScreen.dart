@@ -193,7 +193,7 @@ class myLoginState extends State<myLoginScreen> {
                                     BorderRadius.all(Radius.circular(30)),
                               ),
                               child: TextField(
-                                  obscureText: true,
+                                  obscureText: false,
                                   textAlign: TextAlign.left,
 //                          maxLines: null,
                                   decoration: InputDecoration(
