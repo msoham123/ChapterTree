@@ -55,20 +55,13 @@ class mySignUpState extends State<mySignUpScreen> {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                          padding: EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: sizingInformation.myScreenSize.height / 10,
-                              bottom: 0)),
-
-//                      Container(
-//                        child : Image.asset(
-//                            'images/logo1.png',
-//                          height: sizingInformation.myScreenSize.height/3.3 ,
-//                          width: sizingInformation.myScreenSize.width/1.3,
-//                        ),
-//                      ),
-
+                        padding: EdgeInsets.only(
+                          left: 0,
+                          right: 0,
+                          top: sizingInformation.myScreenSize.height / 10,
+                          bottom: 0,
+                        ),
+                      ),
                       Container(
                         child: Row(
                           children: <Widget>[
@@ -117,68 +110,63 @@ class mySignUpState extends State<mySignUpScreen> {
                           ],
                         ),
                       ),
-
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: sizingInformation.myScreenSize.height / 7,
-                              bottom: 0)),
-
+                      SizedBox(
+                        height: sizingInformation.myScreenSize.height / 7,
+                      ),
                       Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0,
-                              horizontal:
-                                  sizingInformation.myScreenSize.width / 10),
-                          height: sizingInformation.myScreenSize.height / 10,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.indigo[500],
-                                Colors.lightBlueAccent[100]
-                              ]), //indigo 500
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30)),
-                            ),
-                            child: TextField(
-                                textAlign: TextAlign.left,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal:
+                                sizingInformation.myScreenSize.width / 10),
+                        height: sizingInformation.myScreenSize.height / 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              Colors.indigo[500],
+                              Colors.lightBlueAccent[100]
+                            ]), //indigo 500
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: TextField(
+                            textAlign: TextAlign.left,
 //                          maxLines: null,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.email,
-                                    color: Colors.white,
-                                  ),
-                                  fillColor: Colors.white,
-                                  labelText: null,
-                                  hintText: 'Please enter an email',
-                                  labelStyle: null,
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                      fontSize: 18, color: Colors.white),
-                                ),
-                                style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
-                                cursorWidth: 4,
-                                cursorColor: Colors.white,
-                                controller: userController,
-                                keyboardType: TextInputType.emailAddress,
-                                onChanged: (value) {
-                                  email = value;
-                                }),
-                          )),
-
+                            decoration: InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.white,
+                              ),
+                              fillColor: Colors.white,
+                              labelText: null,
+                              hintText: 'Please enter an email',
+                              labelStyle: null,
+                              border: InputBorder.none,
+                              focusedBorder: InputBorder.none,
+                              enabledBorder: InputBorder.none,
+                              errorBorder: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintStyle:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            style: TextStyle(fontSize: 25, color: Colors.white),
+                            cursorWidth: 4,
+                            cursorColor: Colors.white,
+                            controller: userController,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (value) {
+                              email = value;
+                            },
+                          ),
+                        ),
+                      ),
                       Padding(
-                          padding: EdgeInsets.only(
-                              left: 0,
-                              right: 0,
-                              top: sizingInformation.myScreenSize.height / 22,
-                              bottom: 0)),
-
+                        padding: EdgeInsets.only(
+                          left: 0,
+                          right: 0,
+                          top: sizingInformation.myScreenSize.height / 22,
+                          bottom: 0,
+                        ),
+                      ),
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
@@ -226,14 +214,12 @@ class mySignUpState extends State<mySignUpScreen> {
                               },
                             ),
                           )),
-
                       Padding(
                           padding: EdgeInsets.only(
                               left: 0,
                               right: 0,
                               top: sizingInformation.myScreenSize.height / 22,
                               bottom: 0)),
-
                       Container(
                         width: sizingInformation.myScreenSize.width / 1.5,
                         child: SimpleRoundButton(
@@ -288,7 +274,6 @@ class mySignUpState extends State<mySignUpScreen> {
                           },
                         ),
                       ),
-
                       Container(
                         width: sizingInformation.myScreenSize.width / 1.3,
                         child: SimpleRoundButton(
