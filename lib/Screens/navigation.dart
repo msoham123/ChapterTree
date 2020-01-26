@@ -7,6 +7,7 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
+import 'package:mobile_app_dev/Screens/my_chapter.dart';
 
 import 'chapterScreen.dart';
 import 'homeScreen.dart';
@@ -102,6 +103,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           },
           children: <Widget>[
             myHomeScreen(),
+            myChapterScreen(),
             myMessageScreen(),
             myQuestionScreen(),
             mySettingsScreen(),
@@ -121,20 +123,20 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           pageController.jumpToPage(index);
         },
         items: [
-//          BottomNavyBarItem(
-//            icon: Icon(Icons.home),
-//            title: Text('Home'),
-//            activeColor: Colors.lightBlue,
-//            textAlign: TextAlign.center,
-//          ),
           BottomNavyBarItem(
-            icon: Icon(Icons.assignment_ind),
-            title: Text('Chapter'),
+            icon: Icon(Icons.home),
+            title: Text('Home'),
             activeColor: Colors.purpleAccent,
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.message),
+            icon: Icon(Icons.assignment_ind),
+            title: Text('Chapter'),
+            activeColor: Colors.redAccent,
+            textAlign: TextAlign.center,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(Icons.question_answer),
             title: Text(
               'Messages',
             ),
