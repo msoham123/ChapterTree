@@ -34,6 +34,8 @@ dependencies:
   flutter_email_sender: ^2.2.2
   url_launcher: ^5.4.1
   flare_flutter: any
+  font_awesome_flutter:
+  flutter_icons:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

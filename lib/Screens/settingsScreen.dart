@@ -10,6 +10,7 @@ import 'package:settings_ui/settings_ui.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
@@ -74,7 +75,7 @@ class mySettingsState extends State<mySettingsScreen> {
                       _launch('https://www.instagram.com/fbla_pbl/?hl=en');
                     },
                     child: Icon(
-                      Icons.people,
+                      FontAwesome5Brands.instagram,
                       color: Colors.pink,
                       size: 50.0,
                     ),
@@ -85,7 +86,7 @@ class mySettingsState extends State<mySettingsScreen> {
                       _launch('https://www.facebook.com/FutureBusinessLeaders/');
                     },
                     child: Icon(
-                      Icons.people,
+                      FontAwesome5Brands.facebook,
                       color: Colors.blue,
                       size: 50.0,
                     ),
@@ -96,7 +97,7 @@ class mySettingsState extends State<mySettingsScreen> {
                       _launch('https://twitter.com/fbla_national?lang=en');
                     },
                     child: Icon(
-                      Icons.people,
+                      FontAwesome5Brands.twitter,
                       color: Colors.lightBlueAccent,
                       size: 50.0,
                     ),
