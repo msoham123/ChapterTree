@@ -9,6 +9,8 @@ import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
@@ -33,6 +35,15 @@ class mySettingsState extends State<mySettingsScreen> {
     super.dispose();
   }
 
+  void _launch(String link) async {
+    String url = link;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
@@ -45,13 +56,52 @@ class mySettingsState extends State<mySettingsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Settings',
+                    'Profile',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
                       color: Colors.blueAccent,
                     ),
                   ),
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      print('Instagram tapped');
+                      _launch('https://www.instagram.com/fbla_pbl/?hl=en');
+                    },
+                    child: Icon(
+                      FontAwesome5Brands.instagram,
+                      color: Colors.pink,
+                      size: 50.0,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('Facebook tapped');
+                      _launch('https://www.facebook.com/FutureBusinessLeaders/');
+                    },
+                    child: Icon(
+                      FontAwesome5Brands.facebook,
+                      color: Colors.blue,
+                      size: 50.0,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      print('Twitter tapped');
+                      _launch('https://twitter.com/fbla_national?lang=en');
+                    },
+                    child: Icon(
+                      FontAwesome5Brands.twitter,
+                      color: Colors.lightBlueAccent,
+                      size: 50.0,
+                    ),
+                  )
                 ],
               ),
             ],

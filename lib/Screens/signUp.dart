@@ -383,8 +383,6 @@ class mySignUpState extends State<mySignUpScreen> {
                           },
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
