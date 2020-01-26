@@ -144,7 +144,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(Icons.question_answer),
+            icon: Icon(Icons.live_help),
             title: Text('Questions'),
             activeColor: Colors.orangeAccent,
             textAlign: TextAlign.center,
@@ -160,3 +160,4 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
     );
   }
 }
+

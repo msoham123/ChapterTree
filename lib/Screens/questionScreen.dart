@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
+import 'package:mobile_app_dev/UI/cards.dart';
 import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
 import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
@@ -74,72 +75,136 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: Center(
-                      child: Text(
-                        'Ask A Question',
-                        style: TextStyle(
-                          fontSize: 40,
-                          fontWeight: FontWeight.w900,
-                          foreground: Paint()..shader = linearGradient,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                    child: Builder(
-                      builder: (context) => Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            TextFormField(
-                              controller: _nameController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                labelText: 'Full Name',
-                                icon: Icon(Icons.account_box),
-                              ),
-                            ), // Name
-                            TextFormField(
-                              controller: _subjectController,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                labelText: 'Subject',
-                                icon: Icon(Icons.bookmark),
-                              ),
-                            ), // Subject
-                            TextFormField(
-                              controller: _messageController,
-                              keyboardType: TextInputType.emailAddress,
-                              maxLines: 10,
-                              decoration: InputDecoration(
-                                labelText: 'Message',
-                                icon: Icon(Icons.speaker_notes),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizingInformation.myScreenSize.height/12,
-                    width: sizingInformation.myScreenSize.width/5,
-                    child: Center(
-                      child: SimpleRoundOnlyIconButton(
-                        backgroundColor: Colors.red,
-                        icon: Icon(Icons.email),
-                        onPressed: () {
-                          launch(
-                              'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
-                          );
+                    child: Container(
+                      child: GestureDetector(
+                        onTap: (){
+                          showBottomSheet(
+                              context: context,
+                              builder: (context) => Container(
+                                height: sizingInformation.myScreenSize.height/1.3,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                    width: 5.0,
+                                    style: BorderStyle.solid
+                                  ),
+                                  color: Colors.white60,
+                                  borderRadius: BorderRadius.vertical(
+                                    top:  Radius.circular(50.0),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
+                                    Row(
+                                      children: <Widget>[
+                                        Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/25,right: 0,top: 0,bottom:0)),
+                                        Flexible(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(100),
+                                              color: Colors.blueAccent
+                                            ),
+                                            child: IconButton(
+                                              icon: Icon(Icons.arrow_back),
+                                              iconSize: 30,
+                                              color: Colors.white,
+                                              onPressed: (){
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/15,right: 0,top: 0,bottom:0)),
+                                        Text(
+                                            'Ask A Question',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                    Expanded(
+                                      child: ListView(
+                                        children: <Widget>[
+                                          Container(
+                                            padding: EdgeInsets.symmetric(vertical: sizingInformation.myScreenSize.height/60, horizontal: sizingInformation.myScreenSize.width/10),
+                                            child: Builder(
+                                              builder: (context) => Form(
+                                                key: _formKey,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                                  children: <Widget>[
+                                                    TextFormField(
+                                                      controller: _nameController,
+                                                      keyboardType: TextInputType.emailAddress,
+                                                      decoration: InputDecoration(
+                                                        labelText: 'Full Name',
+                                                        icon: Icon(Icons.account_box),
+                                                      ),
+                                                    ), // Name
+                                                    TextFormField(
+                                                      controller: _subjectController,
+                                                      keyboardType: TextInputType.emailAddress,
+                                                      decoration: InputDecoration(
+                                                        labelText: 'Subject',
+                                                        icon: Icon(Icons.bookmark),
+                                                      ),
+                                                    ), // Subject
+                                                    TextFormField(
+                                                      controller: _messageController,
+                                                      keyboardType: TextInputType.emailAddress,
+                                                      maxLines: 10,
+                                                      decoration: InputDecoration(
+                                                        labelText: 'Message',
+                                                        icon: Icon(Icons.speaker_notes),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              RaisedButton(
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(18),
+                                                ),
+                                                child : Text('Send'),
+                                                color : Colors.red,
+                                                textColor : Colors.white,
+                                                onPressed: () {
+                                                  launch(
+                                                      'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ) ,
+                              ));
                         },
+                        child: Center(
+                          child: CardWidget(sizingInformation,'Ask a Question','', Icon(Icons.send)),
+                        ),
                       ),
                     ),
                   ),
 
+
                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
+
+
 //                RaisedButton(
 //
 //                  padding: const EdgeInsets.all(0.0),
