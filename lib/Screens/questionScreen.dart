@@ -126,20 +126,20 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                   SizedBox(
                     height: sizingInformation.myScreenSize.height/12,
                     width: sizingInformation.myScreenSize.width/5,
-                    child: SimpleRoundOnlyIconButton(
-                      backgroundColor: Colors.red,
-                      icon: Icon(Icons.email),
-                      onPressed: () {
-                        launch(
-                            'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
-                        );
-                      },
+                    child: Center(
+                      child: SimpleRoundOnlyIconButton(
+                        backgroundColor: Colors.red,
+                        icon: Icon(Icons.email),
+                        onPressed: () {
+                          launch(
+                              'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}'
+                          );
+                        },
+                      ),
                     ),
                   ),
 
                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
-
-
 //                RaisedButton(
 //
 //                  padding: const EdgeInsets.all(0.0),
