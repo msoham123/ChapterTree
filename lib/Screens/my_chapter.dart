@@ -44,7 +44,7 @@ class _myChapterScreen extends State<myChapterScreen> {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
           body: StreamBuilder(
-              stream: _firestore.collection('members').snapshots(),
+              stream: _firestore.collection('members').orderBy('count', descending: true).snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const Text('Loading...');
                 return ListView.builder(
