@@ -31,12 +31,16 @@ class mySignUpState extends State<mySignUpScreen> {
   void initState() {
     super.initState();
     emailController = TextEditingController();
+    nameController = TextEditingController();
     passwordController = TextEditingController();
+    chapterController = TextEditingController();
   }
 
   void dispose() {
     emailController.dispose();
+    nameController.dispose();
     passwordController.dispose();
+    chapterController.dispose();
     super.dispose();
   }
 
