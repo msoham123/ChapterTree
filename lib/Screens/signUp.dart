@@ -24,18 +24,18 @@ class mySignUpScreen extends StatefulWidget {
 class mySignUpState extends State<mySignUpScreen> {
   final _auth = FirebaseAuth.instance;
   MediaQueryData myHeightPercent;
-  TextEditingController userController, passwordController;
+  TextEditingController emailController, passwordController, nameController, chapterController;
   String email = "", password = "", name = "", chapter = "";
   bool showSpinner = false;
 
   void initState() {
     super.initState();
-    userController = TextEditingController();
+    emailController = TextEditingController();
     passwordController = TextEditingController();
   }
 
   void dispose() {
-    userController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -154,7 +154,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                     fontSize: 25, color: Colors.white),
                                 cursorWidth: 4,
                                 cursorColor: Colors.white,
-                                controller: userController,
+                                controller: nameController,
                                 keyboardType: TextInputType.emailAddress,
                                 onChanged: (value) {
                                   name = value;
@@ -205,7 +205,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                     fontSize: 25, color: Colors.white),
                                 cursorWidth: 4,
                                 cursorColor: Colors.white,
-                                controller: userController,
+                                controller: emailController,
                                 keyboardType: TextInputType.emailAddress,
                                 onChanged: (value) {
                                   email = value;
@@ -306,7 +306,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                     fontSize: 25, color: Colors.white),
                                 cursorWidth: 4,
                                 cursorColor: Colors.white,
-                                controller: userController,
+                                controller: chapterController,
                                 keyboardType: TextInputType.emailAddress,
                                 onChanged: (value) {
                                   chapter = value;
