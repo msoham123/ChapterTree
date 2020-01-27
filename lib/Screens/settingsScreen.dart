@@ -4,6 +4,7 @@ import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/flexible_container.dart';
+import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -56,7 +57,7 @@ class mySettingsState extends State<mySettingsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Profile',
+                    'Social Media',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
@@ -104,6 +105,45 @@ class mySettingsState extends State<mySettingsScreen> {
                   )
                 ],
               ),
+
+              SizedBox(
+                height: sizingInformation.myScreenSize.height/10,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'My Account',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+
+
+                  Container(
+                    width: sizingInformation.myScreenSize.width/1.3,
+                    child: SimpleRoundButton(
+                          backgroundColor: Colors.red,
+                          buttonText: Text('Sign Out of My Account'),
+                          onPressed: () {
+//                          MyDefaultPageState._auth.signOut();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => myLoginScreen(),
+                              ),
+                            );
+                          },
+                    ),
+                  ),
+
+
+
             ],
           ),
         );

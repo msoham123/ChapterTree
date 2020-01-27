@@ -70,6 +70,9 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(
+              width: sizingInformation.myScreenSize.width/15,
+            ),
             Text(
               'ChapterTree',
               style: TextStyle(
@@ -87,23 +90,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
         centerTitle: true,
         titleSpacing: 12,
         actions: <Widget>[
-          Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.close),
-                onPressed: () {
-                  _auth.signOut();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => myLoginScreen(),
-                    ),
-                  );
-                },
-                //tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              );
-            },
-          )
+          //empty for now
         ],
       ),
       body: Center(

@@ -22,8 +22,10 @@ class CardWidget extends StatelessWidget {
       padding: EdgeInsets.all(25.0),
       decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
-          Colors.indigo[500],
-          Colors.lightBlueAccent[100]
+//          Colors.indigo[500],
+//          Colors.lightBlueAccent[100]
+            Colors.deepOrangeAccent,
+            Colors.orangeAccent,
         ]),
         borderRadius: BorderRadius.circular(15.0),
       ),
