@@ -38,8 +38,8 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
   Future<void> submitMessage() async {
     String attachment;
     bool isHTML = false;
-    List<String> recepientsList = ['aryanvichare10@gmail.com'];
-    List<String> ccList = ['msoham123@gmail.com'];
+    List<String> recepientsList = ['chaptertreefbla@gmail.com'];
+    List<String> ccList = ['msoham123@gmail.com','aryanvichare10@gmail.com'];
 
     final Email email = Email(
       body: _messageController.text,
