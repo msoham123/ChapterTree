@@ -1,6 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,7 @@ import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/cards.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/UI/flexible_container.dart';
+import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:snaplist/snaplist.dart';
@@ -24,14 +27,18 @@ class myHomeState extends State<myHomeScreen>{
   PageController _pageController;
   Builder itemBuilder;
 
-  Widget cardBuilder(SizingInformation sizingInformation){
+
+
+  Widget cardBuilder(SizingInformation sizingInformation, bool isRow){
     List<Widget> list = new List<Widget>();
     for(var i = 0; i < 10; i++){
       list.add(CardWidget(sizingInformation, 'SLC : California', 'State Leadership Conference for the state of California.', Image.asset('assets/images/sacramento.png')));
       list.add(Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/15,bottom:0)));
     }
-    return new Row(children: list);
+    if(isRow) return new Row(children: list);
+    else if(!isRow) return new Column(children : list);
   }
+
 
   @override
   void initState() {
@@ -60,7 +67,83 @@ class myHomeState extends State<myHomeScreen>{
                 child: ListView(
                   children: <Widget>[
 
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/19,bottom:0)),
+                    SizedBox(
+                      height: sizingInformation.myScreenSize.height/60,
+                    ),
+
+                    Container(
+                      width: sizingInformation.myScreenSize.width/1.3,
+                      child: SimpleRoundButton(
+                        backgroundColor: Colors.blue,
+                        buttonText: Text('My Events'),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  title: Center(child: Text('Event Details')),
+                                  content: Container(
+                                    height: sizingInformation.myScreenSize.height/1.8,
+                                    width: sizingInformation.myScreenSize.width/1.3,
+                                    child: Column(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: 10,
+                                            itemBuilder: (BuildContext context, int index) {
+                                              return eventCard(sizingInformation, false);
+                                            },
+                                          ),
+                                        ),
+
+                                        SizedBox(
+                                          height: sizingInformation.myScreenSize.height/130,
+                                        ),
+
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            RaisedButton(
+                                              color: Colors.green,
+                                              child: Text("View on Map"),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => myMapScreen(),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            RaisedButton(
+                                              color: Colors.blue,
+                                              child: Text("Back"),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                          );
+                        },
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: sizingInformation.myScreenSize.height/20,
+                    ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +159,9 @@ class myHomeState extends State<myHomeScreen>{
                       ],
                     ),
 
-                    Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
+                    SizedBox(
+                      height: sizingInformation.myScreenSize.height/30,
+                    ),
 
                     Container(
                       height: sizingInformation.myScreenSize.height/3,
@@ -84,10 +169,11 @@ class myHomeState extends State<myHomeScreen>{
                         scrollDirection: Axis.horizontal,
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
-                          return eventCard(sizingInformation);
+                          return eventCard(sizingInformation,true);
                         },
                       ),
                     ),
+
 
                     Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/25,bottom:0)),
 
@@ -153,6 +239,7 @@ class myHomeState extends State<myHomeScreen>{
                         daysHaveCircularBorder: true, /// null for not rendering any border, true for circular border, false for rectangular border
                       ),
                     ),
+
 
 
                   ],

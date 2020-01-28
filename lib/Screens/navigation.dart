@@ -9,7 +9,7 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 import 'package:mobile_app_dev/Screens/my_chapter.dart';
 
-import 'chapterScreen.dart';
+import 'mapScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
 

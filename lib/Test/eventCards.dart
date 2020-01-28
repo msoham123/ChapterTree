@@ -5,8 +5,10 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 
 class eventCard extends StatelessWidget {
   SizingInformation sizingInformation;
-  eventCard(SizingInformation sizingInformation){
+  bool infoTrue;
+  eventCard(SizingInformation sizingInformation, bool infoTrue){
     this.sizingInformation=sizingInformation;
+    this.infoTrue = infoTrue;
   }
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class eventCard extends StatelessWidget {
                   width: sizingInformation.myScreenSize.width/1.3,
                   child: Column(
                     children: <Widget>[
-                      AbsorbPointer(child: eventCard(sizingInformation)),
+                      AbsorbPointer(child: eventCard(sizingInformation,true)),
                       Container(
                         height: sizingInformation.myScreenSize.height/8.1,
                         child: ListView(
@@ -32,12 +34,37 @@ class eventCard extends StatelessWidget {
                         ),
                       ),
                       Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/90,bottom:0)),
-                      Row(
+                      if (infoTrue)  Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           RaisedButton(
                             color: Colors.green,
                             child: Text("Sign Up"),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          RaisedButton(
+                            color: Colors.blue,
+                            child: Text("Back"),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                      if (!infoTrue)  Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          RaisedButton(
+                            color: Colors.green,
+                            child: Text("Deregister"),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18),
                             ),
