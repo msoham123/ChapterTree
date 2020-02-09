@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Test/toggleSwitch.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -15,13 +17,13 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => mySettingsState();
+  _mySettingsState createState() => _mySettingsState();
 }
 
-class mySettingsState extends State<mySettingsScreen> {
+class _mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
-  bool darkMode = false;
+  bool _darkMode = false;
 
   @override
   void initState() {
@@ -33,6 +35,14 @@ class mySettingsState extends State<mySettingsScreen> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _onChanged(bool value){
+    print(value);
+    setState(() {
+      _darkMode = value;
+    });
+    print(_darkMode);
   }
 
   void _launch(String link) async {
@@ -68,17 +78,24 @@ class mySettingsState extends State<mySettingsScreen> {
                 ],
               ),
 
-              Switch(
-                    value: darkMode,
-                    onChanged: (newValue) {
-                      setState(() {
-                        darkMode = newValue;
-                      });
-                    },
-                    activeTrackColor: Colors.lightGreenAccent,
-                    activeColor: Colors.green,
-                  ),
+              SizedBox(height: 18.0),
 
+              Container(
+                child: Column(
+                  children: <Widget>[
+
+                    mySwitch(
+                      switchValue: _darkMode,
+                      valueChanged: (value) {
+                        _darkMode = value;
+                      },
+                    ),
+
+
+
+                  ],
+                ),
+              ),
 
               SizedBox(height: 18.0),
 
