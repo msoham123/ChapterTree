@@ -21,8 +21,7 @@ class mySettingsScreen extends StatefulWidget {
 class mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
-  bool switchValue = true;
-  bool isOpen = false;
+  bool darkMode = false;
 
   @override
   void initState() {
@@ -52,7 +51,37 @@ class mySettingsState extends State<mySettingsScreen> {
         return Scaffold(
           body: Column(
             children: <Widget>[
+
               SizedBox(height: 18.0),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Application Settings',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+
+              Switch(
+                    value: darkMode,
+                    onChanged: (newValue) {
+                      setState(() {
+                        darkMode = newValue;
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+
+
+              SizedBox(height: 18.0),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -66,7 +95,9 @@ class mySettingsState extends State<mySettingsScreen> {
                   ),
                 ],
               ),
+
               SizedBox(height: 20.0),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -125,22 +156,22 @@ class mySettingsState extends State<mySettingsScreen> {
               ),
 
 
-                  Container(
-                    width: sizingInformation.myScreenSize.width/1.3,
-                    child: SimpleRoundButton(
-                          backgroundColor: Colors.red,
-                          buttonText: Text('Sign Out of My Account'),
-                          onPressed: () {
+              Container(
+                width: sizingInformation.myScreenSize.width/1.3,
+                child: SimpleRoundButton(
+                  backgroundColor: Colors.red,
+                  buttonText: Text('Sign Out of My Account'),
+                  onPressed: () {
 //                          MyDefaultPageState._auth.signOut();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => myLoginScreen(),
-                              ),
-                            );
-                          },
-                    ),
-                  ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => myLoginScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ),
 
 
 
