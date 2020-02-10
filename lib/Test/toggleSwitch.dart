@@ -36,7 +36,7 @@ class _Switch extends State<mySwitch> {
 
     return Container(
       child:  SwitchListTile(
-        title: Text("Dark Mode"),
+        title: Text(widget.title),
         value: _switchValue,
         onChanged: (bool value){
           setState(() {

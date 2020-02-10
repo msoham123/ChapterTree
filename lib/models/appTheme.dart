@@ -4,7 +4,7 @@ class AppTheme {
   //
   AppTheme._();
 
-  static final ThemeData lightTheme = ThemeData(
+  static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       color: Colors.blue,
@@ -23,7 +23,7 @@ class AppTheme {
     buttonColor: Colors.blue,
   );
 
-  static final ThemeData darkTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey,
     appBarTheme: AppBarTheme(
       color: Colors.white10,

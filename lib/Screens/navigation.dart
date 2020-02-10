@@ -9,6 +9,7 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 import 'package:mobile_app_dev/Screens/my_chapter.dart';
 
+import '../main.dart';
 import 'mapScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
@@ -27,7 +28,6 @@ class MyDefaultPage extends StatefulWidget {
 }
 
 class _MyDefaultPageState extends State<MyDefaultPage> {
-  int currentIndex = 0;
   PageController pageController;
   SizingInformation sizingInformation;
   final _auth = FirebaseAuth.instance;
@@ -40,7 +40,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
   initState() {
     super.initState();
     pageController = new PageController(
-        initialPage: currentIndex, keepPage: true, viewportFraction: 1);
+        initialPage: MyApp.currentIndex, keepPage: true, viewportFraction: 1);
     getCurrentUser();
   }
 
@@ -66,7 +66,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.blue,
+        backgroundColor: MyApp.appBarColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -98,7 +98,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           controller: pageController,
           onPageChanged: (index) {
             setState(() {
-              currentIndex = index;
+              MyApp.currentIndex = index;
             });
           },
           children: <Widget>[
@@ -112,13 +112,13 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
       ),
       bottomNavigationBar: BottomNavyBar(
         backgroundColor: Colors.white,
-        selectedIndex: currentIndex,
+        selectedIndex: MyApp.currentIndex,
         showElevation: true,
         itemCornerRadius: 8,
         curve: Curves.easeInBack,
         onItemSelected: (index) {
           setState(() {
-            currentIndex = index;
+            MyApp.currentIndex = index;
           });
           pageController.jumpToPage(index);
         },

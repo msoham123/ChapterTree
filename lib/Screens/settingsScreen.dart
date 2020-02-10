@@ -1,3 +1,4 @@
+import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
@@ -9,6 +10,7 @@ import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
+import 'package:mobile_app_dev/main.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
@@ -23,7 +25,6 @@ class mySettingsScreen extends StatefulWidget {
 class _mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
-  bool _darkMode = false;
 
   @override
   void initState() {
@@ -37,13 +38,6 @@ class _mySettingsState extends State<mySettingsScreen> {
     super.dispose();
   }
 
-  void _onChanged(bool value){
-    print(value);
-    setState(() {
-      _darkMode = value;
-    });
-    print(_darkMode);
-  }
 
   void _launch(String link) async {
     String url = link;
@@ -85,10 +79,14 @@ class _mySettingsState extends State<mySettingsScreen> {
                   children: <Widget>[
 
                     mySwitch(
-                      switchValue: _darkMode,
+                      title: "Dark Mode",
+                      switchValue: MyApp.darkModeEnabled,
                       valueChanged: (value) {
-                        _darkMode = value;
-                      },
+                        MyApp.darkModeEnabled = value;
+                        MyApp.changeColor(MyApp.darkModeEnabled);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation)),);
+                        print(MyApp.darkModeEnabled);
+                        },
                     ),
 
 
