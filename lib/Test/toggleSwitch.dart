@@ -40,7 +40,7 @@ class _Switch extends State<mySwitch> {
       child:  SwitchListTile(
         title: Center(child: Text(widget.title, style: TextStyle(color: MyApp.blackTextColor),)),
         value: _switchValue,
-        
+
         onChanged: (bool value){
           setState(() {
             _switchValue = value;
