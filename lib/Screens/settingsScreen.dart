@@ -1,4 +1,3 @@
-import 'package:dynamic_theme/dynamic_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
