@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
+import '../main.dart';
+
 
 class eventCard extends StatelessWidget {
   SizingInformation sizingInformation;
@@ -18,7 +20,8 @@ class eventCard extends StatelessWidget {
             context: context,
             builder: (BuildContext context){
               return AlertDialog(
-                title: Center(child: Text('Event Details')),
+                backgroundColor: MyApp.backgroundColor,
+                title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
                 content: Container(
                   height: sizingInformation.myScreenSize.height/1.8,
                   width: sizingInformation.myScreenSize.width/1.3,
@@ -29,7 +32,8 @@ class eventCard extends StatelessWidget {
                         height: sizingInformation.myScreenSize.height/8.1,
                         child: ListView(
                           children: <Widget>[
-                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts."),
+                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts.",
+                              style: TextStyle(color: MyApp.blackTextColor) ,),
                           ],
                         ),
                       ),
@@ -39,7 +43,7 @@ class eventCard extends StatelessWidget {
                         children: <Widget>[
                           RaisedButton(
                             color: Colors.green,
-                            child: Text("Sign Up"),
+                            child: Text("Sign Up",style: TextStyle(color: MyApp.whiteTextColor)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18),
                             ),
@@ -49,7 +53,7 @@ class eventCard extends StatelessWidget {
                           ),
                           RaisedButton(
                             color: Colors.blue,
-                            child: Text("Back"),
+                            child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18),
                             ),

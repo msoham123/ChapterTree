@@ -3,6 +3,8 @@ import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../main.dart';
+
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
@@ -43,6 +45,7 @@ class _myChapterScreen extends State<myChapterScreen> {
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
+        backgroundColor: MyApp.backgroundColor,
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestore
               .collection('members')
@@ -64,6 +67,7 @@ class _myChapterScreen extends State<myChapterScreen> {
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
     return Card(
+      color: MyApp.botBarColor,
       child: Center(
         child: GestureDetector(
           onDoubleTap: () {
@@ -76,13 +80,13 @@ class _myChapterScreen extends State<myChapterScreen> {
                 Expanded(
                   child: Text(
                     document['name'],
-                    style: Theme.of(context).textTheme.headline,
+                    style: TextStyle(color: MyApp.blackTextColor),
                   ),
                 ),
                 Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                    color: Color(0xffddddff),
+                    color: MyApp.blueGreyColor,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

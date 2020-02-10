@@ -9,6 +9,8 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/UI/message_bubble.dart';
 
+import '../main.dart';
+
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
@@ -61,6 +63,7 @@ class myMessageState extends State<myMessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyApp.backgroundColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +122,7 @@ class MessagesStream extends StatelessWidget {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              backgroundColor: Colors.lightBlueAccent,
+              backgroundColor: MyApp.appBarColor,
             ),
           );
         }

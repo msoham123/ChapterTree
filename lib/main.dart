@@ -21,20 +21,52 @@ class MyApp extends StatelessWidget{
   static Color whiteTextColor = Colors.white;
   static Color blackTextColor = Colors.black;
   static Color appBarColor = Colors.blue;
+  static Color botBarColor = Colors.white;
+  static Color whiteNoChangeColor = Colors.white;
+  static Color blueGreyColor = Colors.blueGrey;
+  static LinearGradient orangeGradient = LinearGradient(colors: [
+    Colors.deepOrangeAccent,
+    Colors.orangeAccent,
+  ]);
+  static LinearGradient blueGradient = LinearGradient(colors: [
+    Colors.indigo[500],
+    Colors.lightBlueAccent[100]
+  ]);
+
 
   static void changeColor(val){
     if(val==true){
-      backgroundColor = Colors.white10;
-      curveColor = Colors.white10;
+      backgroundColor = Colors.blueGrey[700];
+      curveColor = Colors.grey;
       whiteTextColor = Colors.black;
       blackTextColor = Colors.white;
-      appBarColor = Colors.black;
+      appBarColor = Colors.blueGrey[900];
+      botBarColor = Colors.blueGrey[900];
+      blueGreyColor = Colors.white;
+      orangeGradient = LinearGradient(colors: [
+        Colors.black,
+        Colors.black
+      ]);
+      blueGradient = LinearGradient(colors: [
+        Colors.black,
+        Colors.black
+      ]);
     }else{
       backgroundColor = Colors.white;
       curveColor = Colors.blueAccent;
       whiteTextColor = Colors.white;
       blackTextColor = Colors.black;
       appBarColor = Colors.blue;
+      blueGreyColor = Colors.blueGrey;
+      botBarColor = Colors.white;
+      orangeGradient = LinearGradient(colors: [
+        Colors.deepOrangeAccent,
+        Colors.orangeAccent,
+      ]);
+      blueGradient = LinearGradient(colors: [
+        Colors.indigo[500],
+        Colors.lightBlueAccent[100]
+      ]);
     }
   }
 

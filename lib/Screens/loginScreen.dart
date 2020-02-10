@@ -9,6 +9,8 @@ import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+import '../main.dart';
+
 class myLoginScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => myLoginState();
@@ -42,7 +44,7 @@ class myLoginState extends State<myLoginScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: MyApp.backgroundColor,
             body: ModalProgressHUD(
               inAsyncCall: showSpinner,
               child: Stack(
@@ -81,7 +83,7 @@ class myLoginState extends State<myLoginScreen> {
                                 child: Text(
                                   "Welcome back, user!",
                                   style: TextStyle(
-                                      color: Colors.white,
+                                      color: MyApp.whiteNoChangeColor,
                                       fontSize: 30,
                                       fontWeight: FontWeight.w800),
                                 ),
@@ -131,10 +133,7 @@ class myLoginState extends State<myLoginScreen> {
                             height: sizingInformation.myScreenSize.height / 10,
                             child: Container(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                                  Colors.indigo[500],
-                                  Colors.lightBlueAccent[100]
-                                ]), //indigo 500
+                                gradient: MyApp.blueGradient, //indigo 500
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(30)),
                               ),
@@ -185,10 +184,7 @@ class myLoginState extends State<myLoginScreen> {
                             height: sizingInformation.myScreenSize.height / 10,
                             child: Container(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                                  Colors.indigo[500],
-                                  Colors.lightBlueAccent[100]
-                                ]),
+                                gradient: MyApp.blueGradient,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(30)),
                               ),
@@ -235,7 +231,7 @@ class myLoginState extends State<myLoginScreen> {
                         Container(
                           width: sizingInformation.myScreenSize.width / 1.5,
                           child: SimpleRoundButton(
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: MyApp.appBarColor,
                             buttonText: Text(
                               "LOGIN",
                               style: kAuthButtonDecoration,
@@ -266,11 +262,11 @@ class myLoginState extends State<myLoginScreen> {
                         Container(
                           width: sizingInformation.myScreenSize.width / 1.3,
                           child: SimpleRoundButton(
-                            backgroundColor: Colors.white,
+                            backgroundColor: MyApp.backgroundColor,
                             buttonText: Text(
                               'Sign up for an account',
                               style: TextStyle(
-                                  color: Colors.blueGrey,
+                                  color: MyApp.blueGreyColor,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15),
                             ),

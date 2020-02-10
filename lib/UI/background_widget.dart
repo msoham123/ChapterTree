@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/Utils/ui_utils.dart';
 
+import '../main.dart';
+
 class BackgroundWidget extends StatelessWidget{
   SizingInformation sizingInformation;
 
@@ -25,7 +27,7 @@ class BackgroundWidget extends StatelessWidget{
       clipper: BottomShapeClipper(sizingInformation),
       child: Container(
         decoration: BoxDecoration(
-        color: Colors.blueAccent,
+        color: MyApp.appBarColor,
           ),
         ),
       );

@@ -76,7 +76,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
             Text(
               'ChapterTree',
               style: TextStyle(
-                color: Colors.white,
+                color: MyApp.whiteNoChangeColor,
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold
               ),
@@ -111,7 +111,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        backgroundColor: Colors.white,
+        backgroundColor: MyApp.botBarColor,
         selectedIndex: MyApp.currentIndex,
         showElevation: true,
         itemCornerRadius: 8,
@@ -152,7 +152,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           BottomNavyBarItem(
             icon: Icon(Icons.settings),
             title: Text('Settings'),
-            activeColor: Colors.black,
+            activeColor: MyApp.blackTextColor,
             textAlign: TextAlign.center,
           ),
         ],

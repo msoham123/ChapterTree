@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+
 class mySwitch extends StatefulWidget {
    mySwitch({@required this.switchValue, @required this.valueChanged, @required this.title});
 
@@ -36,16 +38,17 @@ class _Switch extends State<mySwitch> {
 
     return Container(
       child:  SwitchListTile(
-        title: Text(widget.title),
+        title: Center(child: Text(widget.title, style: TextStyle(color: MyApp.blackTextColor),)),
         value: _switchValue,
+        
         onChanged: (bool value){
           setState(() {
             _switchValue = value;
             widget.valueChanged(value);
           });
         },
-        activeTrackColor: Colors.blueAccent,
-        activeColor: Colors.blue,
+        activeTrackColor: MyApp.blueGreyColor,
+        activeColor: MyApp.appBarColor,
       ),
     );
   }

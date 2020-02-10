@@ -13,6 +13,8 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../main.dart';
+
 class myQuestionScreen extends StatefulWidget {
   @override
   _myQuestionScreenState createState() => _myQuestionScreenState();
@@ -75,6 +77,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
+        backgroundColor: MyApp.backgroundColor,
         body: Column(
           children: <Widget>[
             Expanded(
@@ -89,12 +92,13 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(
+                            backgroundColor: MyApp.backgroundColor,
                             context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.blue,
+                                    color: MyApp.appBarColor,
                                     width: 5.0,
                                     style: BorderStyle.solid
                                 ),
@@ -219,11 +223,12 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                       onTap: (){
                         Completer<WebViewController> _controller = Completer<WebViewController>();
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.backgroundColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.blue,
+                                    color: MyApp.appBarColor,
                                     width: 5.0,
                                     style: BorderStyle.solid
                                 ),
@@ -303,11 +308,12 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.backgroundColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.blue,
+                                    color: MyApp.appBarColor,
                                     width: 5.0,
                                     style: BorderStyle.solid
                                 ),
@@ -382,11 +388,12 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.whiteTextColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.blue,
+                                    color: MyApp.backgroundColor,
                                     width: 5.0,
                                     style: BorderStyle.solid
                                 ),

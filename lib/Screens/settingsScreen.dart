@@ -52,6 +52,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
+          backgroundColor: MyApp.backgroundColor,
           body: Column(
             children: <Widget>[
 
@@ -65,7 +66,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: Colors.blueAccent,
+                      color: MyApp.blackTextColor,
                     ),
                   ),
                 ],
@@ -104,7 +105,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: Colors.blueAccent,
+                      color: MyApp.blackTextColor,
                     ),
                   ),
                 ],
@@ -163,7 +164,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: Colors.blueAccent,
+                      color: MyApp.blackTextColor,
                     ),
                   ),
                 ],
@@ -174,7 +175,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                 width: sizingInformation.myScreenSize.width/1.3,
                 child: SimpleRoundButton(
                   backgroundColor: Colors.red,
-                  buttonText: Text('Sign Out of My Account'),
+                  buttonText: Text('Sign Out of My Account', style: TextStyle(color: MyApp.blackTextColor),),
                   onPressed: () {
 //                          MyDefaultPageState._auth.signOut();
                     Navigator.push(

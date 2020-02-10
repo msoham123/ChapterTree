@@ -7,6 +7,8 @@ import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 
+import '../main.dart';
+
 class myMapScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -39,9 +41,10 @@ class myMapState extends State<myMapScreen>{
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
+        backgroundColor: MyApp.backgroundColor,
         appBar: AppBar(
             automaticallyImplyLeading: true,
-            backgroundColor: Colors.blue,
+            backgroundColor: MyApp.appBarColor,
             title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -49,7 +52,7 @@ class myMapState extends State<myMapScreen>{
               Text(
                 'ChapterTree',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: MyApp.whiteNoChangeColor,
                     fontSize: 25.0,
                     fontWeight: FontWeight.bold
                 ),
