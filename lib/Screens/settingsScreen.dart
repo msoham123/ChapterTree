@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Test/toggleSwitch.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -7,6 +9,7 @@ import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
+import 'package:mobile_app_dev/main.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
@@ -15,14 +18,12 @@ import 'package:flutter_icons/flutter_icons.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => mySettingsState();
+  _mySettingsState createState() => _mySettingsState();
 }
 
-class mySettingsState extends State<mySettingsScreen> {
+class _mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
-  bool switchValue = true;
-  bool isOpen = false;
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class mySettingsState extends State<mySettingsScreen> {
     _pageController.dispose();
     super.dispose();
   }
+
 
   void _launch(String link) async {
     String url = link;
@@ -50,9 +52,51 @@ class mySettingsState extends State<mySettingsScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
+          backgroundColor: MyApp.backgroundColor,
           body: Column(
             children: <Widget>[
+
               SizedBox(height: 18.0),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Application Settings',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w900,
+                      color: MyApp.blackTextColor,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: 18.0),
+
+              Container(
+                child: Column(
+                  children: <Widget>[
+
+                    mySwitch(
+                      title: "Dark Mode",
+                      switchValue: MyApp.darkModeEnabled,
+                      valueChanged: (value) {
+                        MyApp.darkModeEnabled = value;
+                        MyApp.changeColor(MyApp.darkModeEnabled);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation)),);
+                        print(MyApp.darkModeEnabled);
+                        },
+                    ),
+
+
+
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 18.0),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -61,12 +105,14 @@ class mySettingsState extends State<mySettingsScreen> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: Colors.blueAccent,
+                      color: MyApp.blackTextColor,
                     ),
                   ),
                 ],
               ),
+
               SizedBox(height: 20.0),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -118,29 +164,29 @@ class mySettingsState extends State<mySettingsScreen> {
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w900,
-                      color: Colors.blueAccent,
+                      color: MyApp.blackTextColor,
                     ),
                   ),
                 ],
               ),
 
 
-                  Container(
-                    width: sizingInformation.myScreenSize.width/1.3,
-                    child: SimpleRoundButton(
-                          backgroundColor: Colors.red,
-                          buttonText: Text('Sign Out of My Account'),
-                          onPressed: () {
+              Container(
+                width: sizingInformation.myScreenSize.width/1.3,
+                child: SimpleRoundButton(
+                  backgroundColor: Colors.red,
+                  buttonText: Text('Sign Out of My Account', style: TextStyle(color: MyApp.blackTextColor),),
+                  onPressed: () {
 //                          MyDefaultPageState._auth.signOut();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => myLoginScreen(),
-                              ),
-                            );
-                          },
-                    ),
-                  ),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => myLoginScreen(),
+                      ),
+                    );
+                  },
+                ),
+              ),
 
 
 

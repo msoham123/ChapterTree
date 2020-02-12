@@ -15,6 +15,8 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:snaplist/snaplist.dart';
 
+import '../main.dart';
+
 class myHomeScreen extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -63,7 +65,7 @@ class myHomeState extends State<myHomeScreen>{
             Expanded(
               child: Container(
                 alignment: Alignment.center,
-                color: Colors.white,
+                color: MyApp.backgroundColor,
                 child: ListView(
                   children: <Widget>[
 
@@ -74,14 +76,15 @@ class myHomeState extends State<myHomeScreen>{
                     Container(
                       width: sizingInformation.myScreenSize.width/1.3,
                       child: SimpleRoundButton(
-                        backgroundColor: Colors.blue,
-                        buttonText: Text('My Events'),
+                        backgroundColor: MyApp.appBarColor,
+                        buttonText: Text('My Events', style: TextStyle(color: MyApp.whiteNoChangeColor),),
                         onPressed: () {
                           showDialog(
                               context: context,
                               builder: (BuildContext context){
                                 return AlertDialog(
-                                  title: Center(child: Text('Event Details')),
+                                  backgroundColor: MyApp.backgroundColor,
+                                  title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
                                   content: Container(
                                     height: sizingInformation.myScreenSize.height/1.8,
                                     width: sizingInformation.myScreenSize.width/1.3,
@@ -106,7 +109,7 @@ class myHomeState extends State<myHomeScreen>{
                                           children: <Widget>[
                                             RaisedButton(
                                               color: Colors.green,
-                                              child: Text("View on Map"),
+                                              child: Text("View on Map",style: TextStyle(color: MyApp.whiteTextColor)),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(18),
                                               ),
@@ -121,7 +124,7 @@ class myHomeState extends State<myHomeScreen>{
                                             ),
                                             RaisedButton(
                                               color: Colors.blue,
-                                              child: Text("Back"),
+                                              child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
                                               shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(18),
                                               ),
@@ -154,6 +157,7 @@ class myHomeState extends State<myHomeScreen>{
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.5,
+                            color: MyApp.blackTextColor
                           ),
                         ),
                       ],
@@ -186,6 +190,7 @@ class myHomeState extends State<myHomeScreen>{
                             fontSize: 22.0,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 1.5,
+                            color: MyApp.blackTextColor,
                           ),
                         ),
                       ],
@@ -195,7 +200,7 @@ class myHomeState extends State<myHomeScreen>{
                       margin: EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.black,
+                            color: MyApp.blackTextColor,
                             width: 3,
                             style: BorderStyle.solid,
                           )
@@ -205,9 +210,9 @@ class myHomeState extends State<myHomeScreen>{
                           this.setState(() => date = DateTime.now());
                         },
                         weekendTextStyle: TextStyle(
-                          color: Colors.blueAccent,
+                          color: MyApp.blackTextColor,
                         ),
-                        thisMonthDayBorderColor: Colors.grey,
+                        thisMonthDayBorderColor: MyApp.blackTextColor,
                         customDayBuilder: (
                             bool isSelectable,
                             int index,

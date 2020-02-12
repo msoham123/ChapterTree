@@ -16,6 +16,8 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 
+import '../main.dart';
+
 class mySignUpScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => mySignUpState();
@@ -49,7 +51,7 @@ class mySignUpState extends State<mySignUpScreen> {
     return BaseWidget(
       builder: (context, sizingInformation) {
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: MyApp.backgroundColor,
           body: ModalProgressHUD(
             inAsyncCall: showSpinner,
             child: Stack(
@@ -127,10 +129,7 @@ class mySignUpState extends State<mySignUpScreen> {
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.indigo[500],
-                                Colors.lightBlueAccent[100]
-                              ]), //indigo 500
+                              gradient: MyApp.blueGradient, //indigo 500
                               borderRadius:
                               BorderRadius.all(Radius.circular(30)),
                             ),
@@ -178,10 +177,7 @@ class mySignUpState extends State<mySignUpScreen> {
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.indigo[500],
-                                Colors.lightBlueAccent[100]
-                              ]), //indigo 500
+                              gradient: MyApp.blueGradient, //indigo 500
                               borderRadius:
                               BorderRadius.all(Radius.circular(30)),
                             ),
@@ -228,10 +224,7 @@ class mySignUpState extends State<mySignUpScreen> {
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.indigo[500],
-                                Colors.lightBlueAccent[100]
-                              ]),
+                              gradient: MyApp.blueGradient,
                               borderRadius:
                               BorderRadius.all(Radius.circular(30)),
                             ),
@@ -279,10 +272,7 @@ class mySignUpState extends State<mySignUpScreen> {
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(colors: [
-                                Colors.indigo[500],
-                                Colors.lightBlueAccent[100]
-                              ]), //indigo 500
+                              gradient: MyApp.blueGradient, //indigo 500
                               borderRadius:
                               BorderRadius.all(Radius.circular(30)),
                             ),
@@ -324,7 +314,7 @@ class mySignUpState extends State<mySignUpScreen> {
                             'Sign Me Up!',
                             style: kAuthButtonDecoration,
                           ),
-                          backgroundColor: Colors.blueAccent,
+                          backgroundColor: MyApp.appBarColor,
                           onPressed: () async {
                             // Create the user here once we have the email and password
                             try {
@@ -374,11 +364,11 @@ class mySignUpState extends State<mySignUpScreen> {
                       Container(
                         width: sizingInformation.myScreenSize.width / 1.3,
                         child: SimpleRoundButton(
-                          backgroundColor: Colors.white,
+                          backgroundColor: MyApp.backgroundColor,
                           buttonText: Text(
                             'Never mind',
                             style: TextStyle(
-                                color: Colors.blueGrey,
+                                color: MyApp.blueGreyColor,
                                 fontWeight: FontWeight.w800,
                                 fontSize: 15),
                           ),

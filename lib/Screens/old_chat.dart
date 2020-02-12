@@ -8,22 +8,22 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/UI/message_bubble.dart';
-
-import '../main.dart';
+import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:mobile_app_dev/UI/message_bubble.dart';
 
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
+List<MessageBubble> messageBubbles = [];
 
-class myMessageScreen extends StatefulWidget {
+class myChatBotScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return new myMessageState();
-  }
+  State<StatefulWidget> createState() => myChatBotState();
 }
 
-class myMessageState extends State<myMessageScreen> {
+class myChatBotState extends State<myChatBotScreen> {
   final messageTextController = TextEditingController();
+
   String messageText = "";
 
   PageController _pageController;
@@ -53,7 +53,8 @@ class myMessageState extends State<myMessageScreen> {
   }
 
   void messagesStream() async {
-    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+    await for (var snapshot in _firestore.collection('chatbotMessages')
+        .snapshots()) {
       for (var message in snapshot.documents) {
         print(message.data);
       }
@@ -63,7 +64,34 @@ class myMessageState extends State<myMessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyApp.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              'ChatBot',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            Image.asset(
+              'assets/images/treeicon.png',
+              scale: 1.3,
+            ),
+          ],
+        ),
+        centerTitle: true,
+        titleSpacing: 12,
+        actions: <Widget>[
+          //empty for now
+        ],
+      ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,7 +120,7 @@ class myMessageState extends State<myMessageScreen> {
                     onPressed: () {
                       messageTextController.clear();
                       // messageText + loggedInUser.email
-                      _firestore.collection('messages').add({
+                      _firestore.collection('chatbotMessages').add({
                         'sender': loggedInUser.email,
                         'text': messageText,
                         'timestamp': FieldValue.serverTimestamp(),
@@ -114,7 +142,7 @@ class MessagesStream extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
-          .collection('messages')
+          .collection('chatbotMessages')
           .orderBy('timestamp', descending: false)
           .snapshots(),
       builder: (context, snapshot) {
@@ -122,13 +150,13 @@ class MessagesStream extends StatelessWidget {
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(
-              backgroundColor: MyApp.appBarColor,
+              backgroundColor: Colors.lightBlueAccent,
             ),
           );
         }
         else {
           final messages = snapshot.data.documents.reversed;
-          List<MessageBubble> messageBubbles = [];
+
           for (var message in messages) {
             // data = document snapshot from firebase
             final messageText = message.data['text'];
@@ -141,6 +169,10 @@ class MessagesStream extends StatelessWidget {
               isMe: currentUser == messageSender,
             );
             messageBubbles.add(messageWidget);
+
+            // Get AI Response:
+
+            getAIResponse(messageText);
           }
           return Expanded(
             child: ListView(
@@ -152,5 +184,26 @@ class MessagesStream extends StatelessWidget {
         }
       },
     );
+  }
+  void getAIResponse(String query) async {
+    AuthGoogle authGoogle =
+    await AuthGoogle(fileJson: "./assets/credentials/credentials.json").build();
+    Dialogflow dialogflow =
+    Dialogflow(authGoogle: authGoogle, language: Language.english);
+    AIResponse response = await dialogflow.detectIntent(query);
+    String aiResponseText = response.getMessage() ??
+        new CardDialogflow(response.getListMessage()[0]).title;
+    MessageBubble aiResponseBubble;
+    if(aiResponseText != null) {
+      aiResponseText = aiResponseText;
+    } else {
+      aiResponseText = "I'm sorry I don't understand what you said.";
+    }
+    aiResponseBubble = new MessageBubble(
+      sender: "FBLA Bot",
+      text: aiResponseText,
+      isMe: false,
+    );
+    messageBubbles.add(aiResponseBubble);
   }
 }

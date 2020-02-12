@@ -16,6 +16,8 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 
+import '../main.dart';
+
 class myQuestionScreen extends StatefulWidget {
   @override
   _myQuestionScreenState createState() => _myQuestionScreenState();
@@ -78,6 +80,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
+        backgroundColor: MyApp.backgroundColor,
         body: Column(
           children: <Widget>[
             Expanded(
@@ -92,10 +95,12 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(
+                            backgroundColor: MyApp.backgroundColor,
                             context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: kBottomSheetBoxDecoration,
+
                               child: Column(
                                 children: <Widget>[
                                   SizedBox(height: sizingInformation.myScreenSize.height/45),
@@ -235,6 +240,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                       onTap: (){
                         Completer<WebViewController> _controller = Completer<WebViewController>();
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.backgroundColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: kBottomSheetBoxDecoration,
@@ -309,9 +315,11 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.backgroundColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: kBottomSheetBoxDecoration,
+
                               child: Column(
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
@@ -378,9 +386,11 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                     child: GestureDetector(
                       onTap: (){
                         showBottomSheet(context: context,
+                            backgroundColor: MyApp.whiteTextColor,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
                               decoration: kBottomSheetBoxDecoration,
+
                               child: Column(
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
@@ -438,13 +448,6 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                       ),
                     ),
                   ),
-
-
-
-
-
-
-
                 ],
               ),
             )

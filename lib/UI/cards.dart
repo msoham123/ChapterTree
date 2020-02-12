@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
+import '../main.dart';
+
 class CardWidget extends StatelessWidget {
   SizingInformation sizingInformation;
   String title, description;
@@ -21,12 +23,7 @@ class CardWidget extends StatelessWidget {
       width: sizingInformation.myScreenSize.width/1.25,
       padding: EdgeInsets.all(25.0),
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-//          Colors.indigo[500],
-//          Colors.lightBlueAccent[100]
-            Colors.deepOrangeAccent,
-            Colors.orangeAccent,
-        ]),
+        gradient: MyApp.orangeGradient,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
