@@ -37,6 +37,7 @@ dependencies:
   flutter_icons:
   webview_flutter:
   google_maps_flutter:
+  flutter_dialogflow: ^0.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -64,6 +65,7 @@ flutter:
     - assets/gifs/
     - assets/flare/button-animation.flr
     - assets/flare/success_check.flr2d
+    - assets/credentials/fbla_bot_creds.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

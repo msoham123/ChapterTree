@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:mobile_app_dev/Screens/chatbot.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/cards.dart';
 import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
@@ -12,6 +14,7 @@ import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:mobile_app_dev/Utils/constants.dart';
 
 class myQuestionScreen extends StatefulWidget {
   @override
@@ -92,20 +95,10 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                             context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.blue,
-                                    width: 5.0,
-                                    style: BorderStyle.solid
-                                ),
-                                color: Colors.white60,
-                                borderRadius: BorderRadius.vertical(
-                                  top:  Radius.circular(50.0),
-                                ),
-                              ),
+                              decoration: kBottomSheetBoxDecoration,
                               child: Column(
                                 children: <Widget>[
-                                  Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
+                                  SizedBox(height: sizingInformation.myScreenSize.height/45),
                                   Row(
                                     children: <Widget>[
                                       Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/25,right: 0,top: 0,bottom:0)),
@@ -113,7 +106,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blueAccent
+                                              color: Colors.blue
                                           ),
                                           child: IconButton(
                                             icon: Icon(Icons.arrow_back),
@@ -125,7 +118,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/15),
+                                      SizedBox(width: sizingInformation.myScreenSize.width/20),
                                       Text(
                                         'Ask A Question',
                                         style: TextStyle(
@@ -134,6 +127,29 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                           color: Colors.blueAccent,
                                         ),
                                       ),
+                                      SizedBox(width: sizingInformation.myScreenSize.width/20),
+                                      Flexible(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(100),
+                                              color: Colors.blue
+                                          ),
+                                          child: IconButton(
+                                            icon: Icon(Icons.chat),
+                                            iconSize: 30,
+                                            color: Colors.white,
+                                            onPressed: (){
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      myChatBotScreen(),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      )
                                     ],
                                   ),
                                   Expanded(
@@ -221,17 +237,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                         showBottomSheet(context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.blue,
-                                    width: 5.0,
-                                    style: BorderStyle.solid
-                                ),
-                                color: Colors.white60,
-                                borderRadius: BorderRadius.vertical(
-                                  top:  Radius.circular(50.0),
-                                ),
-                              ),
+                              decoration: kBottomSheetBoxDecoration,
                               child: Column(
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
@@ -305,17 +311,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                         showBottomSheet(context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.blue,
-                                    width: 5.0,
-                                    style: BorderStyle.solid
-                                ),
-                                color: Colors.white60,
-                                borderRadius: BorderRadius.vertical(
-                                  top:  Radius.circular(50.0),
-                                ),
-                              ),
+                              decoration: kBottomSheetBoxDecoration,
                               child: Column(
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
@@ -384,17 +380,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                         showBottomSheet(context: context,
                             builder: (context) => Container(
                               height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.blue,
-                                    width: 5.0,
-                                    style: BorderStyle.solid
-                                ),
-                                color: Colors.white60,
-                                borderRadius: BorderRadius.vertical(
-                                  top:  Radius.circular(50.0),
-                                ),
-                              ),
+                              decoration: kBottomSheetBoxDecoration,
                               child: Column(
                                 children: <Widget>[
                                   Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),

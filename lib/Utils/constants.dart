@@ -23,3 +23,15 @@ const kSendButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 18.0,
 );
+
+final kBottomSheetBoxDecoration = BoxDecoration(
+  border: Border.all(
+      color: Colors.blue,
+      width: 5.0,
+      style: BorderStyle.solid
+  ),
+  color: Colors.white60,
+  borderRadius: BorderRadius.vertical(
+    top:  Radius.circular(50.0),
+  ),
+);
