@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/homeScreen.dart';
+import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
@@ -272,6 +274,9 @@ class _eventScreenState extends State<eventScreen> {
                                 ),
 
                                 GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => myMapScreen()),);
+                                  },
                                   child: Container(
                                     height: sizingInformation.myScreenSize.height/10,
                                     width: sizingInformation.myScreenSize.width/2.5,
