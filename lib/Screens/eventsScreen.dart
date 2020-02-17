@@ -108,7 +108,7 @@ class _eventScreenState extends State<eventScreen> {
                         width: MediaQuery.of(context).size.width,
                         height: sizingInformation.myScreenSize.height,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: MyApp.backgroundColor,
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(40.0),
                               topLeft: Radius.circular(40.0),
