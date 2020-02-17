@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-import 'package:mobile_app_dev/UI/message_bubble.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mobile_app_dev/UI/base_widget.dart';
+
+FirebaseUser loggedInUser;
+final _firestore = Firestore.instance;
+final _auth = FirebaseAuth.instance;
 
 class myChatBotScreen extends StatefulWidget {
   myChatBotScreen({Key key, this.title}) : super(key: key);
@@ -14,31 +20,55 @@ class myChatBotState extends State<myChatBotScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = new TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Widget _buildTextComposer() {
-    return new IconTheme(
-      data: new IconThemeData(color: Theme.of(context).accentColor),
-      child: new Container(
-        margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
-        child: new Row(
-          children: <Widget>[
-            new Flexible(
-              child: new TextField(
-                controller: _textController,
-                onSubmitted: _handleSubmitted,
-                decoration: new InputDecoration.collapsed(
-                  hintText: "Send a message",
+    return BaseWidget(builder: (context, sizingInformation) {
+      return
+        new IconTheme(
+          data: new IconThemeData(color: Theme
+              .of(context)
+              .accentColor),
+          child: new Container(
+            margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
+            child: new Row(
+              children: <Widget>[
+                new Flexible(
+                  child: new TextField(
+                    controller: _textController,
+                    onSubmitted: _handleSubmitted,
+                    decoration: new InputDecoration.collapsed(
+                      hintText: "Send a message",
+                    ),
+                  ),
                 ),
-              ),
+                new Container(
+                  margin: new EdgeInsets.symmetric(horizontal: 4.0),
+                  child: new IconButton(
+                      icon: new Icon(Icons.send),
+                      onPressed: () => _handleSubmitted(_textController.text)),
+                ),
+              ],
             ),
-            new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 4.0),
-              child: new IconButton(
-                  icon: new Icon(Icons.send),
-                  onPressed: () => _handleSubmitted(_textController.text)),
-            ),
-          ],
-        ),
-      ),
+          ),
+
+        );
+    }
     );
   }
 
@@ -65,7 +95,7 @@ class myChatBotState extends State<myChatBotScreen> {
     _textController.clear();
     ChatMessage message = new ChatMessage(
       text: text,
-      name: "Aryan",
+      name: loggedInUser.email,
       type: true,
     );
     setState(() {
@@ -82,7 +112,8 @@ class myChatBotState extends State<myChatBotScreen> {
     return new Scaffold(
       appBar: new AppBar(
         centerTitle: true,
-        title: new Text("Flutter and Dialogflow"),
+        title: new Text("FBLA Chatbot"),
+        backgroundColor: Colors.blue,
       ),
       body: new Column(children: <Widget>[
         new Flexible(

@@ -6,7 +6,6 @@ import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/UI/message_bubble.dart';
 
 import '../main.dart';
