@@ -45,10 +45,10 @@ class myChatBotState extends State<myChatBotScreen> {
   void Response(query) async {
     _textController.clear();
     AuthGoogle authGoogle =
-        await AuthGoogle(fileJson: "assets/credentials/fbla_bot_creds.json")
-            .build();
+    await AuthGoogle(fileJson: "assets/fbla_bot_creds.json")
+        .build();
     Dialogflow dialogflow =
-        Dialogflow(authGoogle: authGoogle, language: Language.english);
+    Dialogflow(authGoogle: authGoogle, language: Language.english);
     AIResponse response = await dialogflow.detectIntent(query);
     ChatMessage message = new ChatMessage(
       text: response.getMessage() ??
@@ -69,10 +69,11 @@ class myChatBotState extends State<myChatBotScreen> {
       type: true,
     );
     setState(() {
-      if(message != null) {
+      if (message != null) {
         _messages.insert(0, message);
       }
     });
+    print("test = " + text);
     Response(text);
   }
 
@@ -85,12 +86,13 @@ class myChatBotState extends State<myChatBotScreen> {
       ),
       body: new Column(children: <Widget>[
         new Flexible(
-            child: new ListView.builder(
-          padding: new EdgeInsets.all(8.0),
-          reverse: true,
-          itemBuilder: (_, int index) => _messages[index],
-          itemCount: _messages.length,
-        )),
+          child: new ListView.builder(
+            padding: new EdgeInsets.all(8.0),
+            reverse: true,
+            itemBuilder: (_, int index) => _messages[index],
+            itemCount: _messages.length,
+          ),
+        ),
         new Divider(height: 1.0),
         new Container(
           decoration: new BoxDecoration(color: Theme.of(context).cardColor),
