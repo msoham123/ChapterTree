@@ -65,9 +65,9 @@ class _eventScreenState extends State<eventScreen> {
       return Scaffold(
         body: Column(
           children: <Widget>[
-
             Expanded(
               child: ListView(
+                padding: EdgeInsets.only(top: 0.0),
                 children: <Widget>[
                   Stack(
                   overflow: Overflow.visible,
@@ -169,7 +169,7 @@ class _eventScreenState extends State<eventScreen> {
                                 ],
                               ),
                             ),
-                            
+
                             SizedBox(
                               height: sizingInformation.myScreenSize.height/100,
                             ),
