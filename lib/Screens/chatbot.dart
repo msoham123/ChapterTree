@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 
+import '../main.dart';
+
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
@@ -18,7 +20,7 @@ class myChatBotScreen extends StatefulWidget {
 
 class myChatBotState extends State<myChatBotScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
-  final TextEditingController _textController = new TextEditingController();
+  final TextEditingController _textController =  TextEditingController();
 
   @override
   void initState() {
@@ -39,28 +41,28 @@ class myChatBotState extends State<myChatBotScreen> {
 
   Widget _buildTextComposer() {
     return BaseWidget(builder: (context, sizingInformation) {
-      return
-        new IconTheme(
-          data: new IconThemeData(color: Theme
-              .of(context)
-              .accentColor),
-          child: new Container(
+      return IconTheme(
+          data:  IconThemeData(color: MyApp.blackTextColor),
+          child:  Container(
+            color: MyApp.backgroundColor,
             margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15.0),
-            child: new Row(
+            child:  Row(
               children: <Widget>[
-                new Flexible(
-                  child: new TextField(
+                 Flexible(
+                  child:  TextField(
+                    style: TextStyle(color: MyApp.blackTextColor),
                     controller: _textController,
                     onSubmitted: _handleSubmitted,
-                    decoration: new InputDecoration.collapsed(
+                    decoration:  InputDecoration.collapsed(
                       hintText: "Send a message",
+                      hintStyle: TextStyle(color: MyApp.blackTextColor)
                     ),
                   ),
                 ),
-                new Container(
-                  margin: new EdgeInsets.symmetric(horizontal: 4.0),
-                  child: new IconButton(
-                      icon: new Icon(Icons.send),
+                 Container(
+                  margin:  EdgeInsets.symmetric(horizontal: 4.0),
+                  child:  IconButton(
+                      icon:  Icon(Icons.send),
                       onPressed: () => _handleSubmitted(_textController.text)),
                 ),
               ],
@@ -80,9 +82,9 @@ class myChatBotState extends State<myChatBotScreen> {
     Dialogflow dialogflow =
     Dialogflow(authGoogle: authGoogle, language: Language.english);
     AIResponse response = await dialogflow.detectIntent(query);
-    ChatMessage message = new ChatMessage(
+    ChatMessage message =  ChatMessage(
       text: response.getMessage() ??
-          new CardDialogflow(response.getListMessage()[0]).title,
+           CardDialogflow(response.getListMessage()[0]).title,
       name: "Bot",
       type: false,
     );
@@ -93,7 +95,7 @@ class myChatBotState extends State<myChatBotScreen> {
 
   void _handleSubmitted(String text) {
     _textController.clear();
-    ChatMessage message = new ChatMessage(
+    ChatMessage message =  ChatMessage(
       text: text,
       name: loggedInUser.email,
       type: true,
@@ -109,24 +111,27 @@ class myChatBotState extends State<myChatBotScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      backgroundColor: MyApp.backgroundColor,
+      appBar:  AppBar(
+        iconTheme: IconThemeData(color: MyApp.blackTextColor),
         centerTitle: true,
-        title: new Text("FBLA Chatbot"),
-        backgroundColor: Colors.blue,
+        title:  Text("FBLA Chatbot", style: TextStyle(color: MyApp.blackTextColor)),
+        backgroundColor: MyApp.appBarColor,
       ),
-      body: new Column(children: <Widget>[
-        new Flexible(
-          child: new ListView.builder(
-            padding: new EdgeInsets.all(8.0),
+      body:  Column(children: <Widget>[
+         Flexible(
+          child:  ListView.builder(
+            padding:  EdgeInsets.all(8.0),
             reverse: true,
             itemBuilder: (_, int index) => _messages[index],
             itemCount: _messages.length,
           ),
         ),
-        new Divider(height: 1.0),
-        new Container(
-          decoration: new BoxDecoration(color: Theme.of(context).cardColor),
+         Divider(height: 1.0),
+         Container(
+           decoration:  BoxDecoration(color: MyApp.backgroundColor,
+           ),
           child: _buildTextComposer(),
         ),
       ]),
@@ -143,19 +148,19 @@ class ChatMessage extends StatelessWidget {
 
   List<Widget> otherMessage(context) {
     return <Widget>[
-      new Container(
+       Container(
         margin: const EdgeInsets.only(right: 16.0),
-        child: new CircleAvatar(child: new Text('B')),
+        child:  CircleAvatar(child:  Text('B', style: TextStyle(color: MyApp.blackTextColor))),
       ),
-      new Expanded(
-        child: new Column(
+       Expanded(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            new Text(this.name,
-                style: new TextStyle(fontWeight: FontWeight.bold)),
-            new Container(
+             Text(this.name,
+                style:  TextStyle(fontWeight: FontWeight.bold, color: MyApp.blackTextColor)),
+             Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(text),
+              child:  Text(text, style: TextStyle(color: MyApp.blackTextColor),),
             ),
           ],
         ),
@@ -165,24 +170,24 @@ class ChatMessage extends StatelessWidget {
 
   List<Widget> myMessage(context) {
     return <Widget>[
-      new Expanded(
-        child: new Column(
+       Expanded(
+        child:  Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            new Text(this.name, style: Theme.of(context).textTheme.subhead),
-            new Container(
+             Text(this.name, style: TextStyle(color: MyApp.blackTextColor)),
+             Container(
               margin: const EdgeInsets.only(top: 5.0),
-              child: new Text(text),
+              child:  Text(text, style: TextStyle(color: MyApp.blackTextColor)),
             ),
           ],
         ),
       ),
-      new Container(
+       Container(
         margin: const EdgeInsets.only(left: 16.0),
-        child: new CircleAvatar(
-            child: new Text(
+        child:  CircleAvatar(
+            child:  Text(
           this.name[0],
-          style: new TextStyle(fontWeight: FontWeight.bold),
+          style:  TextStyle(fontWeight: FontWeight.bold, color: MyApp.blackTextColor),
         )),
       ),
     ];
@@ -190,9 +195,9 @@ class ChatMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    return  Container(
       margin: const EdgeInsets.symmetric(vertical: 10.0),
-      child: new Row(
+      child:  Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: this.type ? myMessage(context) : otherMessage(context),
       ),
