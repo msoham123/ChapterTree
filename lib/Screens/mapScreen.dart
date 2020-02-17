@@ -9,14 +9,14 @@ import 'package:mobile_app_dev/UI/widgets.dart';
 
 import '../main.dart';
 
-class myMapScreen extends StatefulWidget{
+class myMapScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return new myMapState();
   }
 }
 
-class myMapState extends State<myMapScreen>{
+class myMapState extends State<myMapScreen> {
   PageController _pageController;
   GoogleMapController mapController;
   final LatLng _center = const LatLng(37.352727, -122.034227);
@@ -43,104 +43,47 @@ class myMapState extends State<myMapScreen>{
       return Scaffold(
         backgroundColor: MyApp.backgroundColor,
         appBar: AppBar(
-            automaticallyImplyLeading: true,
-            backgroundColor: MyApp.appBarColor,
-            title: Row(
+          automaticallyImplyLeading: true,
+          backgroundColor: MyApp.appBarColor,
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
 
               Text(
-                'ChapterTree',
+                'Map View',
                 style: TextStyle(
                     color: MyApp.whiteNoChangeColor,
                     fontSize: 25.0,
                     fontWeight: FontWeight.bold
                 ),
               ),
-              Image.asset(
-                'assets/images/treeicon.png',
-                scale: 1.3,
-              ),
 
               SizedBox(
-                width: sizingInformation.myScreenSize.width/13,
+                width: sizingInformation.myScreenSize.width/8,
               ),
             ],
           ),
           centerTitle: true,
-          titleSpacing: 12,
           actions: <Widget>[
             //empty for now
           ],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: sizingInformation.myScreenSize.height/30,
+        body: Container(
+          height: sizingInformation.myScreenSize.height,
+          width: sizingInformation.myScreenSize.width,
+          child: GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: _center,
+              zoom: 10.0,
             ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.center,
-                  height: sizingInformation.myScreenSize.height/15,
-                  width: sizingInformation.myScreenSize.width/1.3,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.deepOrangeAccent,
-                      Colors.orangeAccent,
-                    ]),
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Text(
-                    'ChapterTree Event Map',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            SizedBox(
-              height: sizingInformation.myScreenSize.height/30,
-            ),
-
-            Container(
-              height: sizingInformation.myScreenSize.height/2,
-              width: sizingInformation.myScreenSize.width/1,
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: _center,
-                  zoom: 11.0,
-                ),
-              ),
-            ),
-
-            Expanded(
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return eventCard(sizingInformation,false);
-                },
-              ),
-            ),
-
-
-
-
-
-
-          ],
+          ),
         ),
       );
-    },);}}
+    },
+    );
+  }
+}
 
 
 
