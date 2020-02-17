@@ -77,15 +77,30 @@ class myLoginState extends State<myLoginScreen> {
         ? print('User is authenticated!')
         : print('User is not authenticated.');
 
-    if (isAuthenticated) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-              MyDefaultPage(sizingInformation),
-        ),
-      );
+    dynamic result = _auth.signInAnonymously();
+
+    if(result == null) {
+      print("error");
+    } else {
+      if(isAuthenticated) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                MyDefaultPage(sizingInformation),
+          ),
+        );
+      }
     }
+//    if (isAuthenticated) {
+//      Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//          builder: (context) =>
+//              MyDefaultPage(sizingInformation),
+//        ),
+//      );
+//    }
   }
 
   Future sleep1() {
