@@ -2,6 +2,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mobile_app_dev/Screens/eventsScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
@@ -79,67 +80,15 @@ class myHomeState extends State<myHomeScreen>{
                         backgroundColor: MyApp.appBarColor,
                         buttonText: Text('My Events', style: TextStyle(color: MyApp.whiteNoChangeColor),),
                         onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context){
-                                return AlertDialog(
-                                  backgroundColor: MyApp.backgroundColor,
-                                  title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
-                                  content: Container(
-                                    height: sizingInformation.myScreenSize.height/1.8,
-                                    width: sizingInformation.myScreenSize.width/1.3,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: ListView.builder(
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: 10,
-                                            itemBuilder: (BuildContext context, int index) {
-                                              return eventCard(sizingInformation, false);
-                                            },
-                                          ),
-                                        ),
-
-                                        SizedBox(
-                                          height: sizingInformation.myScreenSize.height/130,
-                                        ),
-
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            RaisedButton(
-                                              color: Colors.green,
-                                              child: Text("View on Map",style: TextStyle(color: MyApp.whiteTextColor)),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(18),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => myMapScreen(),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                            RaisedButton(
-                                              color: Colors.blue,
-                                              child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(18),
-                                              ),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-                          );
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => eventScreen(
+                            eventName: "Bay Section",
+                            eventDescription: "I like to eat pies",
+                            eventDate: "Feburary 8th, 2020",
+                            eventLocation: "Westmoor High School",
+                            eventState: "California",
+                            eventLink: "https://www.cafbla.org/domain/70",
+                            eventImage: Image.asset("assets/images/sacramento.png",fit: BoxFit.fill,),
+                          )),);
                         },
                       ),
                     ),

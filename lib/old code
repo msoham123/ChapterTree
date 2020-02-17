@@ -1,0 +1,63 @@
+alert dialog for my events
+
+showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  backgroundColor: MyApp.backgroundColor,
+                                  title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
+                                  content: Container(
+                                    height: sizingInformation.myScreenSize.height/1.8,
+                                    width: sizingInformation.myScreenSize.width/1.3,
+                                    child: Column(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: 10,
+                                            itemBuilder: (BuildContext context, int index) {
+                                              return eventCard(sizingInformation, false);
+                                            },
+                                          ),
+                                        ),
+
+                                        SizedBox(
+                                          height: sizingInformation.myScreenSize.height/130,
+                                        ),
+
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            RaisedButton(
+                                              color: Colors.green,
+                                              child: Text("View on Map",style: TextStyle(color: MyApp.whiteTextColor)),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => myMapScreen(),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            RaisedButton(
+                                              color: Colors.blue,
+                                              child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(18),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                          );
