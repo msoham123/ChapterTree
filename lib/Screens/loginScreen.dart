@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intro_slider/intro_slider.dart';
+import 'package:intro_slider/slide_object.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
+import 'package:mobile_app_dev/Test/introSlider.dart';
 import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
@@ -28,6 +31,7 @@ class myLoginState extends State<myLoginScreen> {
   TextEditingController userController, passwordController;
   String email = "", password = "";
   bool showSpinner = false;
+
 
   List<BiometricType> _availableBiometricTypes = List<BiometricType>();
 
@@ -94,8 +98,6 @@ class myLoginState extends State<myLoginScreen> {
 
   void initState() {
     super.initState();
-    userController = TextEditingController();
-    passwordController = TextEditingController();
   }
 
   void dispose() {
