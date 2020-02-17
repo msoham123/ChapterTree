@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:mobile_app_dev/Screens/eventsScreen.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
 import '../main.dart';
@@ -16,84 +17,93 @@ class eventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        showDialog(
-            context: context,
-            builder: (BuildContext context){
-              return AlertDialog(
-                backgroundColor: MyApp.backgroundColor,
-                title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
-                content: Container(
-                  height: sizingInformation.myScreenSize.height/1.8,
-                  width: sizingInformation.myScreenSize.width/1.3,
-                  child: Column(
-                    children: <Widget>[
-                      AbsorbPointer(child: eventCard(sizingInformation,true)),
-                      Container(
-                        height: sizingInformation.myScreenSize.height/8.1,
-                        child: ListView(
-                          children: <Widget>[
-                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts.",
-                              style: TextStyle(color: MyApp.blackTextColor) ,),
-                          ],
-                        ),
-                      ),
-                      Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/90,bottom:0)),
-                      if (infoTrue)  Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          RaisedButton(
-                            color: Colors.green,
-                            child: Text("Sign Up",style: TextStyle(color: MyApp.whiteTextColor)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          RaisedButton(
-                            color: Colors.blue,
-                            child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                      if (!infoTrue)  Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          RaisedButton(
-                            color: Colors.green,
-                            child: Text("Deregister"),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          RaisedButton(
-                            color: Colors.blue,
-                            child: Text("Back"),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => eventScreen(
+          eventName: "Bay Section",
+          eventDescription: "I like to eat pies",
+          eventDate: "Feburary 8th, 2020",
+          eventLocation: "Westmoor High School",
+          eventState: "California",
+          eventLink: "https://www.cafbla.org/domain/70",
+          eventImage: Image.asset("assets/images/sacramento.png",fit: BoxFit.fill,),
+        )),);
+//        showDialog(
+//            context: context,
+//            builder: (BuildContext context){
+//              return AlertDialog(
+//                backgroundColor: MyApp.backgroundColor,
+//                title: Center(child: Text('Event Details',style: TextStyle(color: MyApp.blackTextColor))),
+//                content: Container(
+//                  height: sizingInformation.myScreenSize.height/1.8,
+//                  width: sizingInformation.myScreenSize.width/1.3,
+//                  child: Column(
+//                    children: <Widget>[
+//                      AbsorbPointer(child: eventCard(sizingInformation,true)),
+//                      Container(
+//                        height: sizingInformation.myScreenSize.height/8.1,
+//                        child: ListView(
+//                          children: <Widget>[
+//                            Text("Fremont High School is a high school located in Sunnvale, California. Therefore, eat donuts.",
+//                              style: TextStyle(color: MyApp.blackTextColor) ,),
+//                          ],
+//                        ),
+//                      ),
+//                      Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/90,bottom:0)),
+//                      if (infoTrue)  Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                        children: <Widget>[
+//                          RaisedButton(
+//                            color: Colors.green,
+//                            child: Text("Sign Up",style: TextStyle(color: MyApp.whiteTextColor)),
+//                            shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(18),
+//                            ),
+//                            onPressed: () {
+//                              Navigator.pop(context);
+//                            },
+//                          ),
+//                          RaisedButton(
+//                            color: Colors.blue,
+//                            child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
+//                            shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(18),
+//                            ),
+//                            onPressed: () {
+//                              Navigator.pop(context);
+//                            },
+//                          ),
+//                        ],
+//                      ),
+//                      if (!infoTrue)  Row(
+//                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                        children: <Widget>[
+//                          RaisedButton(
+//                            color: Colors.green,
+//                            child: Text("Deregister"),
+//                            shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(18),
+//                            ),
+//                            onPressed: () {
+//                              Navigator.pop(context);
+//                            },
+//                          ),
+//                          RaisedButton(
+//                            color: Colors.blue,
+//                            child: Text("Back"),
+//                            shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(18),
+//                            ),
+//                            onPressed: () {
+//                              Navigator.pop(context);
+//                            },
+//                          ),
+//                        ],
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//              );
+//            }
+//        );
       },
       child: Container(
         margin: EdgeInsets.all(10.0),
