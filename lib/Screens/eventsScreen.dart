@@ -346,7 +346,10 @@ class _eventScreenState extends State<eventScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => myMapScreen()),
+                                          builder: (context) => myMapScreen(
+                                            latitude: 37.683396,
+                                            longitude: -122.482442,
+                                          )),
                                     );
                                   },
                                   child: Container(
