@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
+import 'package:mobile_app_dev/Test/mapScreen2.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
