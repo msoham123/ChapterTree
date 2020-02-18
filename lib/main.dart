@@ -14,6 +14,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget{
 
   static bool darkModeEnabled = false;
+  static bool introSliderEnabled = true;
   static int currentIndex = 0;
 
   static Color backgroundColor = Colors.white;

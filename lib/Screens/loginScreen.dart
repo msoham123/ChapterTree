@@ -289,13 +289,24 @@ class myLoginState extends State<myLoginScreen> {
                                     showSpinner = true;
                                   });
                                   if (user != null) {
-                                    Navigator.push(
+                                    if(MyApp.introSliderEnabled==true){
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              IntroScreen(sizingInformation),
+                                        ),
+                                      );
+                                      MyApp.introSliderEnabled = false;
+                                    }else{
+                                      Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             MyDefaultPage(sizingInformation),
                                       ),
                                     );
+                                    }
                                   }
                                 } catch (e) {
                                   print(e);
