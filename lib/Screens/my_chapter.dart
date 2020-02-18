@@ -52,7 +52,8 @@ class _myChapterScreen extends State<myChapterScreen> {
               .orderBy('count', descending: true)
               .snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return const Text('Loading...');
+            if (!snapshot.hasData)
+              return Center(child: const Text('Loading...'));
             return ListView.builder(
               itemExtent: 80.0,
               itemCount: snapshot.data.documents.length,
@@ -90,7 +91,12 @@ class _myChapterScreen extends State<myChapterScreen> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(document['count'].toString()),
+                    child: Text(
+                      document['count'].toString(),
+                      style: TextStyle(
+                        color: MyApp.whiteTextColor,
+                      ),
+                    ),
                   ),
                 )
               ],

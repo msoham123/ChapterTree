@@ -26,6 +26,13 @@ class myChatBotState extends State<myChatBotScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+    _messages.add(
+      ChatMessage(
+        text: "Hi " + loggedInUser.email + ", how can I assist you today?",
+        name: "FBLA Bot",
+        type: false
+      )
+    );
   }
 
   void getCurrentUser() async {
@@ -85,7 +92,7 @@ class myChatBotState extends State<myChatBotScreen> {
     ChatMessage message =  ChatMessage(
       text: response.getMessage() ??
            CardDialogflow(response.getListMessage()[0]).title,
-      name: "Bot",
+      name: "FBLA Bot",
       type: false,
     );
     setState(() {

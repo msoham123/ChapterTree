@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/main.dart';
 
 class MessageBubble extends StatelessWidget {
   final String sender;
@@ -15,7 +16,7 @@ class MessageBubble extends StatelessWidget {
         children: <Widget>[
           Text(
             sender,
-            style: TextStyle(fontSize: 12.0, color: Colors.black54),
+            style: TextStyle(fontSize: 12.0, color: MyApp.blackTextColor),
           ),
           Material(
             borderRadius: isMe

@@ -6,6 +6,8 @@ import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
+//import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../main.dart';
 
@@ -20,6 +22,9 @@ class myMapState extends State<myMapScreen> {
   PageController _pageController;
   GoogleMapController mapController;
   final LatLng _center = const LatLng(37.352727, -122.034227);
+//  Location location = new Location();
+  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager = true;
+  Position _currentPosition = new Position();
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -35,6 +40,23 @@ class myMapState extends State<myMapScreen> {
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  void _getCurrentLocation() async {
+    GeolocationStatus geolocationStatus  = await Geolocator().checkGeolocationPermissionStatus();
+
+    if(geolocationStatus == GeolocationStatus.granted) {
+      print('granted');
+      geolocator
+          .getCurrentPosition(desiredAccuracy: LocationAccuracy.low)
+          .then((Position position) {
+        setState(() {
+          _currentPosition = position;
+        });
+      }).catchError((e) {
+        print(e);
+      });
+    }
   }
 
   @override
@@ -57,15 +79,27 @@ class myMapState extends State<myMapScreen> {
                     fontWeight: FontWeight.bold
                 ),
               ),
-
-              SizedBox(
-                width: sizingInformation.myScreenSize.width/8,
-              ),
             ],
           ),
           centerTitle: true,
           actions: <Widget>[
-            //empty for now
+            Padding(
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    _getCurrentLocation();
+                    if(_currentPosition != null){
+                      print(_currentPosition.longitude);
+                    } else {
+                      print('error');
+                    }
+                  },
+                  child: Icon(
+                    Icons.search,
+                    size: 26.0,
+                  ),
+                )
+            )
           ],
         ),
         body: Container(
