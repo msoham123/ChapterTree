@@ -41,6 +41,8 @@ dependencies:
   local_auth: ^0.6.1
   intro_slider:
   geolocator:
+  google_map_polyline:
+  permission:
   location: ^2.4.0
   table_calendar: ^2.2.2
   shared_preferences: ^0.5.6+1
