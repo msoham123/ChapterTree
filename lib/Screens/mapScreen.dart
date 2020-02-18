@@ -3,24 +3,99 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
+import 'package:google_map_polyline/google_map_polyline.dart';
+import 'package:permission/permission.dart';
 
 import '../main.dart';
 
 class myMapScreen extends StatefulWidget {
-  @override
-  myMapState createState() => myMapState();
+  var latitude, longitude;
 
+  myMapScreen({@required this.latitude, @required this.longitude});
+
+  @override
+  myMapState createState() =>
+      myMapState(latitude: latitude, longitude: longitude);
 }
 
 class myMapState extends State<myMapScreen> {
+  var latitude, longitude;
+
+  myMapState({@required this.latitude, @required this.longitude});
 
   PageController _pageController;
   GoogleMapController mapController;
-  LatLng center = const LatLng(37.352727, -122.034227);
-//  Location location = new Location();
   Position currentLocation;
 
-  Map<MarkerId, Marker> markers = <MarkerId, Marker>{}; // CLASS MEMBER, MAP OF MARKS
+//  static const LatLng _center =  new LatLng(latitude, longitude);
+//  LatLng _lastMapPosition = _center;
+
+  final LatLng SOURCE = new LatLng(37.368832, -122.036346);
+  final LatLng DEST = new LatLng(37.773972, -122.431297);
+
+// static final LatLng _center = new LatLng(latitude, longitude);
+
+  final Set<Polyline> _polylines = {};
+  List<LatLng> routePoints;
+  GoogleMapPolyline googleMapPolyline =
+      new GoogleMapPolyline(apiKey: "AIzaSyDfIUawmqiyd4d4yiYrvgRzy3N8a_rmm70");
+  Map<MarkerId, Marker> markers =
+      <MarkerId, Marker>{}; // CLASS MEMBER, MAP OF MARKS
+
+  @override
+  void initState() {
+    markers.clear();
+    super.initState();
+    _pageController = PageController();
+//   _getLocation();
+    _drawRoute();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _onMapCreated(GoogleMapController controller) {
+    setState(() {
+      mapController = controller;
+//      _polylines.add(
+//        Polyline(
+//          polylineId: PolylineId("Route1"),
+//          visible: true,
+//          points: routePoints,
+//          width: 10,
+//          color: Colors.blue,
+//          startCap: Cap.roundCap,
+//          endCap: Cap.buttCap,
+//        ),
+//      );
+    });
+  }
+
+  void _drawRoute() async {
+//    var permissions =
+//        await Permission.getPermissionsStatus([PermissionName.Location]);
+//    print(permissions[0].permissionStatus);
+//    if (permissions[0].permissionStatus == PermissionStatus.notAgain) {
+//      await Permission.requestPermissions([PermissionName.Location]);
+//    } else {
+//      print('here');
+//      routePoints = await googleMapPolyline.getCoordinatesWithLocation(
+//        origin: SOURCE,
+//        destination: DEST,
+//        mode: RouteMode.driving,
+//      );
+////    routePoints = await googleMapPolyline.getPolylineCoordinatesWithAddress(
+////        origin:  '55 Kingston Ave, Brooklyn, NY 11213, USA',
+////        destination:  '8007 Cypress Ave, Glendale, NY 11385, USA',
+////        mode:  RouteMode.driving);
+//    }
+
+    routePoints.add(SOURCE);
+    routePoints.add(DEST);
+  }
 
   void _getLocation() async {
     var currentLocation = await Geolocator()
@@ -29,25 +104,19 @@ class myMapState extends State<myMapScreen> {
     setState(() {
       markers.clear();
       final marker = Marker(
-        markerId: MarkerId("curr_loc"),
-        position: LatLng(currentLocation.latitude, currentLocation.longitude),
-        infoWindow: InfoWindow(title: 'Your Location'),
-        icon: BitmapDescriptor.defaultMarker
-      );
+          markerId: MarkerId("curr_loc"),
+          position: LatLng(this.latitude, this.longitude),
+          infoWindow: InfoWindow(title: 'Your Location'),
+          icon: BitmapDescriptor.defaultMarker);
     });
-
-    currentLocation = currentLocation;
+    print(currentLocation.latitude);
+    print(currentLocation.longitude);
   }
 
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  void _add(){
+  void _add() {
     final Marker marker = Marker(
       markerId: MarkerId("Event"),
-      position: center,
+//    position: _center,
       infoWindow: InfoWindow(title: "Event", snippet: '*'),
       onTap: () {
         print('tapped');
@@ -61,93 +130,63 @@ class myMapState extends State<myMapScreen> {
   }
 
   @override
-  void initState() {
-    markers.clear();
-    super.initState();
-    _pageController = PageController();
-    _getLocation();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BaseWidget(builder: (context, sizingInformation) {
-      return Scaffold(
-        backgroundColor: MyApp.backgroundColor,
-        appBar: AppBar(
-          automaticallyImplyLeading: true,
-          backgroundColor: MyApp.appBarColor,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              Text(
-                'Map View',
-                style: TextStyle(
-                    color: MyApp.whiteNoChangeColor,
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold
+    return BaseWidget(
+      builder: (context, sizingInformation) {
+        return Scaffold(
+          backgroundColor: MyApp.backgroundColor,
+          appBar: AppBar(
+            automaticallyImplyLeading: true,
+            backgroundColor: MyApp.appBarColor,
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Map View',
+                  style: TextStyle(
+                      color: MyApp.whiteNoChangeColor,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold),
                 ),
-              ),
+              ],
+            ),
+            centerTitle: true,
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      _getLocation();
+                    },
+                    child: Icon(
+                      Icons.search,
+                      size: 26.0,
+                    ),
+                  ))
             ],
           ),
-          centerTitle: true,
-          actions: <Widget>[
-            Padding(
-                padding: EdgeInsets.only(right: 20.0),
-                child: GestureDetector(
-                  onTap: () async {
-                    _getLocation();
-
-                  },
-                  child: Icon(
-                    Icons.search,
-                    size: 26.0,
+          body: Container(
+            height: sizingInformation.myScreenSize.height,
+            width: sizingInformation.myScreenSize.width,
+            child: Stack(
+              children: <Widget>[
+                GoogleMap(
+                  polylines: _polylines,
+                  markers: Set<Marker>.of(markers.values),
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: SOURCE,
+                    zoom: 5.0,
                   ),
-                )
-            )
-          ],
-        ),
-        body: Container(
-          height: sizingInformation.myScreenSize.height,
-          width: sizingInformation.myScreenSize.width,
-          child: Stack(
-            children: <Widget>[
-              GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  target: center,
-                  zoom: 15.0,
+                  mapType: MapType.normal,
+                  myLocationEnabled: true,
+                  compassEnabled: true,
                 ),
-                myLocationEnabled: true,
-                mapType: MapType.hybrid,
-                compassEnabled: true,
-                markers: Set<Marker>.of(markers.values),
+              ],
+            ),
           ),
-              Positioned(
-                child: FlatButton(
-                  color: Colors.green,
-                  child: Text("button"),
-                  onPressed: (){
-                    _add();
-                  },
-                ),
-              )
-
-
-            ],
-          ),
-        ),
-      );
-    },
+        );
+      },
     );
   }
 }
-
-
-
