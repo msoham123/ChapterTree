@@ -9,20 +9,15 @@ import 'package:permission/permission.dart';
 import '../main.dart';
 
 class myMapScreen extends StatefulWidget {
-  var latitude, longitude;
+  final latitude, longitude;
 
   myMapScreen({@required this.latitude, @required this.longitude});
 
   @override
-  myMapState createState() =>
-      myMapState(latitude: latitude, longitude: longitude);
+  myMapState createState() => myMapState();
 }
 
 class myMapState extends State<myMapScreen> {
-  var latitude, longitude;
-
-  myMapState({@required this.latitude, @required this.longitude});
-
   PageController _pageController;
   GoogleMapController mapController;
   Position currentLocation;
@@ -105,7 +100,7 @@ class myMapState extends State<myMapScreen> {
       markers.clear();
       final marker = Marker(
           markerId: MarkerId("curr_loc"),
-          position: LatLng(this.latitude, this.longitude),
+          position: LatLng(widget.latitude, widget.longitude),
           infoWindow: InfoWindow(title: 'Your Location'),
           icon: BitmapDescriptor.defaultMarker);
     });
