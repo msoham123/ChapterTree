@@ -1,6 +1,7 @@
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Test/introSlider.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -322,14 +323,6 @@ class mySignUpState extends State<mySignUpScreen> {
                               await _auth.createUserWithEmailAndPassword(
                                   email: email, password: password);
                               if (newUser != null) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        MyDefaultPage(sizingInformation),
-                                  ),
-                                );
-
                                 showDialog(
                                     context: context,
                                     builder: (_) => AssetGiffyDialog(
@@ -349,7 +342,24 @@ class mySignUpState extends State<mySignUpScreen> {
                                       image: Image.asset(
                                           'assets/gifs/welcome.gif'),
                                     ));
-
+                                if(MyApp.introSliderEnabled==true){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          IntroScreen(sizingInformation),
+                                    ),
+                                  );
+                                  MyApp.introSliderEnabled = false;
+                                }else{
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          MyDefaultPage(sizingInformation),
+                                    ),
+                                  );
+                                }
                                 setState(() {
                                   showSpinner = false;
                                 });
