@@ -40,7 +40,7 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
         title: "Sign Up for Events",
         description: "Keep track of all of your competitive events to ensure that you succeed!",
-        pathImage: "assets/images/eventsPic.png",
+        pathImage: "assets/images/events.png",
         backgroundColor: Colors.blue,
       ),
     );
@@ -48,7 +48,7 @@ class IntroScreenState extends State<IntroScreen> {
       new Slide(
         title: "Chapter Attendance",
         description: "Record data on chapter member attendance.",
-        pathImage: "assets/images/attendancePic.png",
+        pathImage: "assets/images/attendance.png",
         backgroundColor: Colors.green,
       ),
     );
@@ -57,7 +57,7 @@ class IntroScreenState extends State<IntroScreen> {
         title: "Learn About FBLA",
         description:
         "Learn about the rich and intuitive history, mission, and features of FBLA.",
-        pathImage: "assets/images/fblaPic.png",
+        pathImage: "assets/images/fbla.png",
         backgroundColor: Colors.red,
       ),
     );
@@ -66,7 +66,7 @@ class IntroScreenState extends State<IntroScreen> {
         title: "Communication",
         description:
         "Conference with other FBLA members for strategies, study sessions, and more!",
-        pathImage: "assets/images/messagePic.png",
+        pathImage: "assets/images/messages.png",
         backgroundColor: Colors.orange,
       ),
     );
