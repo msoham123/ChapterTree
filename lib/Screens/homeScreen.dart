@@ -13,6 +13,10 @@ import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mobile_app_dev/models/user.dart';
+import 'package:mobile_app_dev/Services/database.dart';
 
 import '../main.dart';
 
@@ -32,6 +36,12 @@ class myHomeState extends State<myHomeScreen> {
   List<dynamic> _selectedEvents;
   SharedPreferences preferences;
   Builder itemBuilder;
+  final _db = Firestore.instance;
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
+  DocumentSnapshot userSnapshot;
+  DatabaseService ds = new DatabaseService();
+
 
   @override
   void initState() {
@@ -42,6 +52,28 @@ class myHomeState extends State<myHomeScreen> {
     _events = {};
     _selectedEvents = [];
     initPrefs();
+    getCurrentUser();
+    _populateCurrentUser(loggedInUser);
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void _populateCurrentUser(FirebaseUser user) async {
+    final FirebaseUser user = await _auth.currentUser();
+    final String userUID = user.uid.toString();
+    if(user != null) {
+      userSnapshot = await ds.getUser(userUID);
+    }
+    print(userSnapshot.data['chapter']);
   }
 
   Map<String, dynamic> encodeMap(Map<DateTime, dynamic> map) {

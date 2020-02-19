@@ -121,14 +121,16 @@ class myMapState extends State<myMapScreen> {
     print(rows[0]["elements"]);
     List<dynamic> elements = rows[0]["elements"];
 
-    Map<String, dynamic> distance = elements[0]["distance"];
-    Map<String, dynamic> duration = elements[0]["duration"];
+    List<String> distance = new List<String>.from(elements[0]["distance"]);
+//    List<String> duration = new List<String>.from(elements[0]["duration"]);
+
+//  Map<String, dynamic> duration = elements[0]["duration"];
 
 //    distance = distance['text'].toString();
 //    duration = duration['text'].toString();
 
-    print(distance['text']);
-    print(duration['text']);
+    print(distance);
+//    print(duration);
   }
 
   @override
