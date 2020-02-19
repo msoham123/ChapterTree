@@ -3,10 +3,13 @@ import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
+import 'package:mobile_app_dev/Services/database.dart';
+import 'dart:io';
 
 import '../main.dart';
 
 FirebaseUser loggedInUser;
+String name = '';
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
 
@@ -22,16 +25,20 @@ class myChatBotState extends State<myChatBotScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController =  TextEditingController();
 
+  DatabaseService ds = new DatabaseService();
+  DocumentSnapshot userSnapshot;
+
   @override
   void initState() {
     super.initState();
     getCurrentUser();
+    _populateCurrentUser(loggedInUser);
     _messages.add(
-      ChatMessage(
-        text: "Hi " + loggedInUser.email + ", how can I assist you today?",
-        name: "FBLA Bot",
-        type: false
-      )
+        ChatMessage(
+            text: "Hi, how can I assist you today?",
+            name: "FBLA Bot",
+            type: false
+        )
     );
   }
 
@@ -44,6 +51,16 @@ class myChatBotState extends State<myChatBotScreen> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void _populateCurrentUser(FirebaseUser user) async {
+    final FirebaseUser user = await _auth.currentUser();
+    final String userUID = user.uid.toString();
+    if(user != null) {
+      userSnapshot = await ds.getUser(userUID);
+    }
+    name = userSnapshot.data['full_name'].toString();
+    print(name);
   }
 
   Widget _buildTextComposer() {
@@ -104,7 +121,7 @@ class myChatBotState extends State<myChatBotScreen> {
     _textController.clear();
     ChatMessage message =  ChatMessage(
       text: text,
-      name: loggedInUser.email,
+      name: name,
       type: true,
     );
     setState(() {
