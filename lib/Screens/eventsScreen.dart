@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/Test/mapScreen2.dart';
@@ -17,6 +18,7 @@ class eventScreen extends StatefulWidget {
       eventState,
       eventLink;
   Image eventImage;
+  LatLng DEST;
 
   eventScreen({
     @required this.eventName,
@@ -26,6 +28,7 @@ class eventScreen extends StatefulWidget {
     @required this.eventState,
     @required this.eventLink,
     @required this.eventImage,
+    @required this.DEST
   });
 
   @override
@@ -37,6 +40,7 @@ class eventScreen extends StatefulWidget {
         eventName: eventName,
         eventLocation: eventLocation,
         eventState: eventState,
+        DEST: DEST,
       );
 }
 
@@ -48,6 +52,7 @@ class _eventScreenState extends State<eventScreen> {
       eventState,
       eventLink;
   Image eventImage;
+  LatLng DEST;
 
   _eventScreenState({
     @required this.eventName,
@@ -57,6 +62,7 @@ class _eventScreenState extends State<eventScreen> {
     @required this.eventState,
     @required this.eventLink,
     @required this.eventImage,
+    @required this.DEST
   });
 
   void _launch(String link) async {
@@ -88,6 +94,7 @@ class _eventScreenState extends State<eventScreen> {
                     ),
                     Container(
                         height: sizingInformation.myScreenSize.height / 3,
+                        width: sizingInformation.myScreenSize.width,
                         child: eventImage),
                     Padding(
                       padding: EdgeInsets.only(
@@ -346,10 +353,7 @@ class _eventScreenState extends State<eventScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => myMapScreen(
-                                            latitude: 37.683396,
-                                            longitude: -122.482442,
-                                          )),
+                                          builder: (context) => myMapScreen(DEST: DEST,)),
                                     );
                                   },
                                   child: Container(
