@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:giffy_dialog/giffy_dialog.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/Test/introSlider.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +18,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
+import 'package:mobile_app_dev/Services/database.dart';
 
 import '../main.dart';
 
@@ -26,8 +29,12 @@ class mySignUpScreen extends StatefulWidget {
 
 class mySignUpState extends State<mySignUpScreen> {
   final _auth = FirebaseAuth.instance;
+
   MediaQueryData myHeightPercent;
-  TextEditingController emailController, passwordController, nameController, chapterController;
+  TextEditingController emailController,
+      passwordController,
+      nameController,
+      chapterController;
   String email = "", password = "", name = "", chapter = "";
   bool showSpinner = false;
 
@@ -65,10 +72,8 @@ class mySignUpState extends State<mySignUpScreen> {
                           padding: EdgeInsets.only(
                               left: 0,
                               right: 0,
-                              top: sizingInformation.myScreenSize.height/10,
+                              top: sizingInformation.myScreenSize.height / 10,
                               bottom: 0)),
-
-
                       Container(
                         child: Row(
                           children: <Widget>[
@@ -118,69 +123,66 @@ class mySignUpState extends State<mySignUpScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: sizingInformation.myScreenSize.height/10,
+                        height: sizingInformation.myScreenSize.height / 10,
                       ),
-
                       Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(
-                              vertical: 0,
-                              horizontal:
-                              sizingInformation.myScreenSize.width / 10),
-                          height: sizingInformation.myScreenSize.height / 10,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              gradient: MyApp.blueGradient, //indigo 500
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
-                            ),
-                            child: TextField(
-                                textAlign: TextAlign.left,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal:
+                                sizingInformation.myScreenSize.width / 10),
+                        height: sizingInformation.myScreenSize.height / 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: MyApp.blueGradient, //indigo 500
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: TextField(
+                              textAlign: TextAlign.left,
 //                          maxLines: null,
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.email,
-                                    color: Colors.white,
-                                  ),
-                                  fillColor: Colors.white,
-                                  labelText: null,
-                                  hintText: 'Please enter your Full Name',
-                                  labelStyle: null,
-                                  border: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  errorBorder: InputBorder.none,
-                                  disabledBorder: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                      fontSize: 18, color: Colors.white),
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Colors.white,
                                 ),
-                                style: TextStyle(
-                                    fontSize: 25, color: Colors.white),
-                                cursorWidth: 4,
-                                cursorColor: Colors.white,
-                                controller: nameController,
-                                keyboardType: TextInputType.emailAddress,
-                                onChanged: (value) {
-                                  name = value;
-                                }),
-                          )),
-
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height/69,
+                                fillColor: Colors.white,
+                                labelText: null,
+                                hintText: 'Please enter your Full Name',
+                                labelStyle: null,
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                hintStyle: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                              style:
+                                  TextStyle(fontSize: 25, color: Colors.white),
+                              cursorWidth: 4,
+                              cursorColor: Colors.white,
+                              controller: nameController,
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (value) {
+                                name = value;
+                              }),
+                        ),
                       ),
-
+                      SizedBox(
+                        height: sizingInformation.myScreenSize.height / 69,
+                      ),
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal:
-                              sizingInformation.myScreenSize.width / 10),
+                                  sizingInformation.myScreenSize.width / 10),
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
                               gradient: MyApp.blueGradient, //indigo 500
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(30)),
                             ),
                             child: TextField(
                                 textAlign: TextAlign.left,
@@ -212,22 +214,21 @@ class mySignUpState extends State<mySignUpScreen> {
                                   email = value;
                                 }),
                           )),
-
                       SizedBox(
-                        height: sizingInformation.myScreenSize.height/69,
+                        height: sizingInformation.myScreenSize.height / 69,
                       ),
-               Container(
+                      Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal:
-                              sizingInformation.myScreenSize.width / 10),
+                                  sizingInformation.myScreenSize.width / 10),
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
                               gradient: MyApp.blueGradient,
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(30)),
                             ),
                             child: TextField(
                               textAlign: TextAlign.left,
@@ -250,7 +251,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                     fontSize: 18, color: Colors.white),
                               ),
                               style:
-                              TextStyle(fontSize: 25, color: Colors.white),
+                                  TextStyle(fontSize: 25, color: Colors.white),
                               cursorWidth: 4,
                               cursorColor: Colors.white,
                               controller: passwordController,
@@ -261,21 +262,20 @@ class mySignUpState extends State<mySignUpScreen> {
                             ),
                           )),
                       SizedBox(
-                        height: sizingInformation.myScreenSize.height/69,
+                        height: sizingInformation.myScreenSize.height / 69,
                       ),
-
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
                               vertical: 0,
                               horizontal:
-                              sizingInformation.myScreenSize.width / 10),
+                                  sizingInformation.myScreenSize.width / 10),
                           height: sizingInformation.myScreenSize.height / 10,
                           child: Container(
                             decoration: BoxDecoration(
                               gradient: MyApp.blueGradient, //indigo 500
                               borderRadius:
-                              BorderRadius.all(Radius.circular(30)),
+                                  BorderRadius.all(Radius.circular(30)),
                             ),
                             child: TextField(
                                 textAlign: TextAlign.left,
@@ -307,7 +307,6 @@ class mySignUpState extends State<mySignUpScreen> {
                                   chapter = value;
                                 }),
                           )),
-
                       Container(
                         width: sizingInformation.myScreenSize.width / 1.5,
                         child: SimpleRoundButton(
@@ -319,30 +318,34 @@ class mySignUpState extends State<mySignUpScreen> {
                           onPressed: () async {
                             // Create the user here once we have the email and password
                             try {
-                              final newUser =
-                              await _auth.createUserWithEmailAndPassword(
-                                  email: email, password: password);
-                              if (newUser != null) {
+                              final result =
+                                  await _auth.createUserWithEmailAndPassword(
+                                      email: email, password: password);
+                              FirebaseUser user = result.user;
+
+                              // Create a document for the user with the uid
+                              await DatabaseService(uid: user.uid).updateUserData(name, 0, chapter);
+
+                              if (result != null) {
                                 showDialog(
-                                    context: context,
-                                    builder: (_) => AssetGiffyDialog(
-                                      description: Text(
-                                          'To confirm, your email will be $email, and your password will be $password. You will be able to change the password later.'),
-                                      title: Text("Welcome to ChapterTree"),
-                                      onOkButtonPressed: () =>
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MyDefaultPage(
-                                                      sizingInformation),
-                                            ),
-                                          ),
-                                      entryAnimation: EntryAnimation.BOTTOM,
-                                      image: Image.asset(
-                                          'assets/gifs/welcome.gif'),
-                                    ));
-                                if(MyApp.introSliderEnabled==true){
+                                  context: context,
+                                  builder: (_) => AssetGiffyDialog(
+                                    description: Text(
+                                        'To confirm, your email will be $email, and your password will be $password. You will be able to change the password later.'),
+                                    title: Text("Welcome to ChapterTree"),
+                                    onOkButtonPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            MyDefaultPage(sizingInformation),
+                                      ),
+                                    ),
+                                    entryAnimation: EntryAnimation.BOTTOM,
+                                    image:
+                                        Image.asset('assets/gifs/welcome.gif'),
+                                  ),
+                                );
+                                if (MyApp.introSliderEnabled == true) {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -351,7 +354,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                     ),
                                   );
                                   MyApp.introSliderEnabled = false;
-                                }else{
+                                } else {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -398,17 +401,3 @@ class mySignUpState extends State<mySignUpScreen> {
     );
   }
 }
-
-//
-//Container(
-//alignment: Alignment.center,
-//width: sizingInformation.myScreenSize.width/1.3,
-//height: sizingInformation.myScreenSize.height/4,
-//decoration: BoxDecoration(
-//color: Colors.white,
-//gradient: LinearGradient(
-//colors : [Colors.indigo[500], Colors.lightBlueAccent[100] ]),
-//borderRadius: BorderRadius.all(Radius.circular(30)),
-//),
-//child: Image.asset('images/logo1.png'),
-//),
