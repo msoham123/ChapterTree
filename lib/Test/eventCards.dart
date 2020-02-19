@@ -74,14 +74,19 @@ class eventCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          thisEvent.title,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                          ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              thisEvent.title,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 19.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                          ],
                         ),
                         Row(
                           children: <Widget>[
