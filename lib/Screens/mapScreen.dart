@@ -35,7 +35,7 @@ class myMapState extends State<myMapScreen> {
   GoogleMapPolyline googleMapPolyline =
       new GoogleMapPolyline(apiKey: "AIzaSyDfIUawmqiyd4d4yiYrvgRzy3N8a_rmm70");
 //  Set<Marker> _markers = {};
-  var _markers = Set<Marker>();
+  List<Marker> _markers = <Marker>[];
 
 
   @override
@@ -45,6 +45,7 @@ class myMapState extends State<myMapScreen> {
     _pageController = PageController();
 //   _getLocation();
     _drawRoute();
+    _add(DEST);
   }
 
   @override
@@ -109,21 +110,16 @@ class myMapState extends State<myMapScreen> {
     print(currentLocation.longitude);
   }
 
-  void _add() {
-    final Marker marker = Marker(
-      markerId: MarkerId("Event"),
-//    position: _center,
-      infoWindow: InfoWindow(title: "Event", snippet: '*'),
-      onTap: () {
-        print('tapped');
-      },
+  void _add(LatLng destination) {
+    final marker = Marker(
+      markerId: MarkerId("curr_loc"),
+      position: destination,
+      infoWindow: InfoWindow(title: 'Your Location'),
+      icon: BitmapDescriptor.defaultMarker,
+      visible: true,
     );
-//                    _getLocation();
-    setState(() {
-      // adding a new marker to map
-      _markers.clear();
-      _markers.add(marker);
-    });
+    _markers.clear();
+    _markers.add(marker);
   }
 
   @override
@@ -153,7 +149,7 @@ class myMapState extends State<myMapScreen> {
                   padding: EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                     onTap: () async {
-                      _add();
+
                     },
                     child: Icon(
                       Icons.search,
@@ -169,7 +165,7 @@ class myMapState extends State<myMapScreen> {
               children: <Widget>[
                 GoogleMap(
                   polylines: _polylines,
-                  markers: _markers,
+                  markers: Set<Marker>.of(_markers),
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
                     target: SOURCE,
@@ -179,24 +175,14 @@ class myMapState extends State<myMapScreen> {
                   myLocationEnabled: true,
                   compassEnabled: true,
                 ),
-                Positioned(
-                  child: FlatButton(
-                    color: Colors.green,
-                    child: Text("button"),
-                    onPressed: (){
-                      final marker = Marker(
-                          markerId: MarkerId("curr_loc"),
-                          position: DEST,
-                          infoWindow: InfoWindow(title: 'Your Location'),
-                          icon: BitmapDescriptor.defaultMarker
-                      );
-                      setState((){
-                        _markers.clear();
-                        _markers.add(marker);
-                      });
-                    },
-                  ),
-                )
+//                Positioned(
+//                  child: FlatButton(
+//                    color: Colors.green,
+//                    child: Text("button"),
+//                    onPressed: (){
+//                    },
+//                  ),
+//                )
               ],
             ),
           ),
