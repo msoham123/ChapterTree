@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^0.5.6+1
   google_map_polyline: ^0.2.0+1
   permission: ^0.1.5
+  http: ^0.12.0+4
 
 
   # The following adds the Cupertino Icons font to your application.

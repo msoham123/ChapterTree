@@ -5,6 +5,8 @@ import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
 import 'package:permission/permission.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../main.dart';
 
@@ -27,6 +29,7 @@ class myMapState extends State<myMapScreen> {
 
   final LatLng SOURCE = new LatLng(37.368832, -122.036346);
   final LatLng DEST = new LatLng(37.773972, -122.431297);
+  final String API_KEY = "AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ";
 
 // static final LatLng _center = new LatLng(latitude, longitude);
 
@@ -46,7 +49,6 @@ class myMapState extends State<myMapScreen> {
     _pageController = PageController();
 //   _getLocation();
     _add(DEST);
-    _drawRoute();
   }
 
   @override
@@ -70,40 +72,6 @@ class myMapState extends State<myMapScreen> {
     });
   }
 
-  void _drawRoute() async {
-//    var permissions =
-//        await Permission.getPermissionsStatus([PermissionName.Location]);
-//    print(permissions[0].permissionStatus);
-//    if (permissions[0].permissionStatus == PermissionStatus.notAgain) {
-//      await Permission.requestPermissions([PermissionName.Location]);
-//    } else {
-//      print('here');
-//      routePoints = await googleMapPolyline.getCoordinatesWithLocation(
-//        origin: SOURCE,
-//        destination: DEST,
-//        mode: RouteMode.driving,
-//      );
-////    routePoints = await googleMapPolyline.getPolylineCoordinatesWithAddress(
-////        origin:  '55 Kingston Ave, Brooklyn, NY 11213, USA',
-////        destination:  '8007 Cypress Ave, Glendale, NY 11385, USA',
-////        mode:  RouteMode.driving);
-//    }
-    LatLng myLocation = await _getLocation();
-    route = await googleMapPolyline.getCoordinatesWithLocation(
-        origin: myLocation,
-        destination: DEST,
-        mode:  RouteMode.driving);
-//    routePoints.add(SOURCE);
-//    routePoints.add(DEST);
-  }
-
-  Future<LatLng> _getLocation() async {
-    var currentLocation = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-    LatLng myLocation = LatLng(currentLocation.latitude,currentLocation.longitude);
-    return myLocation;
-  }
-
   void _add(LatLng destination) {
     final marker = Marker(
       markerId: MarkerId("event_loc"),
@@ -114,6 +82,35 @@ class myMapState extends State<myMapScreen> {
     );
     _markers.clear();
     _markers.add(marker);
+  }
+
+  // API CODE - DISTANCE MATRIX API //
+  // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
+  Future<String> getData() async {
+    var response = await http.get(
+      "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=37.368832,-122.036346&destinations=37.773972%2C-122.431297&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ",
+      headers: {
+        "Accept": "application/json",
+      }
+    );
+    Map<String, dynamic> data  = json.decode(response.body);
+    List<dynamic> rows = data["rows"];
+    print(rows[0]["elements"]);
+    List<dynamic> elements = rows[0]["elements"];
+
+    Map<String, dynamic> distance = elements[0]["distance"];
+    Map<String, dynamic> duration = elements[0]["duration"];
+
+    print(distance['text']);
+    print(duration['text']);
+    _getLocation();
+  }
+
+  void _getLocation() async {
+    var currentLocation = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    LatLng myLocation = LatLng(currentLocation.latitude,currentLocation.longitude);
+    print('mylocation = ${myLocation.latitude}, ${myLocation.longitude}');
   }
 
   @override
@@ -143,7 +140,7 @@ class myMapState extends State<myMapScreen> {
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
                   onTap: () async {
-                    _getLocation();
+                    getData();
                   },
                   child: Icon(
                     Icons.search,
@@ -184,5 +181,31 @@ class myMapState extends State<myMapScreen> {
         );
       },
     );
+  }
+  void _drawRoute() async {
+//    var permissions =
+//        await Permission.getPermissionsStatus([PermissionName.Location]);
+//    print(permissions[0].permissionStatus);
+//    if (permissions[0].permissionStatus == PermissionStatus.notAgain) {
+//      await Permission.requestPermissions([PermissionName.Location]);
+//    } else {
+//      print('here');
+//      routePoints = await googleMapPolyline.getCoordinatesWithLocation(
+//        origin: SOURCE,
+//        destination: DEST,
+//        mode: RouteMode.driving,
+//      );
+////    routePoints = await googleMapPolyline.getPolylineCoordinatesWithAddress(
+////        origin:  '55 Kingston Ave, Brooklyn, NY 11213, USA',
+////        destination:  '8007 Cypress Ave, Glendale, NY 11385, USA',
+////        mode:  RouteMode.driving);
+//    }
+//  LatLng myLocation = await _getLocation();
+//    route = await googleMapPolyline.getCoordinatesWithLocation(
+//        origin: myLocation,
+//        destination: DEST,
+//        mode:  RouteMode.driving);
+//    routePoints.add(SOURCE);
+//    routePoints.add(DEST);
   }
 }
