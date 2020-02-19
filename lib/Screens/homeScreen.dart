@@ -41,7 +41,7 @@ class myHomeState extends State<myHomeScreen> {
     _textEventController = TextEditingController();
     _events = {};
     _selectedEvents = [];
-//   initPrefs();
+    initPrefs();
   }
 
   Map<String, dynamic> encodeMap(Map<DateTime, dynamic> map) {
@@ -77,33 +77,37 @@ class myHomeState extends State<myHomeScreen> {
 
   _showAddDialog() {
     showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              content: TextField(
-                controller: _textEventController,
-              ),
-              actions: <Widget>[
-                FlatButton(
-                  child: Text("Save"),
-                  onPressed: () {
-                    print("save tapped");
-                    if (_textEventController.text.isEmpty) return;
-                    if (_events[_calendarController.selectedDay] != null) {
-                      print("not null");
-                      _events[_calendarController.selectedDay].add(_textEventController.text);
-                    } else {
-                      print('null');
-                      _events[_calendarController.selectedDay] = [_textEventController.text];
-                    }
-                    setState(() {
-                      // preferences.setString("events", json.encode(encodeMap(_events)));
-                      _textEventController.clear();
-                      Navigator.pop(context);
-                    });
-                  },
-                )
-              ],
-            ));
+      context: context,
+      builder: (context) => AlertDialog(
+        content: TextField(
+          controller: _textEventController,
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("Save"),
+            onPressed: () {
+              if (_textEventController.text.isEmpty) return;
+                print("save tapped");
+                if (_events[_calendarController.selectedDay] != null) {
+                  print("not null");
+                  _events[_calendarController.selectedDay]
+                      .add(_textEventController.text);
+                } else {
+                  print('null');
+                  _events[_calendarController.selectedDay] = [
+                    _textEventController.text
+                  ];
+                }
+              setState(() {
+                // preferences.setString("events", json.encode(encodeMap(_events)));
+                Navigator.pop(context);
+                _textEventController.clear();
+              });
+            },
+          )
+        ],
+      ),
+    );
   }
 
   @override

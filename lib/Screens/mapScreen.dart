@@ -144,16 +144,17 @@ class myMapState extends State<myMapScreen> {
             centerTitle: true,
             actions: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () async {
-
-                    },
-                    child: Icon(
-                      Icons.search,
-                      size: 26.0,
-                    ),
-                  ))
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () async {
+                    _getLocation();
+                  },
+                  child: Icon(
+                    Icons.search,
+                    size: 26.0,
+                  ),
+                ),
+              )
             ],
           ),
           body: Container(

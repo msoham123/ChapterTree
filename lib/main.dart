@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
+import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 
 import 'models/appTheme.dart';
