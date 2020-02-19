@@ -23,19 +23,19 @@ class myMapState extends State<myMapScreen> {
   PageController _pageController;
   GoogleMapController mapController;
   Position currentLocation;
+  LatLng SOURCE;
+  String distance = '', duration = '';
 
 //  static const LatLng _center =  new LatLng(latitude, longitude);
 //  LatLng _lastMapPosition = _center;
 
-  final LatLng SOURCE = new LatLng(37.368832, -122.036346);
+// final LatLng SOURCE = new LatLng(37.368832, -122.036346);
   final String API_KEY = "AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ";
 
   LatLng DEST;
   myMapState(LatLng DEST){
     this.DEST = DEST;
   }
-
-// static final LatLng _center = new LatLng(latitude, longitude);
 
   final Set<Polyline> _polyline = {};
   List<LatLng> routePoints;
@@ -44,15 +44,30 @@ class myMapState extends State<myMapScreen> {
 //  Set<Marker> _markers = {};
   List<Marker> _markers = <Marker>[];
   List<LatLng> route;
-
+  bool isLoad = false;
 
   @override
-  void initState() {
+  void initState(){
     _markers.clear();
     super.initState();
     _pageController = PageController();
 //   _getLocation();
     _add(DEST);
+    _populateSource();
+    getData();
+  }
+
+  void _populateSource() async {
+    SOURCE = await _getSource();
+    isLoad = true;
+  }
+
+  Future<LatLng> _getSource() async {
+    var currentLocation = await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    LatLng myLocation = LatLng(currentLocation.latitude,currentLocation.longitude);
+    print('mylocation = ${myLocation.latitude}, ${myLocation.longitude}');
+    return myLocation;
   }
 
   @override
@@ -90,7 +105,7 @@ class myMapState extends State<myMapScreen> {
 
   // API CODE - DISTANCE MATRIX API //
   // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
-  Future<String> getData() async {
+  void getData() async {
     var response = await http.get(
       "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=37.368832,-122.036346&destinations=37.773972%2C-122.431297&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ",
       headers: {
@@ -105,16 +120,11 @@ class myMapState extends State<myMapScreen> {
     Map<String, dynamic> distance = elements[0]["distance"];
     Map<String, dynamic> duration = elements[0]["duration"];
 
+//    distance = distance['text'].toString();
+//    duration = duration['text'].toString();
+
     print(distance['text']);
     print(duration['text']);
-    _getLocation();
-  }
-
-  void _getLocation() async {
-    var currentLocation = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-    LatLng myLocation = LatLng(currentLocation.latitude,currentLocation.longitude);
-    print('mylocation = ${myLocation.latitude}, ${myLocation.longitude}');
   }
 
   @override
@@ -143,8 +153,45 @@ class myMapState extends State<myMapScreen> {
               Padding(
                 padding: EdgeInsets.only(right: 20.0),
                 child: GestureDetector(
-                  onTap: () async {
-                    getData();
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            backgroundColor: MyApp.backgroundColor,
+                            title: Center(child: Text('Location Details',style: TextStyle(color: MyApp.blackTextColor))),
+                            content: Container(
+                              height: sizingInformation.myScreenSize.height/1.8,
+                              width: sizingInformation.myScreenSize.width/1.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+
+                                  Text(distance),
+                                  SizedBox(height: 10.0,),
+                                  Text(duration),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      RaisedButton(
+                                        color: Colors.blue,
+                                        child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(18),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }
+                    );
                   },
                   child: Icon(
                     Icons.search,
@@ -159,12 +206,14 @@ class myMapState extends State<myMapScreen> {
             width: sizingInformation.myScreenSize.width,
             child: Stack(
               children: <Widget>[
+//                isLoad == false ?
+//                    Center(child: CircularProgressIndicator()):
                 GoogleMap(
                   polylines: _polyline,
                   markers: Set<Marker>.of(_markers),
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
-                    target: SOURCE,
+                    target: LatLng(37.368832, -122.036346),
                     zoom: 5.0,
                   ),
                   mapType: MapType.normal,
