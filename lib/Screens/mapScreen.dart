@@ -17,7 +17,7 @@ class myMapScreen extends StatefulWidget {
   myMapScreen({@required this.DEST,@required this.title});
 
   @override
-  myMapState createState() => myMapState(DEST);
+  myMapState createState() => myMapState(DEST, title);
 }
 
 class myMapState extends State<myMapScreen> {
@@ -36,7 +36,7 @@ class myMapState extends State<myMapScreen> {
   String title;
   LatLng DEST;
 
-  myMapState(LatLng DEST){
+  myMapState(LatLng DEST, String title){
     this.DEST = DEST;
     this.title = title;
   }
