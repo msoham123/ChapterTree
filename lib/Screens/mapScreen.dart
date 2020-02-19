@@ -12,8 +12,9 @@ import '../main.dart';
 
 class myMapScreen extends StatefulWidget {
   LatLng DEST;
+  String title;
 
-  myMapScreen({@required this.DEST});
+  myMapScreen({@required this.DEST,@required this.title});
 
   @override
   myMapState createState() => myMapState(DEST);
@@ -30,9 +31,12 @@ class myMapState extends State<myMapScreen> {
   final LatLng SOURCE = new LatLng(37.368832, -122.036346);
   final String API_KEY = "AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ";
 
+  String title;
   LatLng DEST;
+
   myMapState(LatLng DEST){
     this.DEST = DEST;
+    this.title = title;
   }
 
 // static final LatLng _center = new LatLng(latitude, longitude);
@@ -80,7 +84,7 @@ class myMapState extends State<myMapScreen> {
     final marker = Marker(
       markerId: MarkerId("event_loc"),
       position: destination,
-      infoWindow: InfoWindow(title: 'Bay Section'),
+      infoWindow: InfoWindow(title: title),
       icon: BitmapDescriptor.defaultMarker,
       visible: true,
     );

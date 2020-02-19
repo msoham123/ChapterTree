@@ -353,7 +353,7 @@ class _eventScreenState extends State<eventScreen> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => myMapScreen(DEST: DEST,)),
+                                          builder: (context) => myMapScreen(DEST: DEST,title: eventName,)),
                                     );
                                   },
                                   child: Container(
