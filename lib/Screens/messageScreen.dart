@@ -7,10 +7,13 @@ import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/UI/message_bubble.dart';
+import 'package:mobile_app_dev/Services/database.dart';
+
 
 import '../main.dart';
 
 FirebaseUser loggedInUser;
+String name = '';
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
 
@@ -26,12 +29,15 @@ class myMessageState extends State<myMessageScreen> {
   String messageText = "";
 
   PageController _pageController;
+  DatabaseService ds = new DatabaseService();
+  DocumentSnapshot userSnapshot;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
     getCurrentUser();
+    _populateCurrentUser(loggedInUser);
   }
 
   @override
@@ -49,6 +55,16 @@ class myMessageState extends State<myMessageScreen> {
     } catch (e) {
       print(e);
     }
+  }
+
+  void _populateCurrentUser(FirebaseUser user) async {
+    final FirebaseUser user = await _auth.currentUser();
+    final String userUID = user.uid.toString();
+    if(user != null) {
+      userSnapshot = await ds.getUser(userUID);
+    }
+    name = userSnapshot.data['full_name'].toString();
+    print(name);
   }
 
   void messagesStream() async {
@@ -92,7 +108,7 @@ class myMessageState extends State<myMessageScreen> {
                       messageTextController.clear();
                       // messageText + loggedInUser.email
                       _firestore.collection('messages').add({
-                        'sender': loggedInUser.email,
+                        'sender': name,
                         'text': messageText,
                         'timestamp': FieldValue.serverTimestamp(),
                       });
@@ -132,7 +148,7 @@ class MessagesStream extends StatelessWidget {
             // data = document snapshot from firebase
             final messageText = message.data['text'];
             final messageSender = message.data['sender'];
-            final currentUser = loggedInUser.email;
+            final currentUser = name;
 
             final messageWidget = MessageBubble(
               sender: messageSender,
