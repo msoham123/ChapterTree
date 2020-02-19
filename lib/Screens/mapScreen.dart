@@ -30,19 +30,22 @@ class myMapState extends State<myMapScreen> {
 
 // static final LatLng _center = new LatLng(latitude, longitude);
 
-  final Set<Polyline> _polylines = {};
+  final Set<Polyline> _polyline = {};
   List<LatLng> routePoints;
   GoogleMapPolyline googleMapPolyline =
       new GoogleMapPolyline(apiKey: "AIzaSyDfIUawmqiyd4d4yiYrvgRzy3N8a_rmm70");
-  Map<MarkerId, Marker> markers =
-      <MarkerId, Marker>{}; // CLASS MEMBER, MAP OF MARKS
+//  Set<Marker> _markers = {};
+  List<Marker> _markers = <Marker>[];
+  List<LatLng> route;
+
 
   @override
   void initState() {
-    markers.clear();
+    _markers.clear();
     super.initState();
     _pageController = PageController();
 //   _getLocation();
+    _add(DEST);
     _drawRoute();
   }
 
@@ -55,17 +58,15 @@ class myMapState extends State<myMapScreen> {
   void _onMapCreated(GoogleMapController controller) {
     setState(() {
       mapController = controller;
-//      _polylines.add(
-//        Polyline(
-//          polylineId: PolylineId("Route1"),
-//          visible: true,
-//          points: routePoints,
-//          width: 10,
-//          color: Colors.blue,
-//          startCap: Cap.roundCap,
-//          endCap: Cap.buttCap,
-//        ),
-//      );
+      _polyline.add(Polyline(
+        polylineId: PolylineId('Route to Event'),
+        visible: true,
+        points: route,
+        width: 4,
+        color: Colors.blue,
+        startCap: Cap.roundCap,
+        endCap: Cap.buttCap,
+      ));
     });
   }
 
@@ -87,41 +88,32 @@ class myMapState extends State<myMapScreen> {
 ////        destination:  '8007 Cypress Ave, Glendale, NY 11385, USA',
 ////        mode:  RouteMode.driving);
 //    }
-
-    routePoints.add(SOURCE);
-    routePoints.add(DEST);
+    LatLng myLocation = await _getLocation();
+    route = await googleMapPolyline.getCoordinatesWithLocation(
+        origin: myLocation,
+        destination: DEST,
+        mode:  RouteMode.driving);
+//    routePoints.add(SOURCE);
+//    routePoints.add(DEST);
   }
 
-  void _getLocation() async {
+  Future<LatLng> _getLocation() async {
     var currentLocation = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-
-    setState(() {
-      markers.clear();
-      final marker = Marker(
-          markerId: MarkerId("curr_loc"),
-          position: LatLng(widget.latitude, widget.longitude),
-          infoWindow: InfoWindow(title: 'Your Location'),
-          icon: BitmapDescriptor.defaultMarker);
-    });
-    print(currentLocation.latitude);
-    print(currentLocation.longitude);
+    LatLng myLocation = LatLng(currentLocation.latitude,currentLocation.longitude);
+    return myLocation;
   }
 
-  void _add() {
-    final Marker marker = Marker(
-      markerId: MarkerId("Event"),
-//    position: _center,
-      infoWindow: InfoWindow(title: "Event", snippet: '*'),
-      onTap: () {
-        print('tapped');
-      },
+  void _add(LatLng destination) {
+    final marker = Marker(
+      markerId: MarkerId("event_loc"),
+      position: destination,
+      infoWindow: InfoWindow(title: 'Bay Section'),
+      icon: BitmapDescriptor.defaultMarker,
+      visible: true,
     );
-//                    _getLocation();
-    setState(() {
-      // adding a new marker to map
-      markers[MarkerId("Event")] = marker;
-    });
+    _markers.clear();
+    _markers.add(marker);
   }
 
   @override
@@ -167,8 +159,8 @@ class myMapState extends State<myMapScreen> {
             child: Stack(
               children: <Widget>[
                 GoogleMap(
-                  polylines: _polylines,
-                  markers: Set<Marker>.of(markers.values),
+                  polylines: _polyline,
+                  markers: Set<Marker>.of(_markers),
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
                     target: SOURCE,
@@ -178,6 +170,14 @@ class myMapState extends State<myMapScreen> {
                   myLocationEnabled: true,
                   compassEnabled: true,
                 ),
+//                Positioned(
+//                  child: FlatButton(
+//                    color: Colors.green,
+//                    child: Text("button"),
+//                    onPressed: (){
+//                    },
+//                  ),
+//                )
               ],
             ),
           ),
