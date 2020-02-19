@@ -97,24 +97,13 @@ class myMapState extends State<myMapScreen> {
   void _getLocation() async {
     var currentLocation = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
-
-    setState(() {
-      _markers.clear();
-      final marker = Marker(
-          markerId: MarkerId("curr_loc"),
-          position: LatLng(widget.latitude, widget.longitude),
-          infoWindow: InfoWindow(title: 'Your Location'),
-          icon: BitmapDescriptor.defaultMarker);
-    });
-    print(currentLocation.latitude);
-    print(currentLocation.longitude);
   }
 
   void _add(LatLng destination) {
     final marker = Marker(
-      markerId: MarkerId("curr_loc"),
+      markerId: MarkerId("event_loc"),
       position: destination,
-      infoWindow: InfoWindow(title: 'Your Location'),
+      infoWindow: InfoWindow(title: 'Bay Section'),
       icon: BitmapDescriptor.defaultMarker,
       visible: true,
     );
