@@ -34,12 +34,13 @@ class myMapState extends State<myMapScreen> {
   List<LatLng> routePoints;
   GoogleMapPolyline googleMapPolyline =
       new GoogleMapPolyline(apiKey: "AIzaSyDfIUawmqiyd4d4yiYrvgRzy3N8a_rmm70");
-  Map<MarkerId, Marker> markers =
-      <MarkerId, Marker>{}; // CLASS MEMBER, MAP OF MARKS
+//  Set<Marker> _markers = {};
+  var _markers = Set<Marker>();
+
 
   @override
   void initState() {
-    markers.clear();
+    _markers.clear();
     super.initState();
     _pageController = PageController();
 //   _getLocation();
@@ -97,7 +98,7 @@ class myMapState extends State<myMapScreen> {
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
 
     setState(() {
-      markers.clear();
+      _markers.clear();
       final marker = Marker(
           markerId: MarkerId("curr_loc"),
           position: LatLng(widget.latitude, widget.longitude),
@@ -120,7 +121,8 @@ class myMapState extends State<myMapScreen> {
 //                    _getLocation();
     setState(() {
       // adding a new marker to map
-      markers[MarkerId("Event")] = marker;
+      _markers.clear();
+      _markers.add(marker);
     });
   }
 
@@ -151,7 +153,7 @@ class myMapState extends State<myMapScreen> {
                   padding: EdgeInsets.only(right: 20.0),
                   child: GestureDetector(
                     onTap: () async {
-                      _getLocation();
+                      _add();
                     },
                     child: Icon(
                       Icons.search,
@@ -167,7 +169,7 @@ class myMapState extends State<myMapScreen> {
               children: <Widget>[
                 GoogleMap(
                   polylines: _polylines,
-                  markers: Set<Marker>.of(markers.values),
+                  markers: _markers,
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
                     target: SOURCE,
@@ -177,6 +179,24 @@ class myMapState extends State<myMapScreen> {
                   myLocationEnabled: true,
                   compassEnabled: true,
                 ),
+                Positioned(
+                  child: FlatButton(
+                    color: Colors.green,
+                    child: Text("button"),
+                    onPressed: (){
+                      final marker = Marker(
+                          markerId: MarkerId("curr_loc"),
+                          position: DEST,
+                          infoWindow: InfoWindow(title: 'Your Location'),
+                          icon: BitmapDescriptor.defaultMarker
+                      );
+                      setState((){
+                        _markers.clear();
+                        _markers.add(marker);
+                      });
+                    },
+                  ),
+                )
               ],
             ),
           ),
