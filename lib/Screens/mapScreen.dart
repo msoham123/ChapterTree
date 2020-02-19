@@ -11,12 +11,12 @@ import 'dart:convert';
 import '../main.dart';
 
 class myMapScreen extends StatefulWidget {
-  final latitude, longitude;
+  LatLng DEST;
 
-  myMapScreen({@required this.latitude, @required this.longitude});
+  myMapScreen({@required this.DEST});
 
   @override
-  myMapState createState() => myMapState();
+  myMapState createState() => myMapState(DEST);
 }
 
 class myMapState extends State<myMapScreen> {
@@ -28,8 +28,12 @@ class myMapState extends State<myMapScreen> {
 //  LatLng _lastMapPosition = _center;
 
   final LatLng SOURCE = new LatLng(37.368832, -122.036346);
-  final LatLng DEST = new LatLng(37.773972, -122.431297);
   final String API_KEY = "AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ";
+
+  LatLng DEST;
+  myMapState(LatLng DEST){
+    this.DEST = DEST;
+  }
 
 // static final LatLng _center = new LatLng(latitude, longitude);
 

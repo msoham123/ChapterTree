@@ -71,6 +71,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/eventImages/
     - assets/gifs/
     - assets/flare/button-animation.flr
     - assets/flare/success_check.flr2d

@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget{
               display1: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800, fontFamily: null)
           )
       ),
-      home: myLoginScreen(),
+      home: myMapScreen(),
     );
   }
 }

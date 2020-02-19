@@ -9,6 +9,7 @@ import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
+import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
@@ -178,9 +179,9 @@ class myHomeState extends State<myHomeScreen> {
                         height: sizingInformation.myScreenSize.height / 3,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: 10,
+                          itemCount: FBLAEventModel.CaliforniaEvents.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return eventCard(sizingInformation, true);
+                            return eventCard(sizingInformation, FBLAEventModel.CaliforniaEvents[index]);
                           },
                         ),
                       ),
