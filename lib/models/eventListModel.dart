@@ -16,7 +16,6 @@ class FBLAEvent {
     this.picture = picture;
     this.coordinate = coordinate;
   }
-
 }
 
 class FBLAEventModel{
