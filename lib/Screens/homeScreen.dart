@@ -32,7 +32,9 @@ class myHomeState extends State<myHomeScreen> {
   PageController _pageController;
   TextEditingController _textEventController;
   CalendarController _calendarController;
+
   Map<DateTime, List<dynamic>> _events;
+
   List<dynamic> _selectedEvents;
   SharedPreferences preferences;
   Builder itemBuilder;
@@ -42,7 +44,6 @@ class myHomeState extends State<myHomeScreen> {
   DocumentSnapshot userSnapshot;
   DatabaseService ds = new DatabaseService();
 
-
   @override
   void initState() {
     super.initState();
@@ -51,7 +52,7 @@ class myHomeState extends State<myHomeScreen> {
     _textEventController = TextEditingController();
     _events = {};
     _selectedEvents = [];
-    initPrefs();
+//   initPrefs();
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
   }
@@ -70,7 +71,7 @@ class myHomeState extends State<myHomeScreen> {
   void _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
-    if(user != null) {
+    if (user != null) {
       userSnapshot = await ds.getUser(userUID);
     }
     print(userSnapshot.data['chapter']);
@@ -105,41 +106,6 @@ class myHomeState extends State<myHomeScreen> {
     _pageController.dispose();
     _calendarController.dispose();
     super.dispose();
-  }
-
-  _showAddDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: TextField(
-          controller: _textEventController,
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: Text("Save"),
-            onPressed: () {
-              if (_textEventController.text.isEmpty) return;
-                print("save tapped");
-                if (_events[_calendarController.selectedDay] != null) {
-                  print("not null");
-                  _events[_calendarController.selectedDay]
-                      .add(_textEventController.text);
-                } else {
-                  print('null');
-                  _events[_calendarController.selectedDay] = [
-                    _textEventController.text
-                  ];
-                }
-              setState(() {
-                // preferences.setString("events", json.encode(encodeMap(_events)));
-                Navigator.pop(context);
-                _textEventController.clear();
-              });
-            },
-          )
-        ],
-      ),
-    );
   }
 
   @override
@@ -213,7 +179,10 @@ class myHomeState extends State<myHomeScreen> {
                           scrollDirection: Axis.horizontal,
                           itemCount: FBLAEventModel.CaliforniaEvents.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return eventCard(sizingInformation, FBLAEventModel.CaliforniaEvents[index]);
+                            return eventCard(
+                              sizingInformation,
+                              FBLAEventModel.CaliforniaEvents[index],
+                            );
                           },
                         ),
                       ),
@@ -238,25 +207,26 @@ class myHomeState extends State<myHomeScreen> {
                           TableCalendar(
                             calendarController: _calendarController,
                             events: _events,
-                            initialCalendarFormat: CalendarFormat.twoWeeks,
+                            initialCalendarFormat: CalendarFormat.month,
                             calendarStyle: CalendarStyle(
                               todayColor: Colors.green,
                               todayStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
-                                  color: Colors.white),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
                               selectedColor: Colors.lightGreen,
                             ),
                             onDaySelected: (date, events) {
                               print(date.toIso8601String());
-                              setState(() {
-                                _selectedEvents = events;
-                              });
+                              _selectedEvents = events;
                             },
                           ),
-                          ..._selectedEvents.map((event) => ListTile(
-                                title: Text(event),
-                              ))
+                          ..._selectedEvents.map(
+                            (event) => ListTile(
+                              title: Text(event.toString()),
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(
@@ -290,6 +260,37 @@ class myHomeState extends State<myHomeScreen> {
           ),
         );
       },
+    );
+  }
+
+  _showAddDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: TextField(
+          controller: _textEventController,
+        ),
+        actions: <Widget>[
+          MaterialButton(
+            child: Center(child: Text("Save")),
+            onPressed: () {
+              if (_textEventController.text.isEmpty) return;
+              setState(() {
+                if (_events[_calendarController.selectedDay] != null) {
+                  _events[_calendarController.selectedDay]
+                      .add(_textEventController.text);
+                } else {
+                  _events[_calendarController.selectedDay] = [
+                    _textEventController.text
+                  ];
+                }
+              });
+              // preferences.setString("events", json.encode(encodeMap(_events)));
+//              Navigator.pop(context);
+            },
+          )
+        ],
+      ),
     );
   }
 

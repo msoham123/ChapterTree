@@ -115,6 +115,7 @@ class myChatBotState extends State<myChatBotScreen> {
     setState(() {
       _messages.insert(0, message);
     });
+
   }
 
   void _handleSubmitted(String text) {

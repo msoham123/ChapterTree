@@ -15,6 +15,9 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_sms/flutter_sms.dart';
+import 'dart:async';
+import 'package:flutter/foundation.dart';
 
 class mySettingsScreen extends StatefulWidget {
   @override
@@ -24,6 +27,7 @@ class mySettingsScreen extends StatefulWidget {
 class _mySettingsState extends State<mySettingsScreen> {
   MediaQueryData myHeightPercent;
   PageController _pageController;
+  String _message = '';
 
   @override
   void initState() {
@@ -45,6 +49,14 @@ class _mySettingsState extends State<mySettingsScreen> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  void _sendSMS(String message, List<String> recipents) async {
+    String _result = await sendSMS(message: message, recipients: recipents)
+        .catchError((onError) {
+      print(onError);
+    });
+    print(_result);
   }
 
   @override
@@ -71,9 +83,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                   ),
                 ],
               ),
-
               SizedBox(height: 18.0),
-
               Container(
                 child: Column(
                   children: <Widget>[
@@ -88,15 +98,11 @@ class _mySettingsState extends State<mySettingsScreen> {
                         print(MyApp.darkModeEnabled);
                         },
                     ),
-
-
-
                   ],
                 ),
               ),
 
               SizedBox(height: 18.0),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -110,9 +116,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                   ),
                 ],
               ),
-
               SizedBox(height: 20.0),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -153,7 +157,26 @@ class _mySettingsState extends State<mySettingsScreen> {
               ),
 
               SizedBox(
-                height: sizingInformation.myScreenSize.height/10,
+                height: sizingInformation.myScreenSize.height/20,
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  MaterialButton(
+                    onPressed: () {
+                        print('send sms');
+                        List<String> recipients = ["14086371215"];
+                        _sendSMS("Hello!", recipients);
+                    },
+                    child: Text('Send SMS', style: TextStyle(color: Colors.white),),
+                    color: Colors.blue
+                  )
+                ],
+              ),
+
+              SizedBox(
+                height: sizingInformation.myScreenSize.height/20,
               ),
 
               Row(
