@@ -34,11 +34,14 @@ class mySignUpState extends State<mySignUpScreen> {
   TextEditingController emailController,
       passwordController,
       nameController,
-      chapterController;
+      chapterController,
+      phoneController;
   String email = "", password = "", name = "", chapter = "";
   bool showSpinner = false;
+  bool isOfficer;
 
   void initState() {
+    isOfficer = false;
     super.initState();
     emailController = TextEditingController();
     nameController = TextEditingController();
@@ -58,6 +61,7 @@ class mySignUpState extends State<mySignUpScreen> {
   Widget build(BuildContext context) {
     return BaseWidget(
       builder: (context, sizingInformation) {
+        return StatefulBuilder(builder: (BuildContext context, StateSetter setState){
         return Scaffold(
           backgroundColor: MyApp.backgroundColor,
           body: ModalProgressHUD(
@@ -147,7 +151,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                 ),
                                 fillColor: Colors.white,
                                 labelText: null,
-                                hintText: 'Please enter your Full Name',
+                                hintText: 'Full Name',
                                 labelStyle: null,
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
@@ -168,9 +172,9 @@ class mySignUpState extends State<mySignUpScreen> {
                               }),
                         ),
                       ),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 69,
-                      ),
+//                      SizedBox(
+//                        height: sizingInformation.myScreenSize.height / 69,
+//                      ),
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
@@ -194,7 +198,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                   ),
                                   fillColor: Colors.white,
                                   labelText: null,
-                                  hintText: 'Please enter an email',
+                                  hintText: 'Email',
                                   labelStyle: null,
                                   border: InputBorder.none,
                                   focusedBorder: InputBorder.none,
@@ -214,8 +218,51 @@ class mySignUpState extends State<mySignUpScreen> {
                                   email = value;
                                 }),
                           )),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 69,
+//                      SizedBox(
+//                        height: sizingInformation.myScreenSize.height / 69,
+//                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal:
+                            sizingInformation.myScreenSize.width / 10),
+                        height: sizingInformation.myScreenSize.height / 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: MyApp.blueGradient, //indigo 500
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: TextField(
+                              textAlign: TextAlign.left,
+//                          maxLines: null,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Colors.white,
+                                ),
+                                fillColor: Colors.white,
+                                labelText: null,
+                                hintText: 'Phone Number ',
+                                labelStyle: null,
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                hintStyle: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                              style:
+                              TextStyle(fontSize: 25, color: Colors.white),
+                              cursorWidth: 4,
+                              cursorColor: Colors.white,
+                              controller: phoneController,
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (value) {
+                                name = value;
+                              }),
+                        ),
                       ),
                       Container(
                           alignment: Alignment.center,
@@ -240,7 +287,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                 ),
                                 fillColor: Colors.white,
                                 labelText: null,
-                                hintText: 'Choose a password',
+                                hintText: 'Password',
                                 labelStyle: null,
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
@@ -261,9 +308,9 @@ class mySignUpState extends State<mySignUpScreen> {
                               },
                             ),
                           )),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 69,
-                      ),
+//                      SizedBox(
+//                        height: sizingInformation.myScreenSize.height / 69,
+//                      ),
                       Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
@@ -287,7 +334,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                   ),
                                   fillColor: Colors.white,
                                   labelText: null,
-                                  hintText: 'Please enter in your Chapter',
+                                  hintText: 'Chapter (e.g Fremont)',
                                   labelStyle: null,
                                   border: InputBorder.none,
                                   focusedBorder: InputBorder.none,
@@ -307,6 +354,22 @@ class mySignUpState extends State<mySignUpScreen> {
                                   chapter = value;
                                 }),
                           )),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Officer : ", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),),
+                          Checkbox(
+                            value: isOfficer,
+                            onChanged: (value) {
+                              setState(() {
+                                isOfficer = value;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+
                       Container(
                         width: sizingInformation.myScreenSize.width / 1.5,
                         child: SimpleRoundButton(
@@ -397,6 +460,7 @@ class mySignUpState extends State<mySignUpScreen> {
             ),
           ),
         );
+        });
       },
     );
   }
