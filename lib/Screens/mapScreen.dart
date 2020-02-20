@@ -15,19 +15,18 @@ import '../main.dart';
 class myMapScreen extends StatefulWidget {
   LatLng DEST;
   String title;
-  double startLat, startLong, endLat, endLong;
+  double startLat, startLong;
 
   myMapScreen(
       {@required this.DEST,
       @required this.title,
       @required this.startLat,
-      @required this.startLong,
-      @required this.endLat,
-      @required this.endLong});
+      @required this.startLong
+      });
 
   @override
   myMapState createState() =>
-      myMapState(DEST, title, startLat, startLong, endLat, endLong);
+      myMapState(DEST, title, startLat, startLong);
 }
 
 class myMapState extends State<myMapScreen> {
@@ -43,14 +42,11 @@ class myMapState extends State<myMapScreen> {
   LatLng DEST;
   double startLat, startLong, endLat, endLong;
 
-  myMapState(LatLng DEST, String title, double startLat, double startLong,
-      double endLat, double endLong) {
+  myMapState(LatLng DEST, String title, double startLat, double startLong) {
     this.DEST = DEST;
     this.title = title;
     this.startLat = startLat;
     this.startLong = startLong;
-    this.endLat = endLat;
-    this.endLong = endLong;
   }
 
   final Set<Polyline> _polyline = {};
@@ -125,7 +121,7 @@ class myMapState extends State<myMapScreen> {
   // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
   void getData() async {
     var response = await http.get(
-        'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLat},${startLong}&destinations=${endLat}%2C${endLong}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
+        'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLat},${startLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
         headers: {
           "Accept": "application/json",
         });
@@ -228,7 +224,7 @@ class myMapState extends State<myMapScreen> {
                                         duration.text,
                                         style: TextStyle(
                                           color: Colors.green,
-                                          fontSize: 40,
+                                          fontSize: 30,
                                           fontWeight: FontWeight.w900,
                                         ),
                                       ),
@@ -237,7 +233,7 @@ class myMapState extends State<myMapScreen> {
                                       ),
                                       GestureDetector(
                                         onTap: () {
-                                          _openMaps(endLat, endLong);
+                                          _openMaps(DEST.latitude, DEST.longitude);
                                         },
                                         child: Container(
                                           height: 60,
