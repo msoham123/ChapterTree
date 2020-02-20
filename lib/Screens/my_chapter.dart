@@ -66,7 +66,7 @@ class _myChapterScreen extends State<myChapterScreen> {
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestore
               .collection('fbla_users')
-//             .where("chapter", isEqualTo: chapter)
+//            .where("chapter", isEqualTo: chapter)
               .orderBy('count', descending: true)
               .snapshots(includeMetadataChanges: true),
           builder: (context, snapshot) {
@@ -102,16 +102,22 @@ class _myChapterScreen extends State<myChapterScreen> {
                     ),
                   ),
                   Container(
+                    height: 40.0,
+                    width: 40.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20.0)),
                       color: MyApp.blueGreyColor,
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        document['count'].toString(),
-                        style: TextStyle(
-                          color: MyApp.whiteTextColor,
+                      child: Center(
+                        child: Text(
+                          document['count'].toString(),
+                          style: TextStyle(
+                            color: MyApp.whiteTextColor,
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold
+                          ),
                         ),
                       ),
                     ),
