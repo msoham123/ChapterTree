@@ -411,7 +411,7 @@ class _eventScreenState extends State<eventScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => myMapScreen(DEST: DEST,title: eventName, startLat: 37.368832, startLong: -122.036346,endLat: 37.773972,endLong:-122.431297,)),
+                                    builder: (context) => myMapScreen(DEST: DEST,title: eventName, startLat: 37.368832, startLong: -122.036346))
                               );
                             },
                             child: Container(
@@ -463,15 +463,12 @@ class _eventScreenState extends State<eventScreen> {
                   ),
                 ),
               ),
-              Positioned(
-                top: sizingInformation.myScreenSize.height+1000,
-                width: sizingInformation.myScreenSize.width,
-                height: sizingInformation.myScreenSize.width,
-                child: Container(color: Colors.red),
-              ),
-
-
-
+//              Positioned(
+//                top: sizingInformation.myScreenSize.height,
+//                width: sizingInformation.myScreenSize.width,
+//                height: sizingInformation.myScreenSize.width,
+//                child: Container(color: Colors.red),
+//              ),
             ],
           ),
         ),
