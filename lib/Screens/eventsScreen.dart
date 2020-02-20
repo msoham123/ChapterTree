@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
+import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Test/mapScreen2.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/main.dart';
+import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class eventScreen extends StatefulWidget {
@@ -367,7 +369,58 @@ class _eventScreenState extends State<eventScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          GestureDetector(
+                            GestureDetector(
+                            onTap: () {
+                              String dialog;
+                              if (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])){
+                               dialog = "Event Removed";
+                              }
+                              else {
+                                dialog = "$eventName added to My Events!";
+                                MyApp.myEvents.add(FBLAEventModel
+                                    .CaliforniaEvents[FBLAEventModel
+                                    .CaliforniaIndex.indexOf(eventName)]);
+
+                              }
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context){
+                                    return AlertDialog(
+                                        backgroundColor: MyApp.backgroundColor,
+                                        content: Container(
+                                          height: sizingInformation.myScreenSize.height/4,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Text(dialog),
+                                              SizedBox(
+                                                height: sizingInformation.myScreenSize.height/15,
+                                              ),
+                                              RaisedButton(
+                                                color: Colors.blue,
+                                                child: Text("Okay",style: TextStyle(color: MyApp.whiteTextColor)),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(18),
+                                                ),
+                                                onPressed: () {
+                                                  dialog=="Event Removed" ? MyApp.myEvents.remove(FBLAEventModel
+                                                      .CaliforniaEvents[FBLAEventModel
+                                                      .CaliforniaIndex.indexOf(eventName)]) : print("Event added");
+//                                                  Navigator.pop(context);
+//                                                  Navigator.pop(context);
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) => MyDefaultPage(sizingInformation)),
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                    );
+                                  }
+                              );
+                            },
                             child: Container(
                               height:
                                   sizingInformation.myScreenSize.height /
@@ -376,7 +429,7 @@ class _eventScreenState extends State<eventScreen> {
                                   sizingInformation.myScreenSize.width /
                                       2.5,
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                               color: (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])) ? Colors.red : Colors.green,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
@@ -394,14 +447,24 @@ class _eventScreenState extends State<eventScreen> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  Text(
-                                    'Sign Up',
+                                  if (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)]))
+                                    Text(
+                                    'Remove Event',
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       color: MyApp.whiteNoChangeColor,
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
+                                  if (!MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)]))
+                                    Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: MyApp.whiteNoChangeColor,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),

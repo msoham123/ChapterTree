@@ -35,6 +35,7 @@ class myHomeState extends State<myHomeScreen> {
 
   Map<DateTime, List<dynamic>> _events;
 
+
   List<dynamic> _selectedEvents;
   SharedPreferences preferences;
   Builder itemBuilder;
@@ -134,22 +135,51 @@ class myHomeState extends State<myHomeScreen> {
                             style: TextStyle(color: MyApp.whiteNoChangeColor),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => eventScreen(
-                                  eventName: "Bay Section",
-                                  eventDescription: "I like to eat pies",
-                                  eventDate: "Feburary 8th, 2020",
-                                  eventLocation: "Westmoor High School",
-                                  eventState: "California",
-                                  eventLink: "https://www.cafbla.org/domain/70",
-                                  eventImage: Image.asset(
-                                    "assets/images/sacramento.png",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                              ),
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    backgroundColor: MyApp.backgroundColor,
+                                    title: Center(child: Text('Your Events',style: TextStyle(color: MyApp.blackTextColor))),
+                                    content: Container(
+                                      height: sizingInformation.myScreenSize.height/1.8,
+                                      width: sizingInformation.myScreenSize.width/1.3,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Expanded(
+                                            child: ListView.builder(
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: MyApp.myEvents.length,
+                                              itemBuilder: (BuildContext context, int index) {
+                                                return eventCard(sizingInformation,MyApp.myEvents[index]);
+                                              },
+                                            ),
+                                          ),
+
+                                          SizedBox(
+                                            height: sizingInformation.myScreenSize.height/130,
+                                          ),
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              RaisedButton(
+                                                color: Colors.blue,
+                                                child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(18),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
                             );
                           },
                         ),

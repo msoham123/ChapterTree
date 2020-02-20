@@ -115,4 +115,6 @@ class FBLAEventModel{
     ),
   ];
 
+  static var CaliforniaIndex = ["Northern Section", "Bay Section", "Central Section", "Gold Coast Section", "Inland Section", "Southern Section","SLC","NLC"];
+
 }

@@ -14,6 +14,8 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
 
+  static var myEvents = [];
+
   static bool darkModeEnabled = false;
   static bool introSliderEnabled = true;
   static int currentIndex = 0;
