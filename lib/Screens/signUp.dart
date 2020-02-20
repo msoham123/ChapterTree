@@ -146,7 +146,7 @@ class mySignUpState extends State<mySignUpScreen> {
 //                          maxLines: null,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
-                                  Icons.email,
+                                  Icons.person,
                                   color: Colors.white,
                                 ),
                                 fillColor: Colors.white,
@@ -222,49 +222,6 @@ class mySignUpState extends State<mySignUpScreen> {
 //                        height: sizingInformation.myScreenSize.height / 69,
 //                      ),
                       Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 0,
-                            horizontal:
-                            sizingInformation.myScreenSize.width / 10),
-                        height: sizingInformation.myScreenSize.height / 10,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            gradient: MyApp.blueGradient, //indigo 500
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
-                          ),
-                          child: TextField(
-                              textAlign: TextAlign.left,
-//                          maxLines: null,
-                              decoration: InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.email,
-                                  color: Colors.white,
-                                ),
-                                fillColor: Colors.white,
-                                labelText: null,
-                                hintText: 'Phone Number ',
-                                labelStyle: null,
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintStyle: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
-                              style:
-                              TextStyle(fontSize: 25, color: Colors.white),
-                              cursorWidth: 4,
-                              cursorColor: Colors.white,
-                              controller: phoneController,
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (value) {
-                                name = value;
-                              }),
-                        ),
-                      ),
-                      Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
                               vertical: 0,
@@ -312,6 +269,49 @@ class mySignUpState extends State<mySignUpScreen> {
 //                        height: sizingInformation.myScreenSize.height / 69,
 //                      ),
                       Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal:
+                            sizingInformation.myScreenSize.width / 10),
+                        height: sizingInformation.myScreenSize.height / 10,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: MyApp.blueGradient, //indigo 500
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                          ),
+                          child: TextField(
+                              textAlign: TextAlign.left,
+//                          maxLines: null,
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.phone,
+                                  color: Colors.white,
+                                ),
+                                fillColor: Colors.white,
+                                labelText: null,
+                                hintText: 'Phone Number ',
+                                labelStyle: null,
+                                border: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                errorBorder: InputBorder.none,
+                                disabledBorder: InputBorder.none,
+                                hintStyle: TextStyle(
+                                    fontSize: 18, color: Colors.white),
+                              ),
+                              style:
+                              TextStyle(fontSize: 25, color: Colors.white),
+                              cursorWidth: 4,
+                              cursorColor: Colors.white,
+                              controller: phoneController,
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (value) {
+                                name = value;
+                              }),
+                        ),
+                      ),
+                      Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.symmetric(
                               vertical: 0,
@@ -329,7 +329,7 @@ class mySignUpState extends State<mySignUpScreen> {
 //                          maxLines: null,
                                 decoration: InputDecoration(
                                   prefixIcon: Icon(
-                                    Icons.email,
+                                    Icons.school,
                                     color: Colors.white,
                                   ),
                                   fillColor: Colors.white,
