@@ -34,6 +34,8 @@ class eventCard extends StatelessWidget {
               eventLink: thisEvent.url,
               eventImage: thisEvent.picture,
               DEST: thisEvent.coordinate,
+              localOfficerPositions: thisEvent.localOfficerPositions,
+              localOfficers: thisEvent.localOfficers,
             )));
       },
       child: Container(
