@@ -5,8 +5,10 @@ class FBLAEvent {
   String title, description, date, location, state, url;
   Image picture;
   LatLng coordinate;
+  var localOfficers = [];
+  var localOfficerPositions = [];
 
-  FBLAEvent(String title, String description, String date, String location, String state, String url, Image picture, LatLng coordinate){
+  FBLAEvent(String title, String description, String date, String location, String state, String url, Image picture, LatLng coordinate, var localOfficers, var localOfficerPositions){
     this.title  = title;
     this.description = description;
     this.date = date;
@@ -15,6 +17,8 @@ class FBLAEvent {
     this.url = url;
     this.picture = picture;
     this.coordinate = coordinate;
+    this.localOfficers = localOfficers;
+    this.localOfficerPositions = localOfficerPositions;
   }
 
 }
@@ -29,7 +33,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=158",
         Image.asset("assets/eventImages/colusa.jpg",fit: BoxFit.fill,),
-        LatLng(39.199978, -122.020491)
+        LatLng(39.199978, -122.020491),
+        ["Kelsey Whiting", "Shahil Pal", "Renee Wrysinsiki", "Nitya Agarwal", "Emily Cerney"],
+        ["President", "Vice President", "Secretary/Treasurer", "Public Relations Officer", "Executive Secretary", ]
     ),
     FBLAEvent("Bay Section",
         "",
@@ -38,7 +44,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=118",
         Image.asset("assets/eventImages/westmoor.png",fit: BoxFit.fill,),
-        LatLng(37.684251, -122.483085)
+        LatLng(37.684251, -122.483085),
+        ["Roma Bedekar", "Darrren Hsing", "Sanya Jain", "Angela Zhang", "Daniel Zhang", "Anna Chiang"],
+        ["President","VP Outreach", "VP Activities", "Secretary/Treasurer", "Public Relations", "Parlimentarian"]
     ),
     FBLAEvent("Central Section",
         "",
@@ -47,7 +55,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=131",
         Image.asset("assets/eventImages/redwood.jpg",fit: BoxFit.fill,),
-        LatLng(36.329872, -119.301711)
+        LatLng(36.329872, -119.301711),
+        ["Kyle Tran", "Abbie Linhares", "Parneet Sahota", "Paola Garcia", "Haley Cortez", "Jessica Abarca", "Mr. Jacob Avila"],
+        ["President", "Vice President", "Secretary", "Treasurer", "Public Relations", "Historian/Parlimentarian","Central Section Director"]
     ),
     FBLAEvent("Gold Coast Section",
         "",
@@ -56,7 +66,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=136",
         Image.asset("assets/eventImages/pasadena.jpg",fit: BoxFit.fill,),
-        LatLng(34.110013, -118.154397)
+        LatLng(34.110013, -118.154397),
+        ["Christine Huynh", "Trevor Gadsby", "Aashika Srinivas","Nikil Thanlaki", "Casey Lee", "Catherine Xu", "Mrs. Cathy Mason"],
+        ["President", "VP Activities", "VP Membership", "Secretary", "Public Relations", "Leadership Associate", "Section Director"]
     ),
     FBLAEvent("Inland Section",
         "",
@@ -65,7 +77,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=142",
         Image.asset("assets/eventImages/lososos.jpg",fit: BoxFit.fill,),
-        LatLng(34.146786, -117.556609)
+        LatLng(34.146786, -117.556609),
+        ["Joshua Zhang", "Calvin Liang", "Ashley Ching", "Avantika Rozario", "Megan Le", "Noel Nixen", "Arti Patel", "Mr. Lee Lara"],
+        ["President", "VP Communications", "VP Programs", "Secretary", "Historian", "Leadership Associate", "Ex-Officer", "Section Director"]
     ),
     FBLAEvent("Southern Section",
         "",
@@ -74,7 +88,9 @@ class FBLAEventModel{
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=172",
         Image.asset("assets/eventImages/valencia.jpg",fit: BoxFit.fill,),
-        LatLng(34.441434, -118.562566)
+        LatLng(34.441434, -118.562566),
+        ["Lauren Cho", "Raymond Mo", "Jessica Susanto", "Shiny Weng", "Phuong Tran", "Ishaan Sakhrani", "Samiya Hai", "Joy Millam"],
+        ["President", "VP Activities", "VP Membership", "Secretary", "Public Relations Officer", "Leadership Associate", "Section Director","Section Director"]
     ),
   ];
 
