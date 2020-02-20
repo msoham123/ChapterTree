@@ -26,7 +26,7 @@ class FBLAEventModel{
   static var CaliforniaEvents = [
     FBLAEvent(
         "Northern Section",
-        "",
+        "At the Northern Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 8th, 2020",
         "Colusa High School",
         "California",
@@ -37,7 +37,7 @@ class FBLAEventModel{
         ["President", "Vice President", "Secretary/Treasurer", "Public Relations Officer", "Executive Secretary", ]
     ),
     FBLAEvent("Bay Section",
-        "",
+        "At the Bay Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 8th, 2020",
         "Westmoor High School",
         "California",
@@ -48,7 +48,7 @@ class FBLAEventModel{
         ["President","VP Outreach", "VP Activities", "Secretary/Treasurer", "Public Relations", "Parlimentarian"]
     ),
     FBLAEvent("Central Section",
-        "",
+        "At the Central Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 8th, 2020",
         "Redwood High School",
         "California",
@@ -59,7 +59,7 @@ class FBLAEventModel{
         ["President", "Vice President", "Secretary", "Treasurer", "Public Relations", "Historian/Parlimentarian","Central Section Director"]
     ),
     FBLAEvent("Gold Coast Section",
-        "",
+        "At the Gold Coast Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 22nd, 2020",
         "South Pasadena High School",
         "California",
@@ -70,7 +70,7 @@ class FBLAEventModel{
         ["President", "VP Activities", "VP Membership", "Secretary", "Public Relations", "Leadership Associate", "Section Director"]
     ),
     FBLAEvent("Inland Section",
-        "",
+        "At the Inland Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 8th, 2020",
         "Los Osos High School",
         "California",
@@ -81,7 +81,7 @@ class FBLAEventModel{
         ["President", "VP Communications", "VP Programs", "Secretary", "Historian", "Leadership Associate", "Ex-Officer", "Section Director"]
     ),
     FBLAEvent("Southern Section",
-        "",
+        "At the Southern Section Leadership Conference, students compete in events testing their business knowledge and skills. Top section winners are then eligible to compete for state-level awards at the State Leadership Conference each spring.",
         "February 22nd, 2020",
         "Valencia High School",
         "California",
@@ -92,7 +92,7 @@ class FBLAEventModel{
         ["President", "VP Activities", "VP Membership", "Secretary", "Public Relations Officer", "Leadership Associate", "Section Director","Section Director"]
     ),
     FBLAEvent("SLC",
-        "",
+        "At the State Leadership Conferences, students compete in events testing their business knowledge and skills. Top state winners are then eligible to compete for national awards at the National Leadership Conference each summer.",
         "April 23rd, 2020",
         "Ontario Convention Center",
         "California",
