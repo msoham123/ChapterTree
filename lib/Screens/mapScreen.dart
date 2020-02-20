@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';
@@ -181,103 +182,136 @@ class myMapState extends State<myMapScreen> {
                               height: sizingInformation.myScreenSize.height / 2,
                               width: sizingInformation.myScreenSize.width,
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text(
-                                        '${origin}',
-                                        style: TextStyle(fontSize: 12.0),
-                                      ),
-                                      Icon(Icons.keyboard_arrow_down),
-                                      Text(
-                                        '${destination}',
-                                        style: TextStyle(fontSize: 12.0),
-                                      ),
-                                      SizedBox(
-                                        height: sizingInformation
-                                                .myScreenSize.height /
-                                            15,
-                                      ),
-                                      Icon(
-                                        Icons.time_to_leave,
-                                        size: 40.0,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(
-                                        height: 10.0,
-                                      ),
-                                      Text(
-                                        distance.text,
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 40,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10.0,
-                                      ),
-                                      Text(
-                                        duration.text,
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30.0,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          _openMaps(DEST.latitude, DEST.longitude);
-                                        },
-                                        child: Container(
-                                          height: 60,
-                                          width: 190,
-                                          decoration: BoxDecoration(boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.green.withOpacity(0.8),
-                                              blurRadius: 2.0,
-                                              spreadRadius: 4.0,
-                                            )
-                                          ]),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Container(
-                                                child: Image.asset(
-                                                  'assets/images/map.png',
-                                                )
+                                  Expanded(
+                                    child: ListView(
+//                                mainAxisAlignment:
+//                                    MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text(
+                                              '${origin}',
+                                              style: TextStyle(fontSize: 12.0),
+                                            ),
+                                            Icon(Icons.keyboard_arrow_down),
+                                            Text(
+                                              '$destination',
+                                              style: TextStyle(fontSize: 12.0),
+                                            ),
+                                            SizedBox(
+                                              height: sizingInformation.myScreenSize.height / 35,
+                                            ),
+                                            Icon(
+                                              Icons.time_to_leave,
+                                              size: 30.0,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(
+                                              height: sizingInformation.myScreenSize.height / 35,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                Text(
+                                                  "Distance : ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  distance.text,
+                                                  style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: sizingInformation.myScreenSize.height / 35,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                Text(
+                                                  "Duration : ",
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  duration.text,
+                                                  style: TextStyle(
+                                                    color: Colors.green,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: sizingInformation.myScreenSize.height / 25,
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                _openMaps(DEST.latitude, DEST.longitude);
+                                              },
+                                              child: Container(
+                                                height: sizingInformation.myScreenSize.height /20,
+                                                width: sizingInformation.myScreenSize.width/2,
+                                                decoration: BoxDecoration(boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.green.withOpacity(0.8),
+                                                    blurRadius: 2.0,
+                                                    spreadRadius: 4.0,
+                                                  )
+                                                ]),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      child: Image.asset(
+                                                        'assets/images/map.png',
+                                                      )
+                                                    ),
+                                                    Text('Open with MAPS', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),)
+                                                  ],
+                                                ),
                                               ),
-                                              Text('Open with MAPS', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),)
-                                            ],
-                                          ),
+                                            )
+                                          ],
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      RaisedButton(
-                                        color: Colors.blue,
-                                        child: Text("Back",
-                                            style: TextStyle(
-                                                color: MyApp.whiteTextColor)),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(18),
+                                        SizedBox(
+                                          height: sizingInformation.myScreenSize.height / 25,
                                         ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                      ),
-                                    ],
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: <Widget>[
+                                            RaisedButton(
+                                              color: Colors.blue,
+                                              child: Text("Back",
+                                                  style: TextStyle(
+                                                      color: MyApp.whiteTextColor)),
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(18),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
@@ -286,7 +320,7 @@ class myMapState extends State<myMapScreen> {
                         });
                   },
                   child: Icon(
-                    Icons.search,
+                    Icons.info,
                     size: 26.0,
                   ),
                 ),
