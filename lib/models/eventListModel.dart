@@ -91,6 +91,28 @@ class FBLAEventModel{
         ["Lauren Cho", "Raymond Mo", "Jessica Susanto", "Shiny Weng", "Phuong Tran", "Ishaan Sakhrani", "Samiya Hai", "Joy Millam"],
         ["President", "VP Activities", "VP Membership", "Secretary", "Public Relations Officer", "Leadership Associate", "Section Director","Section Director"]
     ),
+    FBLAEvent("SLC",
+        "",
+        "April 23rd, 2020",
+        "Ontario Convention Center",
+        "California",
+        "https://www.cafbla.org/domain/34",
+        Image.asset("assets/eventImages/ontario.jpg",fit: BoxFit.fill,),
+        LatLng(34.441434, -118.562566),
+        ["Amber Afzali", "Jessie Cheng", "Tania Jiroudi", "Christian Sim", "Muskaan Abdul Sattar", "Chloe Ferraiuolo", "Emily Remer", "Laeticia Yang","Lorna Louie"],
+        ["State President", "Bay Section VP", "Central Section VP", "Gold Coast Section VP", "Inland Section VP", "Northern Section VP", "Southern Section VP","State Secretary", "State Public Relations"]
+    ),
+    FBLAEvent("NLC",
+        "",
+        "June 29th, 2020",
+        "Salt Lake City",
+        "National/Statewide",
+        "https://www.fbla-pbl.org/conferences/nlc/",
+        Image.asset("assets/eventImages/saltlakecity.jpg",fit: BoxFit.fill,),
+        LatLng(34.441434, -118.562566),
+        ["NA"],
+        ["NA"]
+    ),
   ];
 
 }
