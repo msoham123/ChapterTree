@@ -77,20 +77,23 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-    return MaterialApp(
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: MaterialApp(
 //      locale: DevicePreview.of(context).locale,
 //      builder: DevicePreview.appBuilder,
-      //activate for device preview
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.black,
-          secondaryHeaderColor: Colors.orange,
-          backgroundColor: Colors.white,
-          textTheme: TextTheme(
-              display1: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800, fontFamily: null)
-          )
+        //activate for device preview
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: Colors.black,
+            secondaryHeaderColor: Colors.orange,
+            backgroundColor: Colors.white,
+            textTheme: TextTheme(
+                display1: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800, fontFamily: null)
+            )
+        ),
+        home: myLoginScreen(),
       ),
-      home: myLoginScreen(),
     );
   }
 }
