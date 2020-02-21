@@ -44,7 +44,7 @@ class myHomeState extends State<myHomeScreen> {
   DocumentSnapshot userSnapshot;
   DatabaseService ds = new DatabaseService();
 
-  bool isOfficer = false;
+  bool isOfficer;
 
   @override
   void initState() {
@@ -113,31 +113,32 @@ class myHomeState extends State<myHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      builder: (context, sizingInformation) {
-        return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  color: MyApp.backgroundColor,
-                  child: ListView(
-                    children: <Widget>[
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 60,
-                      ),
-                      Container(
-                        width: sizingInformation.myScreenSize.width / 1.3,
-                        child: SimpleRoundButton(
-                          backgroundColor: MyApp.appBarColor,
-                          buttonText: Text(
-                            'My Events',
-                            style: TextStyle(color: MyApp.whiteNoChangeColor),
-                          ),
-                          onPressed: () {
-                            showDialog(
+    return StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+      return BaseWidget(
+        builder: (context, sizingInformation) {
+          return Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    color: MyApp.backgroundColor,
+                    child: ListView(
+                      children: <Widget>[
+                        SizedBox(
+                          height: sizingInformation.myScreenSize.height / 60,
+                        ),
+                        Container(
+                          width: sizingInformation.myScreenSize.width / 1.3,
+                          child: SimpleRoundButton(
+                            backgroundColor: MyApp.appBarColor,
+                            buttonText: Text(
+                              'My Events',
+                              style: TextStyle(color: MyApp.whiteNoChangeColor),
+                            ),
+                            onPressed: () {
+                              showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
@@ -147,21 +148,21 @@ class myHomeState extends State<myHomeScreen> {
                                             style: TextStyle(
                                                 color: MyApp.blackTextColor))),
                                     content: Container(
-                                      height: sizingInformation
-                                              .myScreenSize.height /
+                                      height:
+                                      sizingInformation.myScreenSize.height /
                                           1.8,
                                       width:
-                                          sizingInformation.myScreenSize.width /
-                                              1.3,
+                                      sizingInformation.myScreenSize.width /
+                                          1.3,
                                       child: Column(
                                         children: <Widget>[
                                           Expanded(
                                             child: ListView.builder(
                                               scrollDirection: Axis.vertical,
                                               itemCount: MyApp.myEvents.length,
-                                              itemBuilder:
-                                                  (BuildContext context,
-                                                      int index) {
+                                              itemBuilder: (
+                                                  BuildContext context,
+                                                  int index) {
                                                 return eventCard(
                                                     sizingInformation,
                                                     MyApp.myEvents[index]);
@@ -170,25 +171,24 @@ class myHomeState extends State<myHomeScreen> {
                                           ),
                                           SizedBox(
                                             height: sizingInformation
-                                                    .myScreenSize.height /
+                                                .myScreenSize.height /
                                                 130,
                                           ),
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                            MainAxisAlignment.spaceEvenly,
                                             children: <Widget>[
                                               RaisedButton(
                                                 color: Colors.blue,
                                                 child: Text(
                                                   "Back",
                                                   style: TextStyle(
-                                                      color: MyApp
-                                                          .whiteTextColor),
+                                                      color:
+                                                      MyApp.whiteTextColor),
                                                 ),
                                                 shape: RoundedRectangleBorder(
                                                   borderRadius:
-                                                      BorderRadius.circular(
-                                                          18),
+                                                  BorderRadius.circular(18),
                                                 ),
                                                 onPressed: () {
                                                   Navigator.pop(context);
@@ -200,129 +200,134 @@ class myHomeState extends State<myHomeScreen> {
                                       ),
                                     ),
                                   );
-                                });
-                          },
+                                },
+                              );
+                            },
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Competitive Events',
-                            style: TextStyle(
+                        SizedBox(
+                          height: sizingInformation.myScreenSize.height / 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Competitive Events',
+                              style: TextStyle(
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.5,
+                                  color: MyApp.blackTextColor),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: sizingInformation.myScreenSize.height / 30,
+                        ),
+                        Container(
+                          height: sizingInformation.myScreenSize.height / 3,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: FBLAEventModel.CaliforniaEvents.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return eventCard(
+                                sizingInformation,
+                                FBLAEventModel.CaliforniaEvents[index],
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                            height: sizingInformation.myScreenSize.height / 25),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Calendar',
+                              style: TextStyle(
                                 fontSize: 22.0,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.5,
-                                color: MyApp.blackTextColor),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 30,
-                      ),
-                      Container(
-                        height: sizingInformation.myScreenSize.height / 3,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: FBLAEventModel.CaliforniaEvents.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return eventCard(
-                              sizingInformation,
-                              FBLAEventModel.CaliforniaEvents[index],
-                            );
-                          },
+                                color: MyApp.blackTextColor,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(
-                          height: sizingInformation.myScreenSize.height / 25),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Calendar',
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.5,
-                              color: MyApp.blackTextColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: <Widget>[
-                          TableCalendar(
-                            events: _events,
-                            initialCalendarFormat: CalendarFormat.month,
-                            calendarStyle: CalendarStyle(
-                              todayColor: Colors.green,
-                              todayStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                                color: Colors.white,
-                              ),
-                              selectedColor: Colors.lightGreen,
-                            ),
-                            headerStyle: HeaderStyle(
-                              formatButtonDecoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              formatButtonTextStyle:
-                                  TextStyle(color: Colors.white),
-                            ),
-                            onDaySelected: (date, events) {
-                              setState(() {
-                                _selectedEvents = events;
-                              });
-                              print(_selectedEvents);
-                            },
-                            calendarController: _calendarController,
-                          ),
-                          ..._selectedEvents.map(
-                            (event) => ListTile(
-                              title: Text(event.toString()),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 8,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Container(
-                            child: Visibility(
-                              visible: isOfficer,
-                              child: RawMaterialButton(
-                                onPressed: _showAddDialog,
-                                child: new Icon(
-                                  Icons.add,
+                        Column(
+                          children: <Widget>[
+                            TableCalendar(
+                              events: _events,
+                              initialCalendarFormat: CalendarFormat.month,
+                              calendarStyle: CalendarStyle(
+                                todayColor: Colors.green,
+                                todayStyle: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.0,
                                   color: Colors.white,
-                                  size: 35.0,
                                 ),
-                                shape: new CircleBorder(),
-                                elevation: 2.0,
-                                fillColor: Colors.blue,
-                                padding: const EdgeInsets.all(15.0),
+                                selectedColor: Colors.lightGreen,
                               ),
+                              headerStyle: HeaderStyle(
+                                formatButtonDecoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                formatButtonTextStyle:
+                                TextStyle(color: Colors.white),
+                              ),
+                              onDaySelected: (date, events) {
+                                setState(() {
+                                  _selectedEvents = events;
+                                });
+                                print(_selectedEvents);
+                              },
+                              calendarController: _calendarController,
                             ),
-                            margin: EdgeInsets.only(right: 5.0, bottom: 20.0),
-                          ),
-                        ],
-                      )
-                    ],
+                            ..._selectedEvents.map(
+                                  (event) =>
+                                  ListTile(
+                                    title: Text(event.toString()),
+                                  ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: sizingInformation.myScreenSize.height / 8,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            isOfficer == null ? CircularProgressIndicator() :
+                            Container(
+                              child: Visibility(
+                                visible: isOfficer,
+                                child: RawMaterialButton(
+                                  onPressed: _showAddDialog,
+                                  child: new Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 35.0,
+                                  ),
+                                  shape: new CircleBorder(),
+                                  elevation: 2.0,
+                                  fillColor: Colors.blue,
+                                  padding: const EdgeInsets.all(15.0),
+                                ),
+                              ),
+                              margin: EdgeInsets.only(right: 5.0, bottom: 20.0),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      );
+    },
     );
   }
 
