@@ -85,7 +85,7 @@ class myHomeState extends State<myHomeScreen> {
       userSnapshot = await ds.getUser(userUID);
     }
     isOfficer = userSnapshot['isOfficer'];
-    print(userSnapshot.data['chapter']);
+    print(isOfficer);
   }
 
   Map<String, dynamic> encodeMap(Map<DateTime, dynamic> map) {
