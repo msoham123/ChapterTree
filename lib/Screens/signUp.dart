@@ -36,7 +36,7 @@ class mySignUpState extends State<mySignUpScreen> {
       nameController,
       chapterController,
       phoneController;
-  String email = "", password = "", name = "", chapter = "";
+  String email = "", password = "", name = "", chapter = "", phone = "";
   bool showSpinner = false;
   bool isOfficer;
 
@@ -307,7 +307,7 @@ class mySignUpState extends State<mySignUpScreen> {
                               controller: phoneController,
                               keyboardType: TextInputType.emailAddress,
                               onChanged: (value) {
-                                name = value;
+                                phone = value;
                               }),
                         ),
                       ),
@@ -387,7 +387,7 @@ class mySignUpState extends State<mySignUpScreen> {
                               FirebaseUser user = result.user;
 
                               // Create a document for the user with the uid
-                              await DatabaseService(uid: user.uid).updateUserData(name, 0, chapter);
+                              await DatabaseService(uid: user.uid).updateUserData(name, 0, chapter, phone, isOfficer);
 
                               if (result != null) {
                                 showDialog(
