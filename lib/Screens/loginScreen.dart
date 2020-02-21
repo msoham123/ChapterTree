@@ -15,6 +15,9 @@ import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:local_auth/local_auth.dart';
+import 'dart:io' show Platform;
+
+
 
 import '../main.dart';
 
@@ -315,7 +318,8 @@ class myLoginState extends State<myLoginScreen> {
                               },
                             ),
                           ),
-                          Container(
+
+                          if(Platform.isIOS) Container(
                             width: sizingInformation.myScreenSize.width / 2.5,
                             child: SimpleRoundButton(
                               backgroundColor: MyApp.appBarColor,
@@ -331,7 +335,6 @@ class myLoginState extends State<myLoginScreen> {
                                   if (_availableBiometricTypes.contains(BiometricType.face)) {
                                     await _authenticateUser(context, sizingInformation);
                                   }
-
                               },
                             ),
                           )
