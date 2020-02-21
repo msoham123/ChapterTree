@@ -415,6 +415,9 @@ class _mySettingsState extends State<mySettingsScreen> {
                       ),
                     ),
 
+                    SizedBox(
+                      height: sizingInformation.myScreenSize.height/20,
+                    ),
 
 
                   ],

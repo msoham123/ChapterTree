@@ -42,7 +42,7 @@ class FBLAEventModel{
         "Westmoor High School",
         "California",
         "https://www.cafbla.org/site/Default.aspx?PageID=118",
-        Image.asset("assets/eventImages/westmoor.png",fit: BoxFit.fill,),
+        Image.asset("assets/eventImages/westmoor.jpg",fit: BoxFit.fill,),
         LatLng(37.684251, -122.483085),
         ["Roma Bedekar", "Darrren Hsing", "Sanya Jain", "Angela Zhang", "Daniel Zhang", "Anna Chiang"],
         ["President","VP Outreach", "VP Activities", "Secretary/Treasurer", "Public Relations", "Parlimentarian"]
