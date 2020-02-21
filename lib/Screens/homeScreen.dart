@@ -34,16 +34,17 @@ class myHomeState extends State<myHomeScreen> {
   CalendarController _calendarController;
 
   Map<DateTime, List<dynamic>> _events;
-
-
+  SharedPreferences prefs;
   List<dynamic> _selectedEvents;
-  SharedPreferences preferences;
+
   Builder itemBuilder;
   final _db = Firestore.instance;
   final _auth = FirebaseAuth.instance;
   FirebaseUser loggedInUser;
   DocumentSnapshot userSnapshot;
   DatabaseService ds = new DatabaseService();
+
+  bool isOfficer = false;
 
   @override
   void initState() {
@@ -53,9 +54,17 @@ class myHomeState extends State<myHomeScreen> {
     _textEventController = TextEditingController();
     _events = {};
     _selectedEvents = [];
-//   initPrefs();
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
+    initPrefs();
+  }
+
+  initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _events = Map<DateTime, List<dynamic>>.from(
+          decodeMap(json.decode(prefs.getString("events") ?? "{}")));
+    });
   }
 
   void getCurrentUser() async {
@@ -75,6 +84,7 @@ class myHomeState extends State<myHomeScreen> {
     if (user != null) {
       userSnapshot = await ds.getUser(userUID);
     }
+    isOfficer = userSnapshot['isOfficer'];
     print(userSnapshot.data['chapter']);
   }
 
@@ -92,14 +102,6 @@ class myHomeState extends State<myHomeScreen> {
       newMap[DateTime.parse(key)] = map[key];
     });
     return newMap;
-  }
-
-  void initPrefs() async {
-    preferences = await SharedPreferences.getInstance();
-    setState(() {
-      _events = Map<DateTime, List<dynamic>>.from(
-          decodeMap(json.decode(preferences.getString("events") ?? "{}")));
-    });
   }
 
   @override
@@ -137,37 +139,56 @@ class myHomeState extends State<myHomeScreen> {
                           onPressed: () {
                             showDialog(
                                 context: context,
-                                builder: (BuildContext context){
+                                builder: (BuildContext context) {
                                   return AlertDialog(
                                     backgroundColor: MyApp.backgroundColor,
-                                    title: Center(child: Text('Your Events',style: TextStyle(color: MyApp.blackTextColor))),
+                                    title: Center(
+                                        child: Text('Your Events',
+                                            style: TextStyle(
+                                                color: MyApp.blackTextColor))),
                                     content: Container(
-                                      height: sizingInformation.myScreenSize.height/1.8,
-                                      width: sizingInformation.myScreenSize.width/1.3,
+                                      height: sizingInformation
+                                              .myScreenSize.height /
+                                          1.8,
+                                      width:
+                                          sizingInformation.myScreenSize.width /
+                                              1.3,
                                       child: Column(
                                         children: <Widget>[
                                           Expanded(
                                             child: ListView.builder(
                                               scrollDirection: Axis.vertical,
                                               itemCount: MyApp.myEvents.length,
-                                              itemBuilder: (BuildContext context, int index) {
-                                                return eventCard(sizingInformation,MyApp.myEvents[index]);
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return eventCard(
+                                                    sizingInformation,
+                                                    MyApp.myEvents[index]);
                                               },
                                             ),
                                           ),
-
                                           SizedBox(
-                                            height: sizingInformation.myScreenSize.height/130,
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                130,
                                           ),
-
                                           Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
                                             children: <Widget>[
                                               RaisedButton(
                                                 color: Colors.blue,
-                                                child: Text("Back",style: TextStyle(color: MyApp.whiteTextColor)),
+                                                child: Text(
+                                                  "Back",
+                                                  style: TextStyle(
+                                                      color: MyApp
+                                                          .whiteTextColor),
+                                                ),
                                                 shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(18),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18),
                                                 ),
                                                 onPressed: () {
                                                   Navigator.pop(context);
@@ -179,8 +200,7 @@ class myHomeState extends State<myHomeScreen> {
                                       ),
                                     ),
                                   );
-                                }
-                            );
+                                });
                           },
                         ),
                       ),
@@ -235,7 +255,6 @@ class myHomeState extends State<myHomeScreen> {
                       Column(
                         children: <Widget>[
                           TableCalendar(
-                            calendarController: _calendarController,
                             events: _events,
                             initialCalendarFormat: CalendarFormat.month,
                             calendarStyle: CalendarStyle(
@@ -247,10 +266,21 @@ class myHomeState extends State<myHomeScreen> {
                               ),
                               selectedColor: Colors.lightGreen,
                             ),
+                            headerStyle: HeaderStyle(
+                              formatButtonDecoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                              formatButtonTextStyle:
+                                  TextStyle(color: Colors.white),
+                            ),
                             onDaySelected: (date, events) {
-                              print(date.toIso8601String());
-                              _selectedEvents = events;
+                              setState(() {
+                                _selectedEvents = events;
+                              });
+                              print(_selectedEvents);
                             },
+                            calendarController: _calendarController,
                           ),
                           ..._selectedEvents.map(
                             (event) => ListTile(
@@ -266,17 +296,20 @@ class myHomeState extends State<myHomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Container(
-                            child: RawMaterialButton(
-                              onPressed: _showAddDialog,
-                              child: new Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 35.0,
+                            child: Visibility(
+                              visible: isOfficer,
+                              child: RawMaterialButton(
+                                onPressed: _showAddDialog,
+                                child: new Icon(
+                                  Icons.add,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
+                                shape: new CircleBorder(),
+                                elevation: 2.0,
+                                fillColor: Colors.blue,
+                                padding: const EdgeInsets.all(15.0),
                               ),
-                              shape: new CircleBorder(),
-                              elevation: 2.0,
-                              fillColor: Colors.blue,
-                              padding: const EdgeInsets.all(15.0),
                             ),
                             margin: EdgeInsets.only(right: 5.0, bottom: 20.0),
                           ),
@@ -301,45 +334,27 @@ class myHomeState extends State<myHomeScreen> {
           controller: _textEventController,
         ),
         actions: <Widget>[
-          MaterialButton(
-            child: Center(child: Text("Save")),
+          FlatButton(
+            child: Text("Save"),
             onPressed: () {
               if (_textEventController.text.isEmpty) return;
-              setState(() {
-                if (_events[_calendarController.selectedDay] != null) {
-                  _events[_calendarController.selectedDay]
-                      .add(_textEventController.text);
-                } else {
-                  _events[_calendarController.selectedDay] = [
-                    _textEventController.text
-                  ];
-                }
-              });
-              // preferences.setString("events", json.encode(encodeMap(_events)));
-//              Navigator.pop(context);
+
+              if (_events[_calendarController.selectedDay] != null) {
+                _events[_calendarController.selectedDay]
+                    .add(_textEventController.text);
+              } else {
+                _events[_calendarController.selectedDay] = [
+                  _textEventController.text
+                ];
+              }
+              setState(() {});
+              Navigator.pop(context);
+              prefs.setString("events", json.encode(encodeMap(_events)));
+              _textEventController.clear();
             },
           )
         ],
       ),
     );
-  }
-
-  Widget cardBuilder(SizingInformation sizingInformation, bool isRow) {
-    List<Widget> list = new List<Widget>();
-    for (var i = 0; i < 6; i++) {
-      list.add(CardWidget(
-          sizingInformation,
-          'SLC : California',
-          'State Leadership Conference for the state of California.',
-          Image.asset('assets/images/sacramento.png')));
-      list.add(
-        SizedBox(
-          height: sizingInformation.myScreenSize.height / 15,
-        ),
-      );
-    }
-    if (isRow)
-      return new Row(children: list);
-    else if (!isRow) return new Column(children: list);
   }
 }
