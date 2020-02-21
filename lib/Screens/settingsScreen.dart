@@ -186,53 +186,62 @@ class _mySettingsState extends State<mySettingsScreen> {
 
                                 SizedBox(height: 18.0),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceEvenly,
-                                  children: <Widget>[
-                                    Text("Chapter : ", style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 15),),
-                                    Text(chapter, style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15),),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width / 10, right: sizingInformation.myScreenSize.width / 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceBetween,
+                                    children: <Widget>[
+                                      Text("Chapter : ", style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 15),),
+                                      Text(chapter, style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15),),
+                                    ],
+                                  ),
                                 ),
 
                                 SizedBox(height: 18.0),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceEvenly,
-                                  children: <Widget>[
-                                    Text("Email : ", style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 15),),
-                                    Text(email, style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15),),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width / 10, right: sizingInformation.myScreenSize.width / 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceBetween,
+                                    children: <Widget>[
+                                      Text("Email : ", style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 15),),
+                                      Text(email, style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15),),
+                                    ],
+                                  ),
                                 ),
 
                                 SizedBox(height: 18.0),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceEvenly,
-                                  children: <Widget>[
-                                    Text("Phone Number : ", style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 15),),
-                                    Text(phoneNumber, style: TextStyle(
-                                        color: MyApp.blackTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 15),),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width / 10, right: sizingInformation.myScreenSize.width / 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceBetween,
+                                    children: <Widget>[
+                                      Text("Phone Number : ", style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 15),),
+                                      Text(phoneNumber, style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15),),
+                                    ],
+                                  ),
                                 ),
 
                                 SizedBox(height: 18.0),
@@ -251,17 +260,20 @@ class _mySettingsState extends State<mySettingsScreen> {
 
                                 SizedBox(height: 18.0),
 
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceEvenly,
-                                  children: <Widget>[
-                                    Flexible(
-                                        child: Center(child: Text(
-                                          "${_getEvents()}", style: TextStyle(
-                                            color: MyApp.blackTextColor,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 15),))),
-                                  ],
+                                Padding(
+                                  padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width / 10, right: sizingInformation.myScreenSize.width / 10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceEvenly,
+                                    children: <Widget>[
+                                      Flexible(
+                                          child: Center(child: Text(
+                                            "${_getEvents()}", style: TextStyle(
+                                              color: MyApp.blackTextColor,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 15),))),
+                                    ],
+                                  ),
                                 ),
 
                               ],
