@@ -17,7 +17,6 @@ import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/main.dart';
 import 'package:mobile_app_dev/models/eventListModel.dart';
-import 'package:settings_ui/settings_ui.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:mobile_app_dev/UI/flare_button_animation.dart';
 import 'package:url_launcher/url_launcher.dart';

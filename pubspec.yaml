@@ -21,16 +21,16 @@ dependencies:
     sdk: flutter
   flappy_search_bar: 1.4.1
   giffy_dialog: 1.6.1
-#  splashscreen:
+  splashscreen:
   undraw:
   snaplist:
   animated_text_kit:
-#  settings_ui: ^0.2.0
+  settings_ui: ^0.2.0
   firebase_core:
   firebase_auth:
   cloud_firestore:
   modal_progress_hud: ^0.1.3
-#  flutter_calendar_carousel:
+  flutter_calendar_carousel:
   flutter_email_sender: ^2.2.2
   url_launcher: ^5.4.1
   flare_flutter: any
@@ -58,6 +58,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

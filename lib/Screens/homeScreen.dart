@@ -1,5 +1,4 @@
 import 'package:flutter/rendering.dart';
-import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:mobile_app_dev/Screens/eventsScreen.dart';
 import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:flutter/material.dart';
