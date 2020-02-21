@@ -111,7 +111,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blue
+                                              color: Colors.blue,
                                           ),
                                           child: IconButton(
                                             icon: Icon(Icons.arrow_back),
@@ -138,20 +138,6 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                           decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(100),
                                               color: Colors.blue
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(Icons.chat),
-                                            iconSize: 30,
-                                            color: Colors.white,
-                                            onPressed: (){
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      myChatBotScreen(),
-                                                ),
-                                              );
-                                            },
                                           ),
                                         ),
                                       )

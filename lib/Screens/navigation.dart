@@ -10,6 +10,7 @@ import 'package:mobile_app_dev/Screens/questionScreen.dart';
 import 'package:mobile_app_dev/Screens/my_chapter.dart';
 
 import '../main.dart';
+import 'chatbot.dart';
 import 'mapScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
@@ -90,7 +91,23 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
         centerTitle: true,
         titleSpacing: 12,
         actions: <Widget>[
-          //empty for now
+          IconButton(
+            icon: Icon(Icons.sentiment_satisfied),
+            iconSize: 25,
+            color: Colors.white,
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      myChatBotScreen(),
+                ),
+              );
+            },
+          ),
+          SizedBox(
+            width: sizingInformation.myScreenSize.width/55,
+          ),
         ],
       ),
       body: Center(
