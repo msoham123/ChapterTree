@@ -62,7 +62,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     }
   }
 
-  void _populateCurrentUser(FirebaseUser user) async {
+  Future<void> _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
     if(user != null) {
@@ -71,11 +71,6 @@ class _mySettingsState extends State<mySettingsScreen> {
     name = userSnapshot.data['full_name'].toString();
     chapter = userSnapshot.data['chapter'].toString();
     phoneNumber = userSnapshot.data['phone'].toString();
-//    for(int i = 0; i < phoneNumber.length; i++) {
-//      if(i % 3 == 0) {
-//        phoneNumber += phoneNumber.substring(0, i) + "-" + phoneNumber.substring(i);
-//      }
-//    }
     email = loggedInUser.email;
     print(name);
   }
@@ -127,101 +122,147 @@ class _mySettingsState extends State<mySettingsScreen> {
                   children: <Widget>[
 
                     SizedBox(height: 18.0),
-
-
-                    Padding(
-                      padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/30, right: sizingInformation.myScreenSize.width/30),
-                      child: Container(
-                        height:
-                        sizingInformation.myScreenSize.height / 1.7,
-                        decoration: BoxDecoration(
-                          color: MyApp.backgroundColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          boxShadow: [BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 5.0,
-                          )],
-                        ),
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: <Widget>[
-
-                            SizedBox(height: 18.0),
-
-                            Padding(
-                              padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/30, right: sizingInformation.myScreenSize.width/30),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: MyApp.blackTextColor, width: 2),
-                                    shape: BoxShape.circle
-                                ),
-                                child: IconButton(
-                                  icon: Icon(Icons.person, color: MyApp.blackTextColor,),
-                                  iconSize: 50, onPressed: () {},
-                                ),
+                    FutureBuilder(
+                    future: _populateCurrentUser(loggedInUser),
+                      builder: (context, snapshot) {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              left: sizingInformation.myScreenSize.width / 30,
+                              right: sizingInformation.myScreenSize.width / 30),
+                          child: Container(
+                            height:
+                            sizingInformation.myScreenSize.height / 1.7,
+                            decoration: BoxDecoration(
+                              color: MyApp.backgroundColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
                               ),
-                            ),
-
-                            SizedBox(height: 18.0),
-
-                            Text(name, style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w900,fontSize: 20),),
-
-                            SizedBox(height: 18.0),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("Chapter : ", style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w800,fontSize: 15),),
-                                Text(chapter, style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w400,fontSize: 15),),
+                              boxShadow: [BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5.0,
+                              )
                               ],
                             ),
-
-                            SizedBox(height: 18.0),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            alignment: Alignment.center,
+                            child: Column(
                               children: <Widget>[
-                                Text("Email : ", style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w800,fontSize: 15),),
-                                Text(email, style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w400,fontSize: 15),),
+
+                                SizedBox(height: 18.0),
+
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: sizingInformation.myScreenSize
+                                          .width / 30,
+                                      right: sizingInformation.myScreenSize
+                                          .width / 30),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: MyApp.blackTextColor,
+                                            width: 2),
+                                        shape: BoxShape.circle
+                                    ),
+                                    child: IconButton(
+                                      icon: Icon(Icons.person,
+                                        color: MyApp.blackTextColor,),
+                                      iconSize: 50, onPressed: () {},
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(height: 18.0),
+
+                                Text(name, style: TextStyle(
+                                    color: MyApp.blackTextColor,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20),),
+
+                                SizedBox(height: 18.0),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceEvenly,
+                                  children: <Widget>[
+                                    Text("Chapter : ", style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),),
+                                    Text(chapter, style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15),),
+                                  ],
+                                ),
+
+                                SizedBox(height: 18.0),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceEvenly,
+                                  children: <Widget>[
+                                    Text("Email : ", style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),),
+                                    Text(email, style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15),),
+                                  ],
+                                ),
+
+                                SizedBox(height: 18.0),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceEvenly,
+                                  children: <Widget>[
+                                    Text("Phone Number : ", style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 15),),
+                                    Text(phoneNumber, style: TextStyle(
+                                        color: MyApp.blackTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 15),),
+                                  ],
+                                ),
+
+                                SizedBox(height: 18.0),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceEvenly,
+                                  children: <Widget>[
+                                    Text("Events Signed up For: ",
+                                      style: TextStyle(
+                                          color: MyApp.blackTextColor,
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 15),),
+                                  ],
+                                ),
+
+                                SizedBox(height: 18.0),
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceEvenly,
+                                  children: <Widget>[
+                                    Flexible(
+                                        child: Center(child: Text(
+                                          "${_getEvents()}", style: TextStyle(
+                                            color: MyApp.blackTextColor,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 15),))),
+                                  ],
+                                ),
+
                               ],
                             ),
-
-                            SizedBox(height: 18.0),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("Phone Number : ", style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w800,fontSize: 15),),
-                                Text(phoneNumber, style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w400,fontSize: 15),),
-                              ],
-                            ),
-
-                            SizedBox(height: 18.0),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text("Events Signed up For: ", style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w800,fontSize: 15),),
-                              ],
-                            ),
-
-                            SizedBox(height: 18.0),
-
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Flexible(
-                                    child: Center(child: Text("${_getEvents()}", style: TextStyle(color: MyApp.blackTextColor, fontWeight: FontWeight.w400,fontSize: 15),))),
-                              ],
-                            ),
-
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      }
                     ),
-
                     SizedBox(height: 18.0),
 
                     Row(
