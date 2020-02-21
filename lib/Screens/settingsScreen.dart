@@ -40,6 +40,7 @@ class _mySettingsState extends State<mySettingsScreen> {
   PageController _pageController;
   DatabaseService ds = new DatabaseService();
   DocumentSnapshot userSnapshot;
+  List<String> phones = new List<String>();
 
 
   @override
@@ -48,6 +49,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     _pageController = PageController();
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
+    _getPhoneNumbers();
   }
 
   void getCurrentUser() async {
@@ -74,6 +76,12 @@ class _mySettingsState extends State<mySettingsScreen> {
     print(name);
   }
 
+  Future<List<String>> _getPhoneNumbers() async {
+    final result =  await _firestore.collection("fbla_users").where("chapter", isEqualTo: chapter).getDocuments();
+    final List<DocumentSnapshot> documents = result.documents;
+    phones.clear();
+    documents.forEach((data) => phones.add(data.data['phone']));
+  }
 
   @override
   void dispose() {
@@ -161,10 +169,10 @@ class _mySettingsState extends State<mySettingsScreen> {
                                             width: 2),
                                         shape: BoxShape.circle
                                     ),
-                                    child: IconButton(
-                                      icon: Icon(Icons.person,
-                                        color: MyApp.blackTextColor,),
-                                      iconSize: 50, onPressed: () {},
+                                    child: CircleAvatar(
+                                      child: Text(name.substring(0,1), style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),),
+                                      maxRadius: 30.0,
+
                                     ),
                                   ),
                                 ),
@@ -360,8 +368,9 @@ class _mySettingsState extends State<mySettingsScreen> {
                         MaterialButton(
                           onPressed: () {
                               print('send sms');
-                              List<String> recipients = ["14086371215"];
+                              List<String> recipients = phones;
                               _sendSMS("Hello!", recipients);
+                              _getPhoneNumbers();
                           },
                           child: Text('Send SMS', style: TextStyle(color: Colors.white),),
                           color: Colors.blue

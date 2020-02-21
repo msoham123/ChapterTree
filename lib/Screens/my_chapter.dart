@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Services/database.dart';
+import 'package:mobile_app_dev/models/user.dart';
 
 import '../main.dart';
 
@@ -21,6 +23,7 @@ class _myChapterScreen extends State<myChapterScreen> {
   DocumentSnapshot userSnapshot;
   DatabaseService ds = new DatabaseService();
   String chapter = '';
+  Stream<QuerySnapshot> _data;
 
   @override
   void initState() {
@@ -28,6 +31,19 @@ class _myChapterScreen extends State<myChapterScreen> {
     _pageController = PageController();
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
+    _load();
+  }
+
+  _load() {
+    _data = _firestore
+        .collection('fbla_users')
+//       .where("chapter", isEqualTo: chapter)
+        .orderBy('count', descending: true)
+        .snapshots();
+  }
+
+  Future<void> _loadChapter() async {
+    return await _populateCurrentUser(loggedInUser);
   }
 
   @override
@@ -47,11 +63,10 @@ class _myChapterScreen extends State<myChapterScreen> {
     }
   }
 
-
   void _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
-    if(user != null) {
+    if (user != null) {
       userSnapshot = await ds.getUser(userUID);
     }
     chapter = userSnapshot.data['chapter'].toString();
@@ -66,11 +81,12 @@ class _myChapterScreen extends State<myChapterScreen> {
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestore
               .collection('fbla_users')
-//            .where("chapter", isEqualTo: chapter)
+//             .where("chapter", isEqualTo: chapter)
               .orderBy('count', descending: true)
-              .snapshots(includeMetadataChanges: true),
+              .snapshots(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData) return Center(child: const Text('Loading...'));
+            if (!snapshot.hasData)
+              return Center(child: CircularProgressIndicator());
             return ListView.builder(
               itemExtent: 80.0,
               itemCount: snapshot.data.documents.length,
@@ -84,50 +100,62 @@ class _myChapterScreen extends State<myChapterScreen> {
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
-      return Card(
-        color: MyApp.botBarColor,
-        child: Center(
-          child: GestureDetector(
-            onDoubleTap: () {
-              document.reference.updateData({'count': document['count'] + 1});
-            },
-            child: ListTile(
-              leading: Image.asset('./assets/images/fbla.png'),
-              title: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      document['full_name'],
-                      style: TextStyle(color: MyApp.blackTextColor),
-                    ),
-                  ),
-                  Container(
-                    height: 40.0,
-                    width: 40.0,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      color: MyApp.blueGreyColor,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
+    int initCount = document['count'];
+    return Card(
+      color: MyApp.botBarColor,
+      child: Center(
+        child: GestureDetector(
+          onDoubleTap: () {
+            document.reference.updateData({'count': document['count'] + 1});
+            setState(() {
+              initCount++;
+            });
+          },
+          child: FutureBuilder(
+            future: _loadChapter(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ListTile(
+                  leading: Image.asset('./assets/images/fbla.png'),
+                  title: Row(
+                    children: <Widget>[
+                      Expanded(
                         child: Text(
-                          document['count'].toString(),
-                          style: TextStyle(
-                            color: MyApp.whiteTextColor,
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold
-                          ),
+                          '${document['full_name']} ($chapter)',
+                          style: TextStyle(color: MyApp.blackTextColor),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+                      Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          color: MyApp.blueGreyColor,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              initCount.toString(),
+                              style: TextStyle(
+                                  color: MyApp.whiteTextColor,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            },
           ),
         ),
-        elevation: 10.0,
-      );
-    }
+      ),
+      elevation: 10.0,
+    );
+  }
 }
