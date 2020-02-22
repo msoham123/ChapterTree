@@ -269,7 +269,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                   Expanded(
                                     child: Scaffold(
                                       body: WebView(
-                                        initialUrl: "https://www.fbla-pbl.org/about/",
+                                        initialUrl: "https://www.fbla-pbl.org/fbla/",
                                         gestureNavigationEnabled: true,
                                         gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
                                           Factory<VerticalDragGestureRecognizer>(
@@ -343,14 +343,19 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                   SizedBox(height: sizingInformation.myScreenSize.height/25),
 
                                   Expanded(
-                                    child: ListView(
-                                        children: <Widget>[
-                                          Container(
-                                            child: Center(
-                                                child: Text('This is where the text will be displayed.')
-                                            ),
+                                    child: Scaffold(
+                                      body: WebView(
+                                        initialUrl: "https://www.fbla-pbl.org/about/regions/",
+                                        gestureNavigationEnabled: true,
+                                        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                                          Factory<VerticalDragGestureRecognizer>(
+                                                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
                                           ),
-                                        ]
+                                        },
+                                        onWebViewCreated: (WebViewController webViewController) {
+                                          _controller.complete(webViewController);
+                                        },
+                                      ),
                                     ),
                                   ),
 
@@ -417,8 +422,10 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                     child: ListView(
                                         children: <Widget>[
                                           Container(
-                                            child: Center(
-                                                child: Text('This is where the text will be displayed.')
+                                            child: Row(
+                                              children: <Widget>[
+                                                Text('What'),
+                                              ],
                                             ),
                                           ),
                                         ]
