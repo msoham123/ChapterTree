@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/Test/mapScreen2.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
@@ -11,6 +12,7 @@ import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/main.dart';
 import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class eventScreen extends StatefulWidget {
   String eventName,
@@ -66,6 +68,13 @@ class _eventScreenState extends State<eventScreen> {
   var localOfficers = [];
   var localOfficerPositions = [];
 
+  final _auth = FirebaseAuth.instance;
+  FirebaseUser loggedInUser;
+
+  String uid = '';
+
+  DatabaseService ds;
+
   _eventScreenState({
     @required this.eventName,
     @required this.eventDescription,
@@ -78,6 +87,26 @@ class _eventScreenState extends State<eventScreen> {
     @required this.localOfficers,
     @required this.localOfficerPositions,
   });
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ds = new DatabaseService();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      final user = await _auth.currentUser();
+      if (user != null) {
+        loggedInUser = user;
+        uid = loggedInUser.uid;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   void _launch(String link) async {
     String url = link;
@@ -371,16 +400,21 @@ class _eventScreenState extends State<eventScreen> {
                         children: <Widget>[
                             GestureDetector(
                             onTap: () {
+                              // REMOVING EVENT
                               String dialog;
                               if (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])){
                                dialog = "Event Removed";
+
+                               ds.removeEvent(eventName, uid);
                               }
                               else {
+                                // ADDING EVENT
                                 dialog = "$eventName added to My Events!";
                                 MyApp.myEvents.add(FBLAEventModel
                                     .CaliforniaEvents[FBLAEventModel
                                     .CaliforniaIndex.indexOf(eventName)]);
 
+                                ds.addEvent(eventName, uid);
                               }
                               showDialog(
                                   context: context,

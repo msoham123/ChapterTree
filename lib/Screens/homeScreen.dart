@@ -19,6 +19,9 @@ import 'package:mobile_app_dev/Services/database.dart';
 
 import '../main.dart';
 
+String name = '', chapter = '', phoneNumber = '', email = '', uid = '';
+List events;
+
 class myHomeScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -81,14 +84,19 @@ class myHomeState extends State<myHomeScreen> {
     }
   }
 
-  void _populateCurrentUser(FirebaseUser user) async {
+  Future<void> _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
     if (user != null) {
       userSnapshot = await ds.getUser(userUID);
     }
-    isOfficer = userSnapshot['isOfficer'];
-    print(isOfficer);
+    name = userSnapshot.data['full_name'].toString();
+    chapter = userSnapshot.data['chapter'].toString();
+    phoneNumber = userSnapshot.data['phone'].toString();
+    email = loggedInUser.email;
+    isOfficer = userSnapshot.data['isOfficer'];
+    uid = loggedInUser.uid;
+    events = userSnapshot.data['events'];
   }
 
   Map<String, dynamic> encodeMap(Map<DateTime, dynamic> map) {
@@ -149,10 +157,12 @@ class myHomeState extends State<myHomeScreen> {
                                     return AlertDialog(
                                       backgroundColor: MyApp.backgroundColor,
                                       title: Center(
-                                          child: Text('Your Events',
-                                              style: TextStyle(
-                                                  color:
-                                                      MyApp.blackTextColor))),
+                                        child: Text(
+                                          'Your Events',
+                                          style: TextStyle(
+                                              color: MyApp.blackTextColor),
+                                        ),
+                                      ),
                                       content: Container(
                                         height: sizingInformation
                                                 .myScreenSize.height /
@@ -163,16 +173,30 @@ class myHomeState extends State<myHomeScreen> {
                                         child: Column(
                                           children: <Widget>[
                                             Expanded(
-                                              child: ListView.builder(
-                                                scrollDirection: Axis.vertical,
-                                                itemCount:
-                                                    MyApp.myEvents.length,
-                                                itemBuilder:
-                                                    (BuildContext context,
-                                                        int index) {
-                                                  return eventCard(
-                                                      sizingInformation,
-                                                      MyApp.myEvents[index]);
+                                              child: FutureBuilder(
+                                                future: _populateCurrentUser(
+                                                    loggedInUser),
+                                                builder: (context, snapshot) {
+                                                  if (snapshot
+                                                          .connectionState ==
+                                                      ConnectionState.done) {
+                                                    return ListView.builder(
+                                                      scrollDirection:
+                                                          Axis.vertical,
+                                                      itemCount: events.length,
+                                                      itemBuilder: (BuildContext context, int index) {
+                                                        FBLAEvent event = FBLAEventModel.map[events[index]];
+                                                        return eventCard(
+                                                          sizingInformation,
+                                                          event
+                                                        );
+                                                      },
+                                                    );
+                                                  } else {
+                                                    return Center(
+                                                        child:
+                                                            CircularProgressIndicator());
+                                                  }
                                                 },
                                               ),
                                             ),
