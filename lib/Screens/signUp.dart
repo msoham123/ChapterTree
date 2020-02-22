@@ -387,7 +387,7 @@ class mySignUpState extends State<mySignUpScreen> {
                               FirebaseUser user = result.user;
 
                               // Create a document for the user with the uid
-                              await DatabaseService(uid: user.uid).updateUserData(name, 0, chapter, phone, isOfficer);
+                              await DatabaseService(uid: user.uid).updateUserData(name, 0, chapter, phone, isOfficer, []);
 
                               if (result != null) {
                                 showDialog(
