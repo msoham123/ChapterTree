@@ -402,7 +402,7 @@ class _eventScreenState extends State<eventScreen> {
                             onTap: () {
                               // REMOVING EVENT
                               String dialog;
-                              if (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])){
+                              if (events.contains(eventName)/*MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])*/){
                                dialog = "Event Removed";
 
                                ds.removeEvent(eventName, uid);
@@ -463,7 +463,7 @@ class _eventScreenState extends State<eventScreen> {
                                   sizingInformation.myScreenSize.width /
                                       2.5,
                               decoration: BoxDecoration(
-                               color: (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)])) ? Colors.red : Colors.green,
+                               color: (events.contains(eventName)) ? Colors.red : Colors.green,
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(20),
                                 ),
@@ -481,7 +481,7 @@ class _eventScreenState extends State<eventScreen> {
                                       color: Colors.white,
                                     ),
                                   ),
-                                  if (MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)]))
+                                  if (events.contains(eventName))
                                     Text(
                                     'Remove Event',
                                     style: TextStyle(
@@ -490,7 +490,8 @@ class _eventScreenState extends State<eventScreen> {
                                       fontWeight: FontWeight.w800,
                                     ),
                                   ),
-                                  if (!MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)]))
+//                                  if (!MyApp.myEvents.contains(FBLAEventModel.CaliforniaEvents[FBLAEventModel.CaliforniaIndex.indexOf(eventName)]))
+                                  if (!events.contains(eventName))
                                     Text(
                                       'Sign Up',
                                       style: TextStyle(
