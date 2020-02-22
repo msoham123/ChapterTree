@@ -24,6 +24,10 @@ class _myChapterScreen extends State<myChapterScreen> {
   DatabaseService ds = new DatabaseService();
   String chapter = '';
   Stream<QuerySnapshot> _data;
+  Color officerColor = Colors.blue;
+  Color regColor = Colors.white;
+  Color officialColor;
+  bool isOfficer;
 
   @override
   void initState() {
@@ -70,6 +74,9 @@ class _myChapterScreen extends State<myChapterScreen> {
       userSnapshot = await ds.getUser(userUID);
     }
     chapter = userSnapshot.data['chapter'].toString();
+    isOfficer = userSnapshot.data['isOfficer'];
+    isOfficer == true ? officialColor = officerColor : officialColor = regColor;
+
     print(userSnapshot.data['chapter']);
   }
 
@@ -115,37 +122,40 @@ class _myChapterScreen extends State<myChapterScreen> {
             future: _loadChapter(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
-                return ListTile(
-                  leading: Image.asset('./assets/images/fbla.png'),
-                  title: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          '${document['full_name']} ($chapter)',
-                          style: TextStyle(color: MyApp.blackTextColor),
-                        ),
-                      ),
-                      Container(
-                        height: 40.0,
-                        width: 40.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                          color: MyApp.blueGreyColor,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              initCount.toString(),
-                              style: TextStyle(
-                                  color: MyApp.whiteTextColor,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
+                return Container(
+                  color: officialColor,
+                  child: ListTile(
+                    leading: Image.asset('./assets/images/fbla.png'),
+                    title: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            '${document['full_name']} ($chapter)',
+                            style: TextStyle(color: MyApp.blackTextColor),
                           ),
                         ),
-                      )
-                    ],
+                        Container(
+                          height: 40.0,
+                          width: 40.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            color: MyApp.blueGreyColor,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                initCount.toString(),
+                                style: TextStyle(
+                                    color: MyApp.whiteTextColor,
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 );
               } else {
