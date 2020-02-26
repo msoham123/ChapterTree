@@ -422,9 +422,105 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                     child: ListView(
                                         children: <Widget>[
                                           Container(
-                                            child: Row(
+                                            child: Column(
                                               children: <Widget>[
-                                                Text('What'),
+
+                                                Center(
+                                                  child: Text('What is this app for?', style: TextStyle(fontWeight: FontWeight.w900),),
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Padding(
+                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
+                                                          child : Text('ChapterTree was developed in order to allow FBLA members to manage their FBLA events and chapters.', style: TextStyle(fontWeight: FontWeight.w400),)),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+
+                                                Center(
+                                                  child: Text('What if I encounter a bug?', style: TextStyle(fontWeight: FontWeight.w900),),
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Padding(
+                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
+                                                          child : Text('Please use the Contact Us button on the questions tab to email us with any bug reports.', style: TextStyle(fontWeight: FontWeight.w400),)),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+
+                                                Center(
+                                                  child: Text('What can I ask the chatbot?', style: TextStyle(fontWeight: FontWeight.w900),),
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Padding(
+                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
+                                                          child : Text('You can ask the chatbot about events, how to prepare, what is FBLA, etc. If you\'d like something added please email us through the Contact Us button.', style: TextStyle(fontWeight: FontWeight.w400),)),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+
+                                                Center(
+                                                  child: Text('Can I get this app on both IOS and Android?', style: TextStyle(fontWeight: FontWeight.w900),),
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Padding(
+                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
+                                                          child : Text('You can, but it will require Xcode and Podfile knowledge to build on IOS. The App has been tested on both Android and IOS and is fully functional on both platforms.', style: TextStyle(fontWeight: FontWeight.w400),)),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+
+                                                Center(
+                                                  child: Text('What is the purpose of the messages tab?', style: TextStyle(fontWeight: FontWeight.w900),),
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Flexible(
+                                                      child: Padding(
+                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
+                                                          child : Text('To communicate and socialize with other FBLA members. We believe that a core aspect of FBLA is the relationships and connections you make along the way.', style: TextStyle(fontWeight: FontWeight.w400),)),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: sizingInformation.myScreenSize.height/30,
+                                                ),
+
+
                                               ],
                                             ),
                                           ),
