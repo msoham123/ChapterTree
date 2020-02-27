@@ -35,7 +35,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 - Settings page for viewing user profile
 - Dark mode 
 - Officer SMS notification 
-  - Seamless way to remind all members in one's chapter that there is meeting
+  - Seamless way to send meeting reminder notifications to all chapter members in a single click
   
 # Technologies and API's used
 
