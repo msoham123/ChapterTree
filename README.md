@@ -9,7 +9,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 # Core Features 
 - Native performance on both iOS and Android 
 - Fully responsive and adaptable UI to any screen dimensions 
-- Robust database for Authentication, Cloud database, Cloud Storage
+- Robust backend for Authentication, Cloud database, Cloud Storage
   - Built-in encryption on database for user passwords
 - Email/Password and Face ID login for extensive accessibility 
 - Beautiful dashboard to view, sign-up, remove local and national events
