@@ -22,12 +22,10 @@ class myMapScreen extends StatefulWidget {
       {@required this.DEST,
       @required this.title,
       @required this.startLat,
-      @required this.startLong
-      });
+      @required this.startLong});
 
   @override
-  myMapState createState() =>
-      myMapState(DEST, title, startLat, startLong);
+  myMapState createState() => myMapState(DEST, title, startLat, startLong);
 }
 
 class myMapState extends State<myMapScreen> {
@@ -72,11 +70,12 @@ class myMapState extends State<myMapScreen> {
     getData();
   }
 
-  void _populateSource() async {
+  Future<void> _populateSource() async {
     SOURCE = await _getSource();
     newLat = SOURCE.latitude;
     newLong = SOURCE.longitude;
     print('changing values?');
+    print('newLat = $newLat');
     isLoad = true;
   }
 
@@ -124,12 +123,13 @@ class myMapState extends State<myMapScreen> {
 
   // API CODE - DISTANCE MATRIX API //
   // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
-  void getData() async {
+  Future<void> getData() async {
     var response = await http.get(
-        'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${newLat},${newLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
-        headers: {
-          "Accept": "application/json",
-        });
+      'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${newLat},${newLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
+      headers: {
+        "Accept": "application/json",
+      },
+    );
     Map<String, dynamic> data = json.decode(response.body);
     origin = data["origin_addresses"][0];
     destination = data["destination_addresses"][0];
@@ -172,154 +172,216 @@ class myMapState extends State<myMapScreen> {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return AlertDialog(
-                            backgroundColor: MyApp.backgroundColor,
-                            title: Center(
-                              child: Text(
-                                'Location Details',
-                                style: TextStyle(
-                                  color: Colors.green,
-                                ),
-                              ),
-                            ),
-                            content: Container(
-                              height: sizingInformation.myScreenSize.height / 2,
-                              width: sizingInformation.myScreenSize.width,
-                              child: Column(
-                                children: <Widget>[
-                                  Expanded(
-                                    child: ListView(
+                          return FutureBuilder(
+                            future: getData(),
+                            builder: (context, snapshot) {
+                              if(snapshot.connectionState == ConnectionState.done) {
+                                return AlertDialog(
+                                  backgroundColor: MyApp.backgroundColor,
+                                  title: Center(
+                                    child: Text(
+                                      'Location Details',
+                                      style: TextStyle(
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                  ),
+                                  content: Container(
+                                    height:
+                                    sizingInformation.myScreenSize.height / 2,
+                                    width: sizingInformation.myScreenSize.width,
+                                    child: Column(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: ListView(
 //                                mainAxisAlignment:
 //                                    MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Text(
-                                              '${origin}',
-                                              style: TextStyle(fontSize: 12.0),
-                                            ),
-                                            Icon(Icons.keyboard_arrow_down),
-                                            Text(
-                                              '$destination',
-                                              style: TextStyle(fontSize: 12.0),
-                                            ),
-                                            SizedBox(
-                                              height: sizingInformation.myScreenSize.height / 35,
-                                            ),
-                                            Icon(
-                                              Icons.time_to_leave,
-                                              size: 30.0,
-                                              color: Colors.green,
-                                            ),
-                                            SizedBox(
-                                              height: sizingInformation.myScreenSize.height / 35,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: <Widget>[
-                                                Text(
-                                                  "Distance : ",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w900,
+                                            children: <Widget>[
+                                              Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: <Widget>[
+                                                  Text(
+                                                    '${origin}',
+                                                    style: TextStyle(
+                                                        fontSize: 12.0,
+                                                        color:
+                                                        MyApp.blackTextColor),
                                                   ),
-                                                ),
-                                                Text(
-                                                  distance.text,
-                                                  style: TextStyle(
+                                                  Icon(Icons
+                                                      .keyboard_arrow_down),
+                                                  Text(
+                                                    '$destination',
+                                                    style: TextStyle(
+                                                        fontSize: 12.0,
+                                                        color:
+                                                        MyApp.blackTextColor),
+                                                  ),
+                                                  SizedBox(
+                                                    height: sizingInformation
+                                                        .myScreenSize.height /
+                                                        35,
+                                                  ),
+                                                  Icon(
+                                                    Icons.time_to_leave,
+                                                    size: 30.0,
                                                     color: Colors.green,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w900,
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: sizingInformation.myScreenSize.height / 35,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                              children: <Widget>[
-                                                Text(
-                                                  "Duration : ",
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w900,
+                                                  SizedBox(
+                                                    height: sizingInformation
+                                                        .myScreenSize.height /
+                                                        35,
                                                   ),
-                                                ),
-                                                Text(
-                                                  duration.text,
-                                                  style: TextStyle(
-                                                    color: Colors.green,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w900,
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                    children: <Widget>[
+                                                      Text(
+                                                        "Distance : ",
+                                                        style: TextStyle(
+                                                          color: MyApp
+                                                              .blackTextColor,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.w900,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        distance.text,
+                                                        style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.w900,
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: sizingInformation.myScreenSize.height / 25,
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                _openMaps(DEST.latitude, DEST.longitude);
-                                              },
-                                              child: Container(
-                                                height: sizingInformation.myScreenSize.height /20,
-                                                width: sizingInformation.myScreenSize.width/2,
-                                                decoration: BoxDecoration(boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.green.withOpacity(0.8),
-                                                    blurRadius: 2.0,
-                                                    spreadRadius: 4.0,
-                                                  )
-                                                ]),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      child: Image.asset(
-                                                        'assets/images/map.png',
-                                                      )
+                                                  SizedBox(
+                                                    height: sizingInformation
+                                                        .myScreenSize.height /
+                                                        35,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                    children: <Widget>[
+                                                      Text(
+                                                        "Duration : ",
+                                                        style: TextStyle(
+                                                          color: MyApp
+                                                              .blackTextColor,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.w900,
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        duration.text,
+                                                        style: TextStyle(
+                                                          color: Colors.green,
+                                                          fontSize: 15,
+                                                          fontWeight:
+                                                          FontWeight.w900,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: sizingInformation
+                                                        .myScreenSize.height /
+                                                        25,
+                                                  ),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      _openMaps(DEST.latitude,
+                                                          DEST.longitude);
+                                                    },
+                                                    child: Container(
+                                                      height: sizingInformation
+                                                          .myScreenSize
+                                                          .height /
+                                                          20,
+                                                      width: sizingInformation
+                                                          .myScreenSize
+                                                          .width /
+                                                          2,
+                                                      decoration: BoxDecoration(
+                                                          boxShadow: [
+                                                            BoxShadow(
+                                                              color: Colors
+                                                                  .green
+                                                                  .withOpacity(
+                                                                  0.8),
+                                                              blurRadius: 2.0,
+                                                              spreadRadius: 4.0,
+                                                            )
+                                                          ]),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                        children: <Widget>[
+                                                          Container(
+                                                              child: Image
+                                                                  .asset(
+                                                                'assets/images/map.png',
+                                                              )),
+                                                          Text(
+                                                            'Open with MAPS',
+                                                            style: TextStyle(
+                                                                color:
+                                                                Colors.white,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w700),
+                                                          )
+                                                        ],
+                                                      ),
                                                     ),
-                                                    Text('Open with MAPS', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),)
-                                                  ],
-                                                ),
+                                                  )
+                                                ],
                                               ),
-                                            )
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: sizingInformation.myScreenSize.height / 25,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: <Widget>[
-                                            RaisedButton(
-                                              color: Colors.blue,
-                                              child: Text("Back",
-                                                  style: TextStyle(
-                                                      color: MyApp.whiteTextColor)),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(18),
+                                              SizedBox(
+                                                height: sizingInformation
+                                                    .myScreenSize.height /
+                                                    25,
                                               ),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                            ),
-                                          ],
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                                children: <Widget>[
+                                                  RaisedButton(
+                                                    color: Colors.blue,
+                                                    child: Text("Back",
+                                                        style: TextStyle(
+                                                          color: MyApp
+                                                              .blackTextColor,
+                                                        )),
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          18),
+                                                    ),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
+                                );
+                              } else {
+                                return Center(child: CircularProgressIndicator());
+                              }
+                            },
                           );
                         });
                   },
@@ -369,9 +431,9 @@ class myMapState extends State<myMapScreen> {
   void _openMaps(double lat, double long) async {
     final url = 'https://www.google.com/maps/search/?api=1&query=$lat,$long';
     if (await canLaunch(url)) {
-    await launch(url);
+      await launch(url);
     } else {
-    throw 'Could not launch $url';
+      throw 'Could not launch $url';
     }
   }
 
