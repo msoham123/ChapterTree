@@ -24,7 +24,7 @@ class _myChapterScreen extends State<myChapterScreen> {
   DatabaseService ds = new DatabaseService();
   String chapter = '';
   Stream<QuerySnapshot> _data;
-  Color officerColor = Colors.blue;
+  Color officerColor = Colors.lightBlueAccent;
   Color regColor = Colors.white;
   Color officialColor;
   bool isOfficer;
