@@ -72,6 +72,6 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 
 
 # Developers 
-* Aryan Vichare
-* Soham Manoli
+* Aryan Vichare - <i>Backend, Database, API integration</i>
+* Soham Manoli - <i>User Interface (UI), User Experience (UX), API integration</i>
 
