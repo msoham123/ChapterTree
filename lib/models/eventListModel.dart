@@ -224,7 +224,7 @@ class FBLAEventModel {
     ),
     FBLAEvent(
         "NLC",
-        "",
+        "The National Leadership Conference is an extravegant event with lots of talented people from across the nation. ",
         "June 29th, 2020",
         "Salt Lake City",
         "National/Statewide",
