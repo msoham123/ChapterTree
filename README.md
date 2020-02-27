@@ -1,8 +1,41 @@
 # ChapterTree
+FHS Mobile App Development
+<br/>
+Date of submission: 2/28/20
 
 # Overview 
 Welcome to ChapterTree, an amazing app that allows you to seamelessly manage your chapters and more!
 
+# Core Features 
+- Native performance on both iOS and Android 
+- Fully responsive and adaptable UI to any screen dimensions 
+- Robust database for Authentication, Cloud database, Cloud Storage
+  - Built-in encryption on database for user passwords
+- Email/Password and Face ID login for extensive accessibility 
+- Beautiful dashboard to view, sign-up, remove local and national events
+  - Harnesses the power of cloud data persistence 
+- Dynamic calendar to add events seamlessly 
+  - Only chapter leaders can track attendance 
+- Google Maps API integration to view user's location event destination through markers
+- Google Maps Distance Matrix API integration to view driving distance and time needed to reach event 
+  - Utilizes Machine Learning on historical traffic data, weather conditions, and more to provide precise metrics 
+- Built-in navigator to view directions in Google Maps 
+- Seamless integration for meeting attendance
+  - Only chapter leaders can track attendance 
+  - Employs cloud data persistence
+- Global Messaging FBLA Portal 
+  - Users can ask questions, learn more about FBLA, and much more
+  - Powered by Cloud Storage Streaming 
+- Smart Assistance AI Powered FBLA Chatbot 
+  - Answers all questions pertaining to FBLA (e.g. what is the dress code for FBLA?)
+  - Powered on Google's Neural Networks that perform Natural Language Processing (NLP)
+- Contact us form
+  - Integrated with Gmail API to send email directly to ChapterTree's gmail account
+- Settings page for viewing user profile
+- Dark mode 
+- Officer SMS notification 
+  - Seamless way to remind all members in one's chapter that there is meeting
+  
 # Technologies and API's used
 
 - [GitHub](http://github.com)
