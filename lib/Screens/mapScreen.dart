@@ -59,6 +59,7 @@ class myMapState extends State<myMapScreen> {
   List<Marker> _markers = <Marker>[];
   List<LatLng> route;
   bool isLoad = false;
+  double newLat, newLong;
 
   @override
   void initState() {
@@ -73,6 +74,9 @@ class myMapState extends State<myMapScreen> {
 
   void _populateSource() async {
     SOURCE = await _getSource();
+    newLat = SOURCE.latitude;
+    newLong = SOURCE.longitude;
+    print('changing values?');
     isLoad = true;
   }
 
@@ -122,7 +126,7 @@ class myMapState extends State<myMapScreen> {
   // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
   void getData() async {
     var response = await http.get(
-        'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLat},${startLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
+        'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${newLat},${newLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
         headers: {
           "Accept": "application/json",
         });
