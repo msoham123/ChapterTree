@@ -23,6 +23,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 - Seamless integration for meeting attendance
   - Only chapter leaders can track attendance 
   - Employs cloud data persistence
+- Embedded Web Viewers to learn more about FBLA
 - Global Messaging FBLA Portal 
   - Users can ask questions, learn more about FBLA, and much more
   - Powered by Cloud Storage Streaming 
