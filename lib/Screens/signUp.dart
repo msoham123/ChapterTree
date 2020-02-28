@@ -235,6 +235,7 @@ class mySignUpState extends State<mySignUpScreen> {
                                   BorderRadius.all(Radius.circular(30)),
                             ),
                             child: TextField(
+                              obscureText: true,
                               textAlign: TextAlign.left,
 //                          maxLines: null,
                               decoration: InputDecoration(

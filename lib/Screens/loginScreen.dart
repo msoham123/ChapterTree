@@ -191,6 +191,7 @@ class myLoginState extends State<myLoginScreen> {
                           ),
                           child: TextField(
                               textAlign: TextAlign.left,
+                              obscureText: true,
 //                          maxLines: null,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
