@@ -4,7 +4,9 @@ FHS Mobile App Development
 Date of submission: 2/28/20
 
 # Overview 
-Welcome to ChapterTree, an amazing app that allows you to seamelessly manage your chapters and more!
+Welcome to ChapterTree, an amazing app that allows you to seamlessly manage your chapters! ChapterTree is designed to provide users with a platform to record event information, track chapter attendance, communicate with other FBLA members, talk with our intelligent ChatBot, and learn more about FBLA. Additionally, the app implements API's that enhance the user experience by communicating with our database, implementing google maps, and providing a real time data flow that dynamically updates information that the user needs.  
+
+This application was programmed completely in Google's Flutter Framework.
 
 # Core Features 
 - Native performance on both iOS and Android 
@@ -37,6 +39,31 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 - Officer SMS notification 
   - Seamless way to send meeting reminder notifications to all chapter members in a single click
 - Smart Analytics and data aggregation on user metrics such as User Retention
+  
+# Getting Started
+  The following are the most effective methods to run ChapterTree on your device.
+  
+  #### IPhone and IPad (IOS): 
+  1. Download XCode from the Mac OS App Store.
+  2. Create a free account on the Apple Developer Portal.
+  3. Once you are signed in, consult the Xcode Deployment Section below.
+   
+  Prerequisites
+  > Device with IOS 9.0 or above (Emulator Works!)
+  > - Note : If you have IOS 13.31 or above, you cannot run the app with a free developer account!
+  #### Android Phone and Tablet (Android): 
+  1. Download Intellij from https://www.jetbrains.com/idea/.
+  2. Go to the Plugins store and download the Flutter and Dart Plugins for free.
+  3. Once you are signed in, consult the IntelliJ Deployment Section below.
+   
+  Prerequisites
+  > Device with Android SDK 20 to 28 (Emulator Works!)
+
+
+# Xcode Deployment
+  
+# IntelliJ Deployment
+ 
   
 # Technologies and API's used
 
