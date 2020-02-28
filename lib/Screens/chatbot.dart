@@ -8,6 +8,7 @@ import 'dart:io';
 
 import '../main.dart';
 
+// Firebase user
 FirebaseUser loggedInUser;
 String name = '';
 final _firestore = Firestore.instance;
@@ -25,14 +26,18 @@ class myChatBotState extends State<myChatBotScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController =  TextEditingController();
 
+  // Initialize Database Service for accessing the data base
   DatabaseService ds = new DatabaseService();
   DocumentSnapshot userSnapshot;
 
   @override
   void initState() {
     super.initState();
+    // Get the current logged in user
     getCurrentUser();
+    // Save the information about the logged in user in variables
     _populateCurrentUser(loggedInUser);
+    // Add an initial message for the FBLA Bot
     _messages.add(
         ChatMessage(
             text: "Hi, how can I assist you today?",
@@ -42,6 +47,7 @@ class myChatBotState extends State<myChatBotScreen> {
     );
   }
 
+  // Get the information on the current logged in user
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -53,6 +59,7 @@ class myChatBotState extends State<myChatBotScreen> {
     }
   }
 
+  // Save information on the current user in global variables
   void _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
@@ -63,6 +70,8 @@ class myChatBotState extends State<myChatBotScreen> {
     print(name);
   }
 
+
+  // Build layout
   Widget _buildTextComposer() {
     return BaseWidget(builder: (context, sizingInformation) {
       return IconTheme(
@@ -98,6 +107,7 @@ class myChatBotState extends State<myChatBotScreen> {
     );
   }
 
+  // Response for the chatbot based on user query
   void Response(query) async {
     _textController.clear();
     AuthGoogle authGoogle =
@@ -118,6 +128,7 @@ class myChatBotState extends State<myChatBotScreen> {
 
   }
 
+  // handle the user's message and then proceed to get the AI response
   void _handleSubmitted(String text) {
     _textController.clear();
     ChatMessage message =  ChatMessage(
@@ -163,6 +174,14 @@ class myChatBotState extends State<myChatBotScreen> {
     );
   }
 }
+
+
+// ChatMessage object
+// @params
+// @text
+// @name
+// @text
+// @type (true == user's message & false = chatbot)
 
 class ChatMessage extends StatelessWidget {
   ChatMessage({this.text, this.name, this.type});

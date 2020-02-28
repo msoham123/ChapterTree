@@ -382,6 +382,7 @@ class mySignUpState extends State<mySignUpScreen> {
                           onPressed: () async {
                             // Create the user here once we have the email and password
                             try {
+                              // TRY TO CREATE A USER IN THE FIREBASE AUTHENTICATION DATABASE
                               final result =
                                   await _auth.createUserWithEmailAndPassword(
                                       email: email, password: password);

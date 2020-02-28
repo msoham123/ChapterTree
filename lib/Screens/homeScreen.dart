@@ -19,6 +19,7 @@ import 'package:mobile_app_dev/Services/database.dart';
 
 import '../main.dart';
 
+// variables that will be populated about the user
 String name = '', chapter = '', phoneNumber = '', email = '', uid = '';
 List events;
 
@@ -35,15 +36,22 @@ class myHomeState extends State<myHomeScreen> {
   TextEditingController _textEventController;
   CalendarController _calendarController;
 
+  // hashmap to store information on the events
   Map<DateTime, List<dynamic>> _events;
   SharedPreferences prefs;
   List<dynamic> _selectedEvents;
 
   Builder itemBuilder;
+  // Create Firebase cloud firestore instance
   final _db = Firestore.instance;
+
+  // Create Firebase authentication instance
+
   final _auth = FirebaseAuth.instance;
   FirebaseUser loggedInUser;
   DocumentSnapshot userSnapshot;
+
+  // Create DatabaseService for database handling
   DatabaseService ds = new DatabaseService();
 
   bool isOfficer;
@@ -56,7 +64,9 @@ class myHomeState extends State<myHomeScreen> {
     _textEventController = TextEditingController();
     _events = {};
     _selectedEvents = [];
+    // get info on current logged user
     getCurrentUser();
+    // populate info on current logged user such as name, isOfficer, email, etc
     _populateCurrentUser(loggedInUser);
     initPrefs();
   }
@@ -373,6 +383,7 @@ class myHomeState extends State<myHomeScreen> {
     );
   }
 
+  // Show widget dialog to add events into the calender
   _showAddDialog() {
     showDialog(
       context: context,

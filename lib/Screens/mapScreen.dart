@@ -35,6 +35,7 @@ class myMapState extends State<myMapScreen> {
   LatLng SOURCE;
   DistanceDuration distance, duration;
   String origin = '', destination = '';
+  // API KEY FOR GOOGLE MAPS AND GOOGLE DISTANCE MATRIX API
   final String API_KEY = "AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ";
 
   String title;
@@ -54,6 +55,7 @@ class myMapState extends State<myMapScreen> {
       new GoogleMapPolyline(apiKey: "AIzaSyDfIUawmqiyd4d4yiYrvgRzy3N8a_rmm70");
 
 //  Set<Marker> _markers = {};
+  // List of markers for rendering on the map
   List<Marker> _markers = <Marker>[];
   List<LatLng> route;
   bool isLoad = false;
@@ -70,6 +72,7 @@ class myMapState extends State<myMapScreen> {
     getData();
   }
 
+   // GET USER'S GEOLOCATION FROM PHONE'S HARDWARE
   Future<void> _populateSource() async {
     SOURCE = await _getSource();
     newLat = SOURCE.latitude;
@@ -79,6 +82,7 @@ class myMapState extends State<myMapScreen> {
     isLoad = true;
   }
 
+  // USE THE GEOLOCATOR PLUGIN TO GET THE USERS LOCAITON
   Future<LatLng> _getSource() async {
     var currentLocation = await Geolocator()
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -123,6 +127,8 @@ class myMapState extends State<myMapScreen> {
 
   // API CODE - DISTANCE MATRIX API //
   // https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ
+
+  // API Network GET Request for distance matrix api //
   Future<void> getData() async {
     var response = await http.get(
       'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${newLat},${newLong}&destinations=${DEST.latitude}%2C${DEST.longitude}&key=AIzaSyDqLE0Oj4XCxG8Gbv2SYZtpeRhDqtL5hXQ',
@@ -400,6 +406,7 @@ class myMapState extends State<myMapScreen> {
               children: <Widget>[
 //                isLoad == false ?
 //                    Center(child: CircularProgressIndicator()):
+              // GOOGLE MAP SETTINGS
                 GoogleMap(
                   polylines: _polyline,
                   markers: Set<Marker>.of(_markers),

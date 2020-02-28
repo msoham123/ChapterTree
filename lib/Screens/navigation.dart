@@ -118,6 +118,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
               MyApp.currentIndex = index;
             });
           },
+          // NAVIGATION BOTTOM NAVY BAR
           children: <Widget>[
             myHomeScreen(),
             myChapterScreen(),
@@ -139,6 +140,7 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
           });
           pageController.jumpToPage(index);
         },
+        // ITEMS IN THE BOTTOM NAVY BAR
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.home),

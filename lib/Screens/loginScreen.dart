@@ -36,8 +36,10 @@ class myLoginState extends State<myLoginScreen> {
   bool showSpinner = false;
 
 
+  // Compose a list of available biometrics for the user's phone hardware
   List<BiometricType> _availableBiometricTypes = List<BiometricType>();
 
+  // Method to check if a certain biometric is available
   Future<bool> _isBiometricAvailable() async {
     bool isAvailable = false;
     try {
@@ -53,6 +55,7 @@ class myLoginState extends State<myLoginScreen> {
     return isAvailable;
   }
 
+  // Get a list of biometric types
   Future<void> _getListOfBiometricTypes() async {
     try {
       _availableBiometricTypes = await _localAuthentication.getAvailableBiometrics();
@@ -65,6 +68,7 @@ class myLoginState extends State<myLoginScreen> {
     print(_availableBiometricTypes);
   }
 
+  // Authenticate user with biometrics
   Future<void> _authenticateUser(BuildContext context, SizingInformation sizingInformation) async {
     bool isAuthenticated = false;
     try {
@@ -84,6 +88,7 @@ class myLoginState extends State<myLoginScreen> {
         ? print('User is authenticated!')
         : print('User is not authenticated.');
 
+    // Sign in Anonymously or if into past saved user account for convenience
     dynamic result = _auth.signInAnonymously();
 
     if(result == null) {
@@ -320,6 +325,8 @@ class myLoginState extends State<myLoginScreen> {
                             ),
                           ),
 
+                          // CHECK IF PLATFORM IS IOS
+                          // FACE ID FEATURE IS ONLY SUPPORTED FOR IOS USERS
                           if(Platform.isIOS) Container(
                             width: sizingInformation.myScreenSize.width / 2.5,
                             child: SimpleRoundButton(

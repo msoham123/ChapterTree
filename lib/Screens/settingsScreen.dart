@@ -23,6 +23,7 @@ import 'package:flutter_sms/flutter_sms.dart';
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 
+// CREATE INSTANCE ON CURRENT FIREBASE LOOGED IN USER
 FirebaseUser loggedInUser;
 String name = '', chapter = '', phoneNumber = '', email = '';
 final _firestore = Firestore.instance;
@@ -53,6 +54,8 @@ class _mySettingsState extends State<mySettingsScreen> {
     _getPhoneNumbers();
   }
 
+  // GET CURRENT LOGGED IN USER
+
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -63,6 +66,8 @@ class _mySettingsState extends State<mySettingsScreen> {
       print(e);
     }
   }
+
+  // POPULATE CURRENT USER INFORMATION
 
   Future<void> _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
@@ -80,6 +85,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     print(isOfficer);
   }
 
+  // GET ALL THE USERS IN ONE'S CHAPTER FOR SENDING SMS
   Future<List<String>> _getPhoneNumbers() async {
     final result = await _firestore
         .collection("fbla_users")
@@ -105,6 +111,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     }
   }
 
+  // SEND SMS TO ALL MEMBERS IN A CHAPTER
   void _sendSMS(String message, List<String> recipents) async {
     String _result = await sendSMS(message: message, recipients: recipents)
         .catchError((onError) {
@@ -113,6 +120,7 @@ class _mySettingsState extends State<mySettingsScreen> {
     print(_result);
   }
 
+  // GET ALL THE EVENTS THE USER IS SIGNED UP FOR
   void getEvents() async {
     events = await ds.getSignedUpEvents(uid);
   }
@@ -398,6 +406,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                             size: 50.0,
                           ),
                         ),
+                        // SOCIAL MEDIA
                         GestureDetector(
                           onTap: () {
                             print('Facebook tapped');
@@ -444,6 +453,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                                       visible: isOfficer,
                                       child: MaterialButton(
                                         onPressed: () {
+                                          // SENDING SMS HERE
                                           _sendSMS(
                                               "FBLA Meeting Today!", phones);
                                         },

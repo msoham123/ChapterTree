@@ -46,6 +46,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
     List<String> recepientsList = ['chaptertreefbla@gmail.com'];
     List<String> ccList = ['msoham123@gmail.com','aryanvichare10@gmail.com'];
 
+    // COMPOSE AN EMAIL OBJECT BASED ON USER INPUT
     final Email email = Email(
       body: _messageController.text,
       subject: _subjectController.text,
@@ -57,6 +58,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
 
     String platformResponse;
 
+    // ERROR HANDLING FOR SENDING THE EMAIL
     try {
       await FlutterEmailSender.send(email);
       platformResponse = 'success';
@@ -68,6 +70,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
     if (!mounted) return;
   }
 
+  // LAUNCH GMAIL APP
   Future<void> customLaunch(command) async {
     if(await canLaunch(command)) {
       await launch(command);

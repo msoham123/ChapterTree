@@ -46,6 +46,7 @@ class myMessageState extends State<myMessageScreen> {
     super.dispose();
   }
 
+  // GET INFORMATION ON CURRENT LOGGED IN USER
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -57,6 +58,7 @@ class myMessageState extends State<myMessageScreen> {
     }
   }
 
+  // POPULATE CURRENT USER INFORMATION
   void _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
@@ -67,6 +69,7 @@ class myMessageState extends State<myMessageScreen> {
     print(name);
   }
 
+  // PRINT MESSAGES STREAM
   void messagesStream() async {
     await for (var snapshot in _firestore.collection('messages').snapshots()) {
       for (var message in snapshot.documents) {
@@ -128,6 +131,7 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
+      // SORT THE MESSAGES BY THEIR TIMESTAMP
       stream: _firestore
           .collection('messages')
           .orderBy('timestamp', descending: false)

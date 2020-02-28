@@ -38,6 +38,7 @@ class _myChapterScreen extends State<myChapterScreen> {
     _load();
   }
 
+
   _load() {
     _data = _firestore
         .collection('fbla_users')
@@ -56,6 +57,7 @@ class _myChapterScreen extends State<myChapterScreen> {
     super.dispose();
   }
 
+  // GET INFO ON CURRENT LOGGED IN USER
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -67,6 +69,7 @@ class _myChapterScreen extends State<myChapterScreen> {
     }
   }
 
+  // POPULATE INFORMATION ON THE CURRENT LOGGED IN USER SUCH AS THEIR NAME, CHAPTER, ETC
   void _populateCurrentUser(FirebaseUser user) async {
     final FirebaseUser user = await _auth.currentUser();
     final String userUID = user.uid.toString();
@@ -87,6 +90,7 @@ class _myChapterScreen extends State<myChapterScreen> {
         backgroundColor: MyApp.backgroundColor,
         body: StreamBuilder<QuerySnapshot>(
           stream: _firestore
+          // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
               .collection('fbla_users')
 //             .where("chapter", isEqualTo: chapter)
               .orderBy('count', descending: true)
@@ -113,10 +117,13 @@ class _myChapterScreen extends State<myChapterScreen> {
       child: Center(
         child: GestureDetector(
           onDoubleTap: () {
-            document.reference.updateData({'count': document['count'] + 1});
-            setState(() {
-              initCount++;
-            });
+            // RESTRICT ATTENDANCE FEATURE TO OFFICERS ONLY
+            if(isOfficer) {
+              document.reference.updateData({'count': document['count'] + 1});
+              setState(() {
+                initCount++;
+              });
+            }
           },
           child: FutureBuilder(
             future: _loadChapter(),

@@ -26,6 +26,7 @@ class eventScreen extends StatefulWidget {
   var localOfficers = [];
   var localOfficerPositions = [];
 
+  //  EVENT SCREEN PARAMETERS
   eventScreen({
     @required this.eventName,
     @required this.eventDescription,
@@ -68,11 +69,15 @@ class _eventScreenState extends State<eventScreen> {
   var localOfficers = [];
   var localOfficerPositions = [];
 
+  // Initialize firebase instance
   final _auth = FirebaseAuth.instance;
+
+  // Create an instance of a firebase user
   FirebaseUser loggedInUser;
 
   String uid = '';
 
+  // Declare DatabaseService for database handling
   DatabaseService ds;
 
   _eventScreenState({
@@ -88,14 +93,17 @@ class _eventScreenState extends State<eventScreen> {
     @required this.localOfficerPositions,
   });
 
+  // Initialize current state of screen
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     ds = new DatabaseService();
+    // Get the current logged in user
     getCurrentUser();
   }
 
+  // Get the current logged in user
   void getCurrentUser() async {
     try {
       final user = await _auth.currentUser();
@@ -108,6 +116,7 @@ class _eventScreenState extends State<eventScreen> {
     }
   }
 
+  // Launch method to open up google maps in the app
   void _launch(String link) async {
     String url = link;
     if (await canLaunch(url)) {
@@ -117,6 +126,7 @@ class _eventScreenState extends State<eventScreen> {
     }
   }
 
+  // Widget to build officer information for each competitive event
   Widget officerBuilder(SizingInformation sizingInformation){
   List<Widget> myList = [];
   for(int i=0;i<localOfficers.length;i++){
@@ -161,6 +171,7 @@ class _eventScreenState extends State<eventScreen> {
     );
   }
 
+  // Widget to build information on each event
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return Scaffold(
