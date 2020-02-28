@@ -99,6 +99,36 @@ This application was programmed completely in Google's Flutter Framework.
 - [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
 - [Google Analytics](https://analytics.google.com/)
 
+# Copyright Information
+* Login and Signup user authentication powered by Firebase and consistent with their API usage policies
+* Facebook Logo used for application graphics with explicit permission from Facebook Brand Resources.
+* Twitter Logo used for application graphics with explicit permission from Twitter Brand Resources.
+* Instagram Logo used for application graphics with explicit permission from Twitter Brand Resources.
+* Google logo used for application graphics in accordance with [Google Trademark Policy](https://www.google.com/permissions/trademark/rules.html).
+* The App Store, Xcode, iPad, iPhone, and IOS are all registered trademarks of Apple Inc.
+* The following image acknowledgements are in accordance with the Unsplash [terms of use](https://unsplash.com/terms).
+  - "Sacremento" image from Unsplash
+* The following image acknowledgements are in accordance with the Google Images [copyright policy](https://support.google.com/websearch/answer/29508?hl=en).
+  - "Colusa" image from Google
+  - "Los Osos" image from Google
+  - "Ontario" image from Google
+  - "Pasadena" image from Google
+  - "Redwood" image from Google
+  - "SaltLakeCity" image from Google
+  - "Valencia" image from Google
+  - "Westmoor" image from Google
+  - "TreeIcon" image from Google
+* The following image acknowledgements are in accordance with the Undraw [license](https://undraw.co/license).
+  - "Attendance" image from Undraw
+  - "Calendar" image from Undraw
+  - "Events" image from Undraw
+  - "Map" image from Undraw
+  - "Messages" image from Undraw
+  
+
+
+
+
 
 # Developers 
 * Aryan Vichare - <i>User Interface (UI), Backend, Database, API integration</i>
