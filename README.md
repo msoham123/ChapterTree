@@ -36,6 +36,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 - Dark mode 
 - Officer SMS notification 
   - Seamless way to send meeting reminder notifications to all chapter members in a single click
+- Smart Analytics and data aggregation on user metrics such as User Retention
   
 # Technologies and API's used
 
@@ -69,6 +70,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamelessly manage you
 - [Firebase Cloud Storage](https://firebase.google.com/products/storage)
 - [Firebase Crashlytics](https://firebase.google.com/products/crashlytics)
 - [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
+- [Google Analytics](https://analytics.google.com/)
 
 
 # Developers 
