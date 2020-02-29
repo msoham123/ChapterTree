@@ -26,8 +26,8 @@ dependencies:
   snaplist:
   animated_text_kit:
   settings_ui: ^0.2.0
-  firebase_core:
-  firebase_auth:
+  firebase_core: 0.4.4
+  firebase_auth: 0.15.4
   cloud_firestore:
   modal_progress_hud: ^0.1.3
   flutter_calendar_carousel:
