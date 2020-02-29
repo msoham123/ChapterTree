@@ -13,9 +13,11 @@ This application was programmed completely in Google's Flutter Framework.
 - Fully responsive and adaptable UI to any screen dimensions 
 - Robust backend for Authentication, Cloud database, Cloud Storage
   - Built-in encryption on database for user passwords
+  - Google Sign In Capabilities
 - Email/Password and Face ID login for extensive accessibility 
 - Beautiful dashboard to view, sign-up, remove local and national events
   - Harnesses the power of cloud data persistence 
+  - Share events with your friends
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
 - Google Maps API integration to view user's location event destination through markers
@@ -133,7 +135,8 @@ This application was programmed completely in Google's Flutter Framework.
   
 
 
-
+#License
+This project is under the MIT License - see our [License file](https://github.com/msoham123/ChapterTree/blob/master/LICENSE) for more
 
 
 # Developers 
