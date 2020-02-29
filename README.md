@@ -87,7 +87,7 @@ This application was programmed completely in Google's Flutter Framework.
 * email: `judges@gmail.com`  
 * password: `fbla123`
 * Note: These credentials have special privileges as a chapter leader such as taking attendence and adding events to the calendar 
-![Project Files](./assets/mockups/ios_login.png) 
+![iOS](./assets/mockups/ios_login.png) 
 9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
 
 
@@ -105,7 +105,8 @@ This application was programmed completely in Google's Flutter Framework.
  ![Select Device](./assets/instructionImages/device.png) 
  7. Click on the green button and `run` the app.
  8. You should see `Running Gradle task 'assembleDebug'`.
- ![Build Application](./assets/instructionImages/gradle.png) 
+ ![Build Application](./assets/instructionImages/gradle.png)
+ ![AndroidX](./assets/mockups/android_login1.png) 
 
   
 # Technologies and API's used
