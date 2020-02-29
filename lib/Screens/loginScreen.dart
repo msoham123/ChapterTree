@@ -349,6 +349,20 @@ class myLoginState extends State<myLoginScreen> {
                         ],
                       ),
                       Container(
+                        width: sizingInformation.myScreenSize.width / 1.5,
+                        child: SimpleRoundButton(
+                          backgroundColor: MyApp.appBarColor,
+                          buttonText: Text(
+                            "Sign in with Google",
+                            style: kAuthButtonDecoration,
+                          ),
+                          onPressed: () async {
+                            print("Google Sign in");
+
+                          },
+                        ),
+                      ),
+                      Container(
                         width: sizingInformation.myScreenSize.width / 1.3,
                         child: SimpleRoundButton(
                           backgroundColor: MyApp.backgroundColor,
