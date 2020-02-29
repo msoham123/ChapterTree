@@ -70,7 +70,7 @@ This application was programmed completely in Google's Flutter Framework.
 
 # Xcode Deployment
 1. Open up the folder where ChapterTree is downloaded and open up `Runner.xcworkspace`
-![Image description](https://images.unsplash.com/photo-1521675333836-36e707ac1d20?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ)
+![Image description](./assets/images/chapterTree.png)
 
   
 # IntelliJ Deployment
