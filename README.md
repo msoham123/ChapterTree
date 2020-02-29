@@ -90,6 +90,7 @@ This application was programmed completely in Google's Flutter Framework.
 - [local_auth](https://pub.dev/packages/local_auth)
 - [flutter_dialogflow](https://pub.dev/packages/flutter_dialogflow)
 - [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
 - [webview_flutter](https://pub.dev/packages/webview_flutter)
 - [flutter_icons](https://pub.dev/packages/flutter_icons)
 - [url_launcher](https://pub.dev/packages/url_launcher)
