@@ -77,9 +77,6 @@ flutter:
   assets:
     - assets/images/
     - assets/eventImages/
-    - assets/gifs/
-    - assets/flare/button-animation.flr
-    - assets/flare/success_check.flr2d
     - assets/fbla_bot_creds.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
