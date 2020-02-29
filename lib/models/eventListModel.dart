@@ -198,7 +198,7 @@ class FBLAEventModel {
         "California",
         "https://www.cafbla.org/domain/34",
         Image.asset("assets/eventImages/ontario.jpg", fit: BoxFit.fill,),
-        LatLng(34.441434, -118.562566),
+        LatLng(34.065768, -117.606360),
         [
           "Amber Afzali",
           "Jessie Cheng",
