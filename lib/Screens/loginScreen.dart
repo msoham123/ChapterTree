@@ -6,6 +6,7 @@ import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
+import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/Test/introSlider.dart';
 import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
@@ -16,9 +17,11 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:local_auth/local_auth.dart';
 import 'dart:io' show Platform;
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../main.dart';
 
+DatabaseService ds;
 final LocalAuthentication _localAuthentication = LocalAuthentication();
 
 class myLoginScreen extends StatefulWidget {
@@ -28,6 +31,7 @@ class myLoginScreen extends StatefulWidget {
 
 class myLoginState extends State<myLoginScreen> {
   final _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   MediaQueryData myHeightPercent;
   TextEditingController userController, passwordController;
   String email = "", password = "";
@@ -366,8 +370,8 @@ class myLoginState extends State<myLoginScreen> {
                       OutlineButton(
                         onPressed: () {
                           print("Sign in google");
-
-
+                          // GOOGLE //
+                          signInWithGoogle(sizingInformation);
                         },
                         splashColor: Colors.grey,
                         shape: RoundedRectangleBorder(
@@ -460,5 +464,38 @@ class myLoginState extends State<myLoginScreen> {
         ),
       ),
     );
+  }
+  Future<String> signInWithGoogle(SizingInformation sizingInformation) async {
+    final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAuthentication googleSignInAuthentication =
+    await googleSignInAccount.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.getCredential(
+      accessToken: googleSignInAuthentication.accessToken,
+      idToken: googleSignInAuthentication.idToken,
+    );
+
+    final AuthResult authResult = await _auth.signInWithCredential(credential);
+    final FirebaseUser user = authResult.user;
+
+    ds = new DatabaseService(uid: user.uid);
+    ds.updateUserData(user.displayName, 0, "Google", user.phoneNumber, false, []);
+
+    if(authResult != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MyDefaultPage(sizingInformation),
+        ),
+      );
+    }
+
+//    assert(!user.isAnonymous);
+//    assert(await user.getIdToken() != null);
+//
+//    final FirebaseUser currentUser = await _auth.currentUser();
+//    assert(user.uid == currentUser.uid);
+
+    return 'signInWithGoogle succeeded: $user';
   }
 }
