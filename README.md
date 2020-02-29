@@ -14,7 +14,9 @@ This application was programmed completely in Google's Flutter Framework.
 - Robust backend for Authentication, Cloud database, Cloud Storage
   - Built-in encryption on database for user passwords
 - Email/Password and Face ID login for extensive accessibility 
+- Google sign-in for convenience and accessibility
 - Beautiful dashboard to view, sign-up, remove local and national events
+- Social Media Inetgration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
   - Harnesses the power of cloud data persistence 
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
