@@ -70,7 +70,23 @@ This application was programmed completely in Google's Flutter Framework.
 
 # Xcode Deployment
 1. Open up the folder where ChapterTree is downloaded and open up `Runner.xcworkspace`
-![Image description](./assets/images/chapterTree.png)
+![Navigate to `Runner.xcworkspace`](./assets/instructionImages/folder.png)
+2. Right when you open up `Runner.xcworkspace` you may get an error regarding `Signing and Capabilities`
+![Potential XCode Error on Launch](./assets/instructionImages/signing_error.png)
+3. To fix this, go to the tab `Signing and Capabilities` and select a team. The error should go away after this. 
+![Signing and Capabilities](./assets/instructionImages/selectteam.png)
+4. You can now view all the iOS code project files and dependencies
+![Project Files](./assets/instructionImages/project_files.png)
+5. To run the app, connect a lighting cable from your computer to your phone. You should see your device show up as shown below:
+![Project Files](./assets/instructionImages/runproject.png)
+6. After the application opens and the Build Succeeds you will be prompted to the login screen
+7. Login with the credentials: 
+* email: `judges@gmail.com`  
+* password: `fbla123`
+* Note: These credentials have special privileges as a chapter leader such as taking attendence and adding events to the calendar 
+![Project Files](./assets/mockups/loginscreen.png) 
+9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
+
 
   
 # IntelliJ Deployment
