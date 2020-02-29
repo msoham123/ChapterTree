@@ -1,4 +1,7 @@
 # ChapterTree
+
+<img src="./assets/logo.png" width="100" height="100" />
+
 FHS Mobile App Development
 <br/>
 Date of submission: 2/28/20
@@ -14,8 +17,10 @@ This application was programmed completely in Google's Flutter Framework.
 - Robust backend for Authentication, Cloud database, Cloud Storage
   - Built-in encryption on database for user passwords
 - Email/Password and Face ID login for extensive accessibility 
+- Google sign-in for convenience and accessibility
 - Beautiful dashboard to view, sign-up, remove local and national events
   - Harnesses the power of cloud data persistence 
+- Social Media Integration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
 - Google Maps API integration to view user's location event destination through markers
@@ -67,11 +72,42 @@ This application was programmed completely in Google's Flutter Framework.
 
 
 # Xcode Deployment
+1. Open up the folder where ChapterTree is downloaded and open up `Runner.xcworkspace`
+![Navigate to `Runner.xcworkspace`](./assets/instructionImages/folder.png)
+2. Right when you open up `Runner.xcworkspace` you may get an error regarding `Signing and Capabilities`
+![Potential XCode Error on Launch](./assets/instructionImages/signing_error.png)
+3. To fix this, go to the tab `Signing and Capabilities` and select a team. The error should go away after this. 
+![Signing and Capabilities](./assets/instructionImages/selectteam.png)
+4. You can now view all the iOS code project files and dependencies
+![Project Files](./assets/instructionImages/project_files.png)
+5. To run the app, connect a lighting cable from your computer to your phone. You should see your device show up as shown below:
+![Project Files](./assets/instructionImages/runproject.png)
+6. After the application opens and the Build Succeeds you will be prompted to the login screen
+7. Login with the credentials: 
+* email: `judges@gmail.com`  
+* password: `fbla123`
+* Note: These credentials have special privileges as a chapter leader such as taking attendence and adding events to the calendar 
+![iOS](./assets/mockups/ios_login.png) 
+9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
+
+
   
 # IntelliJ Deployment
  1. Open the unzipped project in IntelliJ
  2. Configure the Dart SDK
- 3. 
+ 3. Open the project.
+ ![Open Project](./assets/instructionImages/beg.png) 
+ 4. Click on `packages get` or run `flutter packages get` in the terminal.
+ ![Get Packages](./assets/instructionImages/packagesget.png) 
+ 5. Make sure you configure any Android Frameworks if neccessary.
+ ![Configure](./assets/instructionImages/androidx.png) 
+ 6. Go to the `devices` tab and make sure your device is selected.
+ ![Select Device](./assets/instructionImages/device.png) 
+ 7. Click on the green button and `run` the app.
+ 8. You should see `Running Gradle task 'assembleDebug'`.
+ ![Build Application](./assets/instructionImages/gradle.png)
+ ![AndroidX](./assets/mockups/android_login1.png) 
+
   
 # Technologies and API's used
 
@@ -88,6 +124,7 @@ This application was programmed completely in Google's Flutter Framework.
 - [local_auth](https://pub.dev/packages/local_auth)
 - [flutter_dialogflow](https://pub.dev/packages/flutter_dialogflow)
 - [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
 - [webview_flutter](https://pub.dev/packages/webview_flutter)
 - [flutter_icons](https://pub.dev/packages/flutter_icons)
 - [url_launcher](https://pub.dev/packages/url_launcher)
