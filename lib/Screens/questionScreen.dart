@@ -77,6 +77,15 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
     }
   }
 
+  void _launch(String link) async {
+    String url = link;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
@@ -379,96 +388,98 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                   Container(
                     child: GestureDetector(
                       onTap: () {
-                        showBottomSheet(
-                            context: context,
-                            backgroundColor: MyApp.backgroundColor,
-                            builder: (context) => Container(
-                                  height:
-                                      sizingInformation.myScreenSize.height /
-                                          1.3,
-                                  decoration: kBottomSheetBoxDecoration,
-                                  child: Column(
-                                    children: <Widget>[
-                                      Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 0,
-                                              right: 0,
-                                              top: sizingInformation
-                                                      .myScreenSize.height /
-                                                  45,
-                                              bottom: 0)),
-                                      Row(
-                                        children: <Widget>[
-                                          Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: sizingInformation
-                                                          .myScreenSize.width /
-                                                      25,
-                                                  right: 0,
-                                                  top: 0,
-                                                  bottom: 0)),
-                                          Flexible(
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                  color: Colors.blueAccent),
-                                              child: IconButton(
-                                                icon: Icon(Icons.arrow_back),
-                                                iconSize: 30,
-                                                color: Colors.white,
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                              width: sizingInformation
-                                                      .myScreenSize.width /
-                                                  7),
-                                          Text(
-                                            'Join FBLA',
-                                            style: TextStyle(
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w900,
-                                              color: Colors.blueAccent,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                          height: sizingInformation
-                                                  .myScreenSize.height /
-                                              25),
-                                      Expanded(
-                                        child: Scaffold(
-                                          body: WebView(
-                                            initialUrl:
-                                                "https://forms.gle/bToqYidhbkqpMuLD9",
-                                            gestureNavigationEnabled: true,
-                                            gestureRecognizers: <
-                                                Factory<
-                                                    OneSequenceGestureRecognizer>>{
-                                              Factory<
-                                                  VerticalDragGestureRecognizer>(
-                                                () =>
-                                                    VerticalDragGestureRecognizer()
-                                                      ..onUpdate = (_) {},
-                                              ),
-                                            },
-                                            onWebViewCreated: (WebViewController
-                                                webViewController) {
-                                              _controller
-                                                  .complete(webViewController);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ));
+                        _launch("https://forms.gle/qccYGBv24X1A3MXk6");
+//                        showBottomSheet(
+//                            context: context,
+//                            backgroundColor: MyApp.backgroundColor,
+//                            builder: (context) => Container(
+//                                  height:
+//                                      sizingInformation.myScreenSize.height /
+//                                          1.3,
+//                                  decoration: kBottomSheetBoxDecoration,
+//                                  child: Column(
+//                                    children: <Widget>[
+//                                      Padding(
+//                                          padding: EdgeInsets.only(
+//                                              left: 0,
+//                                              right: 0,
+//                                              top: sizingInformation
+//                                                      .myScreenSize.height /
+//                                                  45,
+//                                              bottom: 0)),
+//                                      Row(
+//                                        children: <Widget>[
+//                                          Padding(
+//                                              padding: EdgeInsets.only(
+//                                                  left: sizingInformation
+//                                                          .myScreenSize.width /
+//                                                      25,
+//                                                  right: 0,
+//                                                  top: 0,
+//                                                  bottom: 0)),
+//                                          Flexible(
+//                                            child: Container(
+//                                              decoration: BoxDecoration(
+//                                                  borderRadius:
+//                                                      BorderRadius.circular(
+//                                                          100),
+//                                                  color: Colors.blueAccent),
+//                                              child: IconButton(
+//                                                icon: Icon(Icons.arrow_back),
+//                                                iconSize: 30,
+//                                                color: Colors.white,
+//                                                onPressed: () {
+//                                                  Navigator.pop(context);
+//                                                },
+//                                              ),
+//                                            ),
+//                                          ),
+//                                          SizedBox(
+//                                              width: sizingInformation
+//                                                      .myScreenSize.width /
+//                                                  7),
+//                                          Text(
+//                                            'Join FBLA',
+//                                            style: TextStyle(
+//                                              fontSize: 30,
+//                                              fontWeight: FontWeight.w900,
+//                                              color: Colors.blueAccent,
+//                                            ),
+//                                          ),
+//                                        ],
+//                                      ),
+//                                      SizedBox(
+//                                          height: sizingInformation
+//                                                  .myScreenSize.height /
+//                                              25),
+//                                      Expanded(
+//                                        child: Scaffold(
+//                                          body: WebView(
+//                                            javascriptMode: JavascriptMode.unrestricted,
+//                                            initialUrl:
+//                                                "https://docs.google.com/forms/d/e/1FAIpQLScJpEz7YvMfpFbPPqEr7EE9Jg0zmYBjzOwkCp-7qZR2UeT63Q/viewform?embedded=true",
+//                                            gestureNavigationEnabled: true,
+//                                            gestureRecognizers: <
+//                                                Factory<
+//                                                    OneSequenceGestureRecognizer>>{
+//                                              Factory<
+//                                                  VerticalDragGestureRecognizer>(
+//                                                () =>
+//                                                    VerticalDragGestureRecognizer()
+//                                                      ..onUpdate = (_) {},
+//                                              ),
+//                                            },
+//                                            onWebViewCreated: (WebViewController
+//                                                webViewController) {
+//                                              _controller
+//                                                  .complete(webViewController);
+//                                            },
+//                                          ),
+//                                        ),
+//                                      ),
+//                                    ],
+//                                  ),
+//                                ));
                       },
                       child: Center(
                         child: CardWidget(sizingInformation, 'Join FBLA', '',
@@ -604,7 +615,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                                 .width /
                                                             20),
                                                     child: Text(
-                                                      'Please use the Contact Us button on the questions tab to email us with any bug reports.',
+                                                      'Please use the Report a Bug button on the questions tab to email us with any bug reports.',
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w400),
