@@ -16,8 +16,8 @@ This application was programmed completely in Google's Flutter Framework.
 - Email/Password and Face ID login for extensive accessibility 
 - Google sign-in for convenience and accessibility
 - Beautiful dashboard to view, sign-up, remove local and national events
-- Social Media Inetgration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
   - Harnesses the power of cloud data persistence 
+- Social Media Integration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
 - Google Maps API integration to view user's location event destination through markers
