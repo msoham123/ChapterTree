@@ -328,7 +328,7 @@ class myLoginState extends State<myLoginScreen> {
                                   // Handle error
 
 
-                                  _showAddDialog();
+                                  _showError();
 
                                 }
                               },
@@ -507,7 +507,7 @@ class myLoginState extends State<myLoginScreen> {
 
     return 'signInWithGoogle succeeded: $user';
   }
-  _showAddDialog() {
+  _showError() {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
