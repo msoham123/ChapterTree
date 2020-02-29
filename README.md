@@ -14,8 +14,10 @@ This application was programmed completely in Google's Flutter Framework.
 - Robust backend for Authentication, Cloud database, Cloud Storage
   - Built-in encryption on database for user passwords
 - Email/Password and Face ID login for extensive accessibility 
+- Google sign-in for convenience and accessibility
 - Beautiful dashboard to view, sign-up, remove local and national events
   - Harnesses the power of cloud data persistence 
+- Social Media Integration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
 - Google Maps API integration to view user's location event destination through markers
@@ -67,6 +69,9 @@ This application was programmed completely in Google's Flutter Framework.
 
 
 # Xcode Deployment
+1. Open up the folder where ChapterTree is downloaded and open up `Runner.xcworkspace`
+![Image description](https://images.unsplash.com/photo-1521675333836-36e707ac1d20?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=2000&fit=max&ixid=eyJhcHBfaWQiOjExNzczfQ)
+
   
 # IntelliJ Deployment
  1. Open the unzipped project in IntelliJ
@@ -88,6 +93,7 @@ This application was programmed completely in Google's Flutter Framework.
 - [local_auth](https://pub.dev/packages/local_auth)
 - [flutter_dialogflow](https://pub.dev/packages/flutter_dialogflow)
 - [google_maps_flutter](https://pub.dev/packages/google_maps_flutter)
+- [google_sign_in](https://pub.dev/packages/google_sign_in)
 - [webview_flutter](https://pub.dev/packages/webview_flutter)
 - [flutter_icons](https://pub.dev/packages/flutter_icons)
 - [url_launcher](https://pub.dev/packages/url_launcher)
