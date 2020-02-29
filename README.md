@@ -3,7 +3,7 @@ FHS Mobile App Development
 <br/>
 Date of submission: 2/28/20
 
-# Overview 
+# Overview  
 Welcome to ChapterTree, an amazing app that allows you to seamlessly manage your chapters! ChapterTree is designed to provide users with a platform to record event information, track chapter attendance, communicate with other FBLA members, talk with our intelligent ChatBot, and learn more about FBLA. Additionally, the app implements API's that enhance the user experience by communicating with our database, implementing google maps, and providing a real time data flow that dynamically updates information that the user needs.  
 
 This application was programmed completely in Google's Flutter Framework.
