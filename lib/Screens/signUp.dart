@@ -110,7 +110,7 @@ class mySignUpState extends State<mySignUpScreen> {
                             ),
                             Flexible(
                               child: Image.asset(
-                                'assets/images/treeicon.png',
+                                'assets/images/chapterTree.png',
                                 scale: 0.2,
                               ),
                               fit: FlexFit.tight,

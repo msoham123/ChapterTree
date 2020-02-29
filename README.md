@@ -53,8 +53,14 @@ This application was programmed completely in Google's Flutter Framework.
   > - Note : If you have IOS 13.31 or above, you cannot run the app with a free developer account!
   #### Android Phone and Tablet (Android): 
   1. Download Intellij from https://www.jetbrains.com/idea/.
-  2. Go to the Plugins store and download the Flutter and Dart Plugins for free.
-  3. Once you are signed in, consult the IntelliJ Deployment Section below.
+  2. To install the Flutter Plugin:
+  - Start Android Studio.
+  - Open plugin preferences (Preferences > Plugins on macOS, File > Settings > Plugins on Windows & Linux).
+  - Select Marketplace, select the Flutter plugin and click Install.
+  - Click Yes when prompted to install the Dart plugin.
+  - Click Restart when prompted.
+  
+  Once you are set up in, consult the IntelliJ Deployment Section below.
    
   Prerequisites
   > Device with Android SDK 20 to 28 (Emulator Works!)
@@ -63,7 +69,9 @@ This application was programmed completely in Google's Flutter Framework.
 # Xcode Deployment
   
 # IntelliJ Deployment
- 
+ 1. Open the unzipped project in IntelliJ
+ 2. Configure the Dart SDK
+ 3. 
   
 # Technologies and API's used
 
@@ -106,8 +114,6 @@ This application was programmed completely in Google's Flutter Framework.
 * Instagram Logo used for application graphics with explicit permission from Twitter Brand Resources.
 * Google logo used for application graphics in accordance with [Google Trademark Policy](https://www.google.com/permissions/trademark/rules.html).
 * The App Store, Xcode, iPad, iPhone, and IOS are all registered trademarks of Apple Inc.
-* The following image acknowledgements are in accordance with the Unsplash [terms of use](https://unsplash.com/terms).
-  - "Sacremento" image from Unsplash
 * The following image acknowledgements are in accordance with the Google Images [copyright policy](https://support.google.com/websearch/answer/29508?hl=en).
   - "Colusa" image from Google
   - "Los Osos" image from Google
