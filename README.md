@@ -11,6 +11,11 @@ Welcome to ChapterTree, an amazing app that allows you to seamlessly manage your
 
 This application was programmed completely in Google's Flutter Framework.
 
+# Brainstorming and Planning
+- [App Design Flow](https://docs.google.com/document/d/1HiQpNK7N295IVqAyzwiOjUOHYOlEwiSwyGvqaZ7WNi0/edit)
+- [App Brainstorm](https://docs.google.com/document/d/1ZdlabqNYcHull3JlMOZ7KsLOXtSgzFny4yDk9xCPQ4U/edit)
+- [Youtube](https://www.youtube.com/channel/UCt45kKvhf02NO_vPSu0RsZQ/featured)
+
 # Core Features 
 - Native performance on both iOS and Android 
 - Fully responsive and adaptable UI to any screen dimensions 
