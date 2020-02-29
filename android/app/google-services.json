@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "583254639940-0g7re8i9gebhk928aj598feu75e1l0hu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ml.aryanvichare.fbla2020",
+            "certificate_hash": "5fb44f5d2d5299e2ff48254c8af1560f06ef9791"
+          }
+        },
+        {
           "client_id": "583254639940-g117lkk02te1tqa3gvjs6ovg66pdcfoo.apps.googleusercontent.com",
           "client_type": 3
         }
