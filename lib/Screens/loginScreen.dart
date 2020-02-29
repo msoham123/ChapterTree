@@ -17,8 +17,6 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:local_auth/local_auth.dart';
 import 'dart:io' show Platform;
 
-
-
 import '../main.dart';
 
 final LocalAuthentication _localAuthentication = LocalAuthentication();
@@ -34,7 +32,6 @@ class myLoginState extends State<myLoginScreen> {
   TextEditingController userController, passwordController;
   String email = "", password = "";
   bool showSpinner = false;
-
 
   // Compose a list of available biometrics for the user's phone hardware
   List<BiometricType> _availableBiometricTypes = List<BiometricType>();
@@ -58,7 +55,8 @@ class myLoginState extends State<myLoginScreen> {
   // Get a list of biometric types
   Future<void> _getListOfBiometricTypes() async {
     try {
-      _availableBiometricTypes = await _localAuthentication.getAvailableBiometrics();
+      _availableBiometricTypes =
+          await _localAuthentication.getAvailableBiometrics();
     } on PlatformException catch (e) {
       print(e);
     }
@@ -69,12 +67,12 @@ class myLoginState extends State<myLoginScreen> {
   }
 
   // Authenticate user with biometrics
-  Future<void> _authenticateUser(BuildContext context, SizingInformation sizingInformation) async {
+  Future<void> _authenticateUser(
+      BuildContext context, SizingInformation sizingInformation) async {
     bool isAuthenticated = false;
     try {
       isAuthenticated = await _localAuthentication.authenticateWithBiometrics(
-        localizedReason:
-        "Please authenticate to log-in",
+        localizedReason: "Please authenticate to log-in",
         useErrorDialogs: true,
         stickyAuth: true,
       );
@@ -91,15 +89,14 @@ class myLoginState extends State<myLoginScreen> {
     // Sign in Anonymously or if into past saved user account for convenience
     dynamic result = _auth.signInAnonymously();
 
-    if(result == null) {
+    if (result == null) {
       print("error");
     } else {
-      if(isAuthenticated) {
+      if (isAuthenticated) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                MyDefaultPage(sizingInformation),
+            builder: (context) => MyDefaultPage(sizingInformation),
           ),
         );
       }
@@ -298,7 +295,7 @@ class myLoginState extends State<myLoginScreen> {
                                     showSpinner = true;
                                   });
                                   if (user != null) {
-                                    if(MyApp.introSliderEnabled==true){
+                                    if (MyApp.introSliderEnabled == true) {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -307,14 +304,14 @@ class myLoginState extends State<myLoginScreen> {
                                         ),
                                       );
                                       MyApp.introSliderEnabled = false;
-                                    }else{
+                                    } else {
                                       Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            MyDefaultPage(sizingInformation),
-                                      ),
-                                    );
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              MyDefaultPage(sizingInformation),
+                                        ),
+                                      );
                                     }
                                   }
                                 } catch (e) {
@@ -327,39 +324,78 @@ class myLoginState extends State<myLoginScreen> {
 
                           // CHECK IF PLATFORM IS IOS
                           // FACE ID FEATURE IS ONLY SUPPORTED FOR IOS USERS
-                          if(Platform.isIOS) Container(
-                            width: sizingInformation.myScreenSize.width / 2.5,
-                            child: SimpleRoundButton(
-                              backgroundColor: MyApp.appBarColor,
-                              buttonText: Text(
-                                "FACE ID",
-                                style: kAuthButtonDecoration,
-                              ),
-                              onPressed: () async {
-                                print("Face ID Login Request");
+                          if (Platform.isIOS)
+                            Container(
+                              width: sizingInformation.myScreenSize.width / 2.5,
+                              child: SimpleRoundButton(
+                                backgroundColor: MyApp.appBarColor,
+                                buttonText: Text(
+                                  "FACE ID",
+                                  style: kAuthButtonDecoration,
+                                ),
+                                onPressed: () async {
+                                  print("Face ID Login Request");
 
-                                await _getListOfBiometricTypes();
+                                  await _getListOfBiometricTypes();
 
-                                  if (_availableBiometricTypes.contains(BiometricType.face)) {
-                                    await _authenticateUser(context, sizingInformation);
+                                  if (_availableBiometricTypes
+                                      .contains(BiometricType.face)) {
+                                    await _authenticateUser(
+                                        context, sizingInformation);
                                   }
-                              },
-                            ),
-                          )
+                                },
+                              ),
+                            )
                         ],
                       ),
-                      Container(
-                        width: sizingInformation.myScreenSize.width / 1.5,
-                        child: SimpleRoundButton(
-                          backgroundColor: MyApp.appBarColor,
-                          buttonText: Text(
-                            "Sign in with Google",
-                            style: kAuthButtonDecoration,
-                          ),
-                          onPressed: () {
-                            print("Google Sign in");
+//                      Container(
+//                        width: sizingInformation.myScreenSize.width / 1.5,
+//                        child: SimpleRoundButton(
+//                          backgroundColor: MyApp.appBarColor,
+//                          buttonText: Text(
+//                            "Sign in with Google",
+//                            style: kAuthButtonDecoration,
+//                          ),
+//                          onPressed: () {
+//                            print("Google Sign in");
+//
+//                          },
+//                        ),
+//                      ),
+                      SizedBox(height: 30.0),
+                      OutlineButton(
+                        onPressed: () {
+                          print("Sign in google");
 
-                          },
+
+                        },
+                        splashColor: Colors.grey,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(40)),
+                        highlightElevation: 0,
+                        borderSide: BorderSide(color: Colors.grey),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Image(
+                                  image: AssetImage(
+                                      "assets/images/google_logo.png"),
+                                  height: 35.0),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Sign in with Google',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                       Container(
@@ -391,6 +427,38 @@ class myLoginState extends State<myLoginScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget _signInButton() {
+    return OutlineButton(
+      splashColor: Colors.grey,
+      onPressed: () {},
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      highlightElevation: 0,
+      borderSide: BorderSide(color: Colors.grey),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image(
+                image: AssetImage("assets/images/google_logo.png"),
+                height: 35.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Text(
+                'Sign in with Google',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey,
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
