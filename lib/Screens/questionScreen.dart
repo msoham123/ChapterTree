@@ -38,13 +38,11 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
 
 //  String name = "", subject = "", message = "";
 
-
-
   Future<void> submitMessage() async {
     String attachment;
     bool isHTML = false;
     List<String> recepientsList = ['chaptertreefbla@gmail.com'];
-    List<String> ccList = ['msoham123@gmail.com','aryanvichare10@gmail.com'];
+    List<String> ccList = ['msoham123@gmail.com', 'aryanvichare10@gmail.com'];
 
     // COMPOSE AN EMAIL OBJECT BASED ON USER INPUT
     final Email email = Email(
@@ -72,7 +70,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
 
   // LAUNCH GMAIL APP
   Future<void> customLaunch(command) async {
-    if(await canLaunch(command)) {
+    if (await canLaunch(command)) {
       await launch(command);
     } else {
       print('Error. Could not launch $command');
@@ -89,11 +87,660 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
             Expanded(
               child: ListView(
                 children: <Widget>[
-
                   SizedBox(
-                    height: sizingInformation.myScreenSize.height/25,
+                    height: sizingInformation.myScreenSize.height / 25,
                   ),
-
+                  Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        showBottomSheet(
+                            backgroundColor: MyApp.backgroundColor,
+                            context: context,
+                            builder: (context) => Container(
+                                  height:
+                                      sizingInformation.myScreenSize.height /
+                                          1.3,
+                                  decoration: kBottomSheetBoxDecoration,
+                                  child: Column(
+                                    children: <Widget>[
+                                      SizedBox(
+                                          height: sizingInformation
+                                                  .myScreenSize.height /
+                                              45),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: sizingInformation
+                                                          .myScreenSize.width /
+                                                      25,
+                                                  right: 0,
+                                                  top: 0,
+                                                  bottom: 0)),
+                                          Flexible(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                color: Colors.blue,
+                                              ),
+                                              child: IconButton(
+                                                icon: Icon(Icons.arrow_back),
+                                                iconSize: 30,
+                                                color: Colors.white,
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                              width: sizingInformation
+                                                      .myScreenSize.width /
+                                                  20),
+                                          Text(
+                                            'Ask A Question',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                              width: sizingInformation
+                                                      .myScreenSize.width /
+                                                  20),
+                                          Flexible(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                  color: Colors.blue),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      Expanded(
+                                        child: ListView(
+                                          children: <Widget>[
+                                            Container(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: sizingInformation
+                                                          .myScreenSize.height /
+                                                      60,
+                                                  horizontal: sizingInformation
+                                                          .myScreenSize.width /
+                                                      10),
+                                              child: Builder(
+                                                builder: (context) => Form(
+                                                  key: _formKey,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                    children: <Widget>[
+                                                      TextFormField(
+                                                        controller:
+                                                            _nameController,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .emailAddress,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'Full Name',
+                                                          icon: Icon(Icons
+                                                              .account_box),
+                                                        ),
+                                                      ), // Name
+                                                      TextFormField(
+                                                        controller:
+                                                            _subjectController,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .emailAddress,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText: 'Subject',
+                                                          icon: Icon(
+                                                              Icons.bookmark),
+                                                        ),
+                                                      ), // Subject
+                                                      TextFormField(
+                                                        controller:
+                                                            _messageController,
+                                                        keyboardType:
+                                                            TextInputType
+                                                                .emailAddress,
+                                                        maxLines: 10,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText: 'Message',
+                                                          icon: Icon(Icons
+                                                              .speaker_notes),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: <Widget>[
+                                                RaisedButton(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            18),
+                                                  ),
+                                                  child: Text('Send'),
+                                                  color: Colors.red,
+                                                  textColor: Colors.white,
+                                                  onPressed: () {
+                                                    launch(
+                                                        'mailto:aryanvichare10@gmail.com?subject=${_subjectController.text}&body=${_messageController.text}');
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 0,
+                                                    right: 0,
+                                                    top: sizingInformation
+                                                            .myScreenSize
+                                                            .height /
+                                                        25,
+                                                    bottom: 0)),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: Center(
+                        child: CardWidget(sizingInformation, 'Ask a Question',
+                            '', Icon(Icons.send)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizingInformation.myScreenSize.height / 25,
+                  ),
+                  Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        Completer<WebViewController> _controller =
+                            Completer<WebViewController>();
+                        showBottomSheet(
+                            context: context,
+                            backgroundColor: MyApp.backgroundColor,
+                            builder: (context) => Container(
+                                  height:
+                                      sizingInformation.myScreenSize.height /
+                                          1.3,
+                                  decoration: kBottomSheetBoxDecoration,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 0,
+                                              right: 0,
+                                              top: sizingInformation
+                                                      .myScreenSize.height /
+                                                  45,
+                                              bottom: 0)),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: sizingInformation
+                                                          .myScreenSize.width /
+                                                      25,
+                                                  right: 0,
+                                                  top: 0,
+                                                  bottom: 0)),
+                                          Flexible(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                  color: Colors.blueAccent),
+                                              child: IconButton(
+                                                icon: Icon(Icons.arrow_back),
+                                                iconSize: 30,
+                                                color: Colors.white,
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                              width: sizingInformation
+                                                      .myScreenSize.width /
+                                                  8),
+                                          Text(
+                                            'About FBLA',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: sizingInformation
+                                                  .myScreenSize.height /
+                                              25),
+                                      Expanded(
+                                        child: Scaffold(
+                                          body: WebView(
+                                            initialUrl:
+                                                "https://www.fbla-pbl.org/fbla/",
+                                            gestureNavigationEnabled: true,
+                                            gestureRecognizers: <
+                                                Factory<
+                                                    OneSequenceGestureRecognizer>>{
+                                              Factory<
+                                                  VerticalDragGestureRecognizer>(
+                                                () =>
+                                                    VerticalDragGestureRecognizer()
+                                                      ..onUpdate = (_) {},
+                                              ),
+                                            },
+                                            onWebViewCreated: (WebViewController
+                                                webViewController) {
+                                              _controller
+                                                  .complete(webViewController);
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: Center(
+                        child: CardWidget(sizingInformation, 'About FBLA', '',
+                            Icon(Icons.send)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizingInformation.myScreenSize.height / 25,
+                  ),
+                  Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        showBottomSheet(
+                            context: context,
+                            backgroundColor: MyApp.backgroundColor,
+                            builder: (context) => Container(
+                                  height:
+                                      sizingInformation.myScreenSize.height /
+                                          1.3,
+                                  decoration: kBottomSheetBoxDecoration,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 0,
+                                              right: 0,
+                                              top: sizingInformation
+                                                      .myScreenSize.height /
+                                                  45,
+                                              bottom: 0)),
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: sizingInformation
+                                                          .myScreenSize.width /
+                                                      25,
+                                                  right: 0,
+                                                  top: 0,
+                                                  bottom: 0)),
+                                          Flexible(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
+                                                  color: Colors.blueAccent),
+                                              child: IconButton(
+                                                icon: Icon(Icons.arrow_back),
+                                                iconSize: 30,
+                                                color: Colors.white,
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                              width: sizingInformation
+                                                      .myScreenSize.width /
+                                                  7),
+                                          Text(
+                                            'Join FBLA',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w900,
+                                              color: Colors.blueAccent,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                          height: sizingInformation
+                                                  .myScreenSize.height /
+                                              25),
+                                      Expanded(
+                                        child: Scaffold(
+                                          body: WebView(
+                                            initialUrl:
+                                                "https://www.fbla-pbl.org/about/regions/",
+                                            gestureNavigationEnabled: true,
+                                            gestureRecognizers: <
+                                                Factory<
+                                                    OneSequenceGestureRecognizer>>{
+                                              Factory<
+                                                  VerticalDragGestureRecognizer>(
+                                                () =>
+                                                    VerticalDragGestureRecognizer()
+                                                      ..onUpdate = (_) {},
+                                              ),
+                                            },
+                                            onWebViewCreated: (WebViewController
+                                                webViewController) {
+                                              _controller
+                                                  .complete(webViewController);
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: Center(
+                        child: CardWidget(sizingInformation, 'Join FBLA', '',
+                            Icon(Icons.send)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizingInformation.myScreenSize.height / 25,
+                  ),
+                  Container(
+                    child: GestureDetector(
+                      onTap: () {
+                        showBottomSheet(
+                          context: context,
+                          backgroundColor: MyApp.whiteTextColor,
+                          builder: (context) => Container(
+                            height: sizingInformation.myScreenSize.height / 1.3,
+                            decoration: kBottomSheetBoxDecoration,
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 0,
+                                        right: 0,
+                                        top: sizingInformation
+                                                .myScreenSize.height /
+                                            45,
+                                        bottom: 0)),
+                                Row(
+                                  children: <Widget>[
+                                    Padding(
+                                        padding: EdgeInsets.only(
+                                            left: sizingInformation
+                                                    .myScreenSize.width /
+                                                25,
+                                            right: 0,
+                                            top: 0,
+                                            bottom: 0)),
+                                    Flexible(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            color: Colors.blueAccent),
+                                        child: IconButton(
+                                          icon: Icon(Icons.arrow_back),
+                                          iconSize: 30,
+                                          color: Colors.white,
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                        width: sizingInformation
+                                                .myScreenSize.width /
+                                            4),
+                                    Text(
+                                      'FAQ',
+                                      style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blueAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                    height:
+                                        sizingInformation.myScreenSize.height /
+                                            25),
+                                Expanded(
+                                  child: ListView(children: <Widget>[
+                                    Container(
+                                      child: Column(
+                                        children: <Widget>[
+                                          Center(
+                                            child: Text(
+                                              'What is this app for?',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Flexible(
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: sizingInformation
+                                                                .myScreenSize
+                                                                .width /
+                                                            20),
+                                                    child: Text(
+                                                      'ChapterTree was developed in order to allow FBLA members to manage their FBLA events and chapters.',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              'What if I encounter a bug?',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Flexible(
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: sizingInformation
+                                                                .myScreenSize
+                                                                .width /
+                                                            20),
+                                                    child: Text(
+                                                      'Please use the Contact Us button on the questions tab to email us with any bug reports.',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              'What can I ask the chatbot?',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Flexible(
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: sizingInformation
+                                                                .myScreenSize
+                                                                .width /
+                                                            20),
+                                                    child: Text(
+                                                      'You can ask the chatbot about events, how to prepare, what is FBLA, etc. If you\'d like something added please email us through the Contact Us button.',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              'Can I get this app on both IOS and Android?',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Flexible(
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: sizingInformation
+                                                                .myScreenSize
+                                                                .width /
+                                                            20),
+                                                    child: Text(
+                                                      'You can, but it will require Xcode and Podfile knowledge to build on IOS. The App has been tested on both Android and IOS and is fully functional on both platforms.',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Center(
+                                            child: Text(
+                                              'What is the purpose of the messages tab?',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w900),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Flexible(
+                                                child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: sizingInformation
+                                                                .myScreenSize
+                                                                .width /
+                                                            20),
+                                                    child: Text(
+                                                      'To communicate and socialize with other FBLA members. We believe that a core aspect of FBLA is the relationships and connections you make along the way.',
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: sizingInformation
+                                                    .myScreenSize.height /
+                                                30,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: CardWidget(
+                            sizingInformation, 'FAQ', '', Icon(Icons.send)),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizingInformation.myScreenSize.height / 25,
+                  ),
                   Container(
                     child: GestureDetector(
                       onTap: (){
@@ -113,8 +760,8 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                       Flexible(
                                         child: Container(
                                           decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blue,
+                                            borderRadius: BorderRadius.circular(100),
+                                            color: Colors.blue,
                                           ),
                                           child: IconButton(
                                             icon: Icon(Icons.arrow_back),
@@ -126,16 +773,15 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                           ),
                                         ),
                                       ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/20),
+                                      SizedBox(width: sizingInformation.myScreenSize.width/10),
                                       Text(
-                                        'Ask A Question',
+                                        'Report a bug',
                                         style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.w900,
                                           color: Colors.blueAccent,
                                         ),
                                       ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/20),
                                       Flexible(
                                         child: Container(
                                           decoration: BoxDecoration(
@@ -169,7 +815,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                     controller: _subjectController,
                                                     keyboardType: TextInputType.emailAddress,
                                                     decoration: InputDecoration(
-                                                      labelText: 'Subject',
+                                                      labelText: 'Bug Subject',
                                                       icon: Icon(Icons.bookmark),
                                                     ),
                                                   ), // Subject
@@ -178,7 +824,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                     keyboardType: TextInputType.emailAddress,
                                                     maxLines: 10,
                                                     decoration: InputDecoration(
-                                                      labelText: 'Message',
+                                                      labelText: 'Describe the Bug',
                                                       icon: Icon(Icons.speaker_notes),
                                                     ),
                                                   ),
@@ -215,328 +861,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                             ));
                       },
                       child: Center(
-                          child: CardWidget(sizingInformation,'Ask a Question','', Icon(Icons.send)),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: sizingInformation.myScreenSize.height/25,
-                  ),
-
-                  Container(
-                    child: GestureDetector(
-                      onTap: (){
-                        Completer<WebViewController> _controller = Completer<WebViewController>();
-                        showBottomSheet(context: context,
-                            backgroundColor: MyApp.backgroundColor,
-                            builder: (context) => Container(
-                              height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: kBottomSheetBoxDecoration,
-                              child: Column(
-                                children: <Widget>[
-                                  Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
-                                  Row(
-                                    children: <Widget>[
-                                      Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/25,right: 0,top: 0,bottom:0)),
-                                      Flexible(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blueAccent
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(Icons.arrow_back),
-                                            iconSize: 30,
-                                            color: Colors.white,
-                                            onPressed: (){
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/8),
-                                      Text(
-                                        'About FBLA',
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(height: sizingInformation.myScreenSize.height/25),
-
-                                  Expanded(
-                                    child: Scaffold(
-                                      body: WebView(
-                                        initialUrl: "https://www.fbla-pbl.org/fbla/",
-                                        gestureNavigationEnabled: true,
-                                        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                                          Factory<VerticalDragGestureRecognizer>(
-                                                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
-                                          ),
-                                        },
-                                        onWebViewCreated: (WebViewController webViewController) {
-                                          _controller.complete(webViewController);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-
-                                ],
-                              ) ,
-                            ));
-                      },
-                      child: Center(
-                        child: CardWidget(sizingInformation,'About FBLA','', Icon(Icons.send)),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: sizingInformation.myScreenSize.height/25,
-                  ),
-
-                  Container(
-                    child: GestureDetector(
-                      onTap: (){
-                        showBottomSheet(context: context,
-                            backgroundColor: MyApp.backgroundColor,
-                            builder: (context) => Container(
-                              height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: kBottomSheetBoxDecoration,
-
-                              child: Column(
-                                children: <Widget>[
-                                  Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
-                                  Row(
-                                    children: <Widget>[
-                                      Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/25,right: 0,top: 0,bottom:0)),
-                                      Flexible(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blueAccent
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(Icons.arrow_back),
-                                            iconSize: 30,
-                                            color: Colors.white,
-                                            onPressed: (){
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/7),
-                                      Text(
-                                        'Join FBLA',
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(height: sizingInformation.myScreenSize.height/25),
-
-                                  Expanded(
-                                    child: Scaffold(
-                                      body: WebView(
-                                        initialUrl: "https://www.fbla-pbl.org/about/regions/",
-                                        gestureNavigationEnabled: true,
-                                        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                                          Factory<VerticalDragGestureRecognizer>(
-                                                () => VerticalDragGestureRecognizer()..onUpdate = (_) {},
-                                          ),
-                                        },
-                                        onWebViewCreated: (WebViewController webViewController) {
-                                          _controller.complete(webViewController);
-                                        },
-                                      ),
-                                    ),
-                                  ),
-
-                                ],
-                              ) ,
-                            ));
-                      },
-                      child: Center(
-                        child: CardWidget(sizingInformation,'Join FBLA','', Icon(Icons.send)),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: sizingInformation.myScreenSize.height/25,
-                  ),
-
-                  Container(
-                    child: GestureDetector(
-                      onTap: (){
-                        showBottomSheet(context: context,
-                            backgroundColor: MyApp.whiteTextColor,
-                            builder: (context) => Container(
-                              height: sizingInformation.myScreenSize.height/1.3,
-                              decoration: kBottomSheetBoxDecoration,
-
-                              child: Column(
-                                children: <Widget>[
-                                  Padding(padding: EdgeInsets.only(left: 0,right: 0,top: sizingInformation.myScreenSize.height/45,bottom:0)),
-                                  Row(
-                                    children: <Widget>[
-                                      Padding(padding: EdgeInsets.only(left: sizingInformation.myScreenSize.width/25,right: 0,top: 0,bottom:0)),
-                                      Flexible(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(100),
-                                              color: Colors.blueAccent
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(Icons.arrow_back),
-                                            iconSize: 30,
-                                            color: Colors.white,
-                                            onPressed: (){
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: sizingInformation.myScreenSize.width/4),
-                                      Text(
-                                        'FAQ',
-                                        style: TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.blueAccent,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(height: sizingInformation.myScreenSize.height/25),
-
-                                  Expanded(
-                                    child: ListView(
-                                        children: <Widget>[
-                                          Container(
-                                            child: Column(
-                                              children: <Widget>[
-
-                                                Center(
-                                                  child: Text('What is this app for?', style: TextStyle(fontWeight: FontWeight.w900),),
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Padding(
-                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
-                                                          child : Text('ChapterTree was developed in order to allow FBLA members to manage their FBLA events and chapters.', style: TextStyle(fontWeight: FontWeight.w400),)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-
-                                                Center(
-                                                  child: Text('What if I encounter a bug?', style: TextStyle(fontWeight: FontWeight.w900),),
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Padding(
-                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
-                                                          child : Text('Please use the Contact Us button on the questions tab to email us with any bug reports.', style: TextStyle(fontWeight: FontWeight.w400),)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-
-                                                Center(
-                                                  child: Text('What can I ask the chatbot?', style: TextStyle(fontWeight: FontWeight.w900),),
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Padding(
-                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
-                                                          child : Text('You can ask the chatbot about events, how to prepare, what is FBLA, etc. If you\'d like something added please email us through the Contact Us button.', style: TextStyle(fontWeight: FontWeight.w400),)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-
-                                                Center(
-                                                  child: Text('Can I get this app on both IOS and Android?', style: TextStyle(fontWeight: FontWeight.w900),),
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Padding(
-                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
-                                                          child : Text('You can, but it will require Xcode and Podfile knowledge to build on IOS. The App has been tested on both Android and IOS and is fully functional on both platforms.', style: TextStyle(fontWeight: FontWeight.w400),)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-
-                                                Center(
-                                                  child: Text('What is the purpose of the messages tab?', style: TextStyle(fontWeight: FontWeight.w900),),
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Flexible(
-                                                      child: Padding(
-                                                          padding : EdgeInsets.only(left : sizingInformation.myScreenSize.width/20),
-                                                          child : Text('To communicate and socialize with other FBLA members. We believe that a core aspect of FBLA is the relationships and connections you make along the way.', style: TextStyle(fontWeight: FontWeight.w400),)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: sizingInformation.myScreenSize.height/30,
-                                                ),
-
-
-                                              ],
-                                            ),
-                                          ),
-                                        ]
-                                    ),
-                                  ),
-
-                                ],
-                              ) ,
-                            ));
-                      },
-                      child: Center(
-                        child: CardWidget(sizingInformation,'FAQ','', Icon(Icons.send)),
+                        child: CardWidget(sizingInformation,'Report a Bug','', Icon(Icons.send)),
                       ),
                     ),
                   ),
@@ -549,6 +874,3 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
     });
   }
 }
-
-
-

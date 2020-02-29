@@ -356,7 +356,7 @@ class myLoginState extends State<myLoginScreen> {
                             "Sign in with Google",
                             style: kAuthButtonDecoration,
                           ),
-                          onPressed: () async {
+                          onPressed: () {
                             print("Google Sign in");
 
                           },
