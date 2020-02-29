@@ -31,7 +31,12 @@ class myLoginScreen extends StatefulWidget {
 
 class myLoginState extends State<myLoginScreen> {
   final _auth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = new GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
   MediaQueryData myHeightPercent;
   TextEditingController userController, passwordController;
   String email = "", password = "";
@@ -321,6 +326,10 @@ class myLoginState extends State<myLoginScreen> {
                                 } catch (e) {
                                   print(e);
                                   // Handle error
+
+
+                                  _showAddDialog();
+
                                 }
                               },
                             ),
@@ -497,5 +506,21 @@ class myLoginState extends State<myLoginScreen> {
 //    assert(user.uid == currentUser.uid);
 
     return 'signInWithGoogle succeeded: $user';
+  }
+  _showAddDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Email or password incorrect. Please try again!"),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("Back"),
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            )
+          ],
+        )
+    );
   }
 }
