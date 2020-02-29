@@ -33,6 +33,11 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
   final _nameController = TextEditingController();
   final _subjectController = TextEditingController();
   final _messageController = TextEditingController();
+
+  final _nameControllerB = TextEditingController();
+  final _subjectControllerB = TextEditingController();
+  final _messageControllerB = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
   Completer<WebViewController> _controller = Completer<WebViewController>();
 
@@ -804,7 +809,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                                 children: <Widget>[
                                                   TextFormField(
-                                                    controller: _nameController,
+                                                    controller: _nameControllerB,
                                                     keyboardType: TextInputType.emailAddress,
                                                     decoration: InputDecoration(
                                                       labelText: 'Full Name',
@@ -812,7 +817,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                     ),
                                                   ), // Name
                                                   TextFormField(
-                                                    controller: _subjectController,
+                                                    controller: _subjectControllerB,
                                                     keyboardType: TextInputType.emailAddress,
                                                     decoration: InputDecoration(
                                                       labelText: 'Bug Subject',
@@ -820,7 +825,7 @@ class _myQuestionScreenState extends State<myQuestionScreen> {
                                                     ),
                                                   ), // Subject
                                                   TextFormField(
-                                                    controller: _messageController,
+                                                    controller: _messageControllerB,
                                                     keyboardType: TextInputType.emailAddress,
                                                     maxLines: 10,
                                                     decoration: InputDecoration(

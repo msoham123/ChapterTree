@@ -24,9 +24,9 @@ class _myChapterScreen extends State<myChapterScreen> {
   DatabaseService ds = new DatabaseService();
   String chapter = '';
   Stream<QuerySnapshot> _data;
-  Color officerColor = Colors.lightBlueAccent;
-  Color regColor = Colors.white;
-  Color officialColor;
+//  Color officerColor = Colors.lightBlueAccent;
+//  Color regColor = Colors.white;
+//  Color officialColor;
   bool isOfficer;
 
   @override
@@ -78,7 +78,6 @@ class _myChapterScreen extends State<myChapterScreen> {
     }
     chapter = userSnapshot.data['chapter'].toString();
     isOfficer = userSnapshot.data['isOfficer'];
-    isOfficer == true ? officialColor = officerColor : officialColor = regColor;
 
     print(userSnapshot.data['chapter']);
   }
@@ -92,7 +91,7 @@ class _myChapterScreen extends State<myChapterScreen> {
           stream: _firestore
           // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
               .collection('fbla_users')
-//             .where("chapter", isEqualTo: chapter)
+//            .where("chapter", isEqualTo: chapter)
               .orderBy('count', descending: true)
               .snapshots(),
           builder: (context, snapshot) {
@@ -119,6 +118,7 @@ class _myChapterScreen extends State<myChapterScreen> {
           onDoubleTap: () {
             // RESTRICT ATTENDANCE FEATURE TO OFFICERS ONLY
             if(isOfficer) {
+              print(isOfficer);
               document.reference.updateData({'count': document['count'] + 1});
               setState(() {
                 initCount++;
@@ -129,15 +129,16 @@ class _myChapterScreen extends State<myChapterScreen> {
             future: _loadChapter(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
+
                 return Container(
-                  color: officialColor,
+                  color: Colors.white,
                   child: ListTile(
                     leading: Image.asset('./assets/images/fbla.png'),
                     title: Row(
                       children: <Widget>[
                         Expanded(
                           child: Text(
-                            '${document['full_name']} ($chapter)',
+                            '${document['full_name']}',
                             style: TextStyle(color: MyApp.blackTextColor),
                           ),
                         ),
