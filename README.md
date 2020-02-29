@@ -1,4 +1,7 @@
 # ChapterTree
+
+<img src="./assets/logo.png" width="100" height="100" />
+
 FHS Mobile App Development
 <br/>
 Date of submission: 2/28/20
@@ -92,7 +95,18 @@ This application was programmed completely in Google's Flutter Framework.
 # IntelliJ Deployment
  1. Open the unzipped project in IntelliJ
  2. Configure the Dart SDK
- 3. 
+ 3. Open the project.
+ ![Open Project](./assets/instructionImages/beg.png) 
+ 4. Click on `packages get` or run `flutter packages get` in the terminal.
+ ![Get Packages](./assets/instructionImages/packagesget.png) 
+ 5. Make sure you configure any Android Frameworks if neccessary.
+ ![Configure](./assets/instructionImages/androidx.png) 
+ 6. Go to the `devices` tab and make sure your device is selected.
+ ![Select Device](./assets/instructionImages/device.png) 
+ 7. Click on the green button and `run` the app.
+ 8. You should see `Running Gradle task 'assembleDebug'`.
+ ![Build Application](./assets/instructionImages/gradle.png) 
+
   
 # Technologies and API's used
 
