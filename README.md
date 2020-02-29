@@ -83,8 +83,9 @@ This application was programmed completely in Google's Flutter Framework.
 7. Login with the credentials: 
 * email: `judges@gmail.com`  
 * password: `fbla123`
-![Project Files](./assets/mockups/loginscreen.png)
-8. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
+* Note: These credentials have special privileges as a chapter leader such as taking attendence and adding events to the calendar 
+![Project Files](./assets/mockups/loginscreen.png) 
+9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
 
 
   
