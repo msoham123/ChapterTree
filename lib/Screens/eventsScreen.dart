@@ -13,6 +13,9 @@ import 'package:mobile_app_dev/main.dart';
 import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:share/share.dart';
+
 
 class eventScreen extends StatefulWidget {
   String eventName,
@@ -565,6 +568,56 @@ class _eventScreenState extends State<eventScreen> {
                         height:
                         sizingInformation.myScreenSize.height / 25,
                       ),
+                      GestureDetector(
+                        onTap: () async {
+                          print("Sharing with friends");
+                          share(context, eventName);
+                        },
+                        child: Center(
+                          child: Container(
+                            height:
+                            sizingInformation.myScreenSize.height /
+                                15,
+                            width:
+                            sizingInformation.myScreenSize.width /
+                                2.2,
+                            decoration: BoxDecoration(
+                              color: Colors.lightBlue,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                            alignment: Alignment.center,
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.only(right: 5.0),
+                                  child: Icon(
+                                    FontAwesome5Brands.telegram_plane,
+                                    color: Colors.white,
+                                    size: 20.0,
+                                  ),
+                                ),
+                                  Text(
+                                    'Share with friends',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: MyApp.whiteNoChangeColor,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height:
+                        sizingInformation.myScreenSize.height / 25,
+                      ),
                       Container(
                         child: officerBuilder(sizingInformation),
                       ),
@@ -583,5 +636,9 @@ class _eventScreenState extends State<eventScreen> {
         ),
       );
     });
+  }
+  void share(BuildContext context, String event) {
+     final String text = 'I am signing up for $event';
+     Share.share(text, subject: text);
   }
 }
