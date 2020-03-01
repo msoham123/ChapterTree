@@ -1,6 +1,6 @@
 # ChapterTree
 
-<img src="./assets/logo.png" width="100" height="100" />
+<img class="round" src="./assets/logo.png" width="100" height="100"/>
 
 FHS Mobile App Development
 <br/>
@@ -26,6 +26,8 @@ This application was programmed completely in Google's Flutter Framework.
   - Built-in encryption on database for user passwords
 - Email/Password and Face ID login for extensive accessibility 
 - Google sign-in for convenience and accessibility
+- Sends email to user upon sign-up 
+  - Powered by Node.js backend and Cloud Functions
 - Beautiful dashboard to view, sign-up, remove local and national events
   - Harnesses the power of cloud data persistence 
 - Social Media Integration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
@@ -149,6 +151,7 @@ This application was programmed completely in Google's Flutter Framework.
 - [Firebase Authentication](https://firebase.google.com/products/auth)
 - [Firebase Cloud Firestore](https://firebase.google.com/products/firestore)
 - [Firebase Cloud Storage](https://firebase.google.com/products/storage)
+- [Firebase Cloud Functions](https://firebase.google.com/products/functions)
 - [Firebase Crashlytics](https://firebase.google.com/products/crashlytics)
 - [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
 - [Google Analytics](https://analytics.google.com/)
@@ -173,19 +176,15 @@ This application was programmed completely in Google's Flutter Framework.
   - "Valencia" image from Google
   - "Westmoor" image from Google
   - "TreeIcon" image from Google
+  - "GoogleLogo" image from Google
 * The following image acknowledgements are in accordance with the Undraw [license](https://undraw.co/license).
   - "Attendance" image from Undraw
   - "Calendar" image from Undraw
   - "Events" image from Undraw
   - "Map" image from Undraw
   - "Messages" image from Undraw
-  
-
-
-
-
+ 
 
 # Developers 
-* Aryan Vichare - <i>User Interface (UI), Backend, Database, API integration</i>
+* Aryan Vichare - <i>User Interface (UI), Backend, Database, API integration, Server Side Code</i>
 * Soham Manoli - <i>User Interface (UI), User Experience (UX), API integration</i>
-
