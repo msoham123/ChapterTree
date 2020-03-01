@@ -176,6 +176,7 @@ This application was programmed completely in Google's Flutter Framework.
   - "Valencia" image from Google
   - "Westmoor" image from Google
   - "TreeIcon" image from Google
+  - "GoogleLogo" image from Google
 * The following image acknowledgements are in accordance with the Undraw [license](https://undraw.co/license).
   - "Attendance" image from Undraw
   - "Calendar" image from Undraw
