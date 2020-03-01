@@ -96,7 +96,8 @@ This application was programmed completely in Google's Flutter Framework.
 * password: `fbla123`
 * Note: These credentials have special privileges as a chapter leader such as taking attendence and adding events to the calendar 
 ![iOS](./assets/mockups/ios_login.png) 
-9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities 
+9. Feel free to explore the app and refer to our `Core Features` for the full list of our app's functionalities
+10. If you experience a bug in the app, feel free to `Report a Bug` under the `Questions` tab of our app. 
 
 
   
@@ -151,6 +152,9 @@ This application was programmed completely in Google's Flutter Framework.
 - [Firebase Crashlytics](https://firebase.google.com/products/crashlytics)
 - [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
 - [Google Analytics](https://analytics.google.com/)
+
+# License 
+  ChapterTree is licensed under the MIT License - Please view [LICENCE](https://github.com/msoham123/ChapterTree/blob/master/LICENSE) for more details
 
 # Copyright Information
 * Login and Signup user authentication powered by Firebase and consistent with their API usage policies
