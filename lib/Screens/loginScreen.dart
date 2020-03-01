@@ -18,6 +18,7 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:local_auth/local_auth.dart';
 import 'dart:io' show Platform;
 import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:io';
 
 import '../main.dart';
 
@@ -326,10 +327,7 @@ class myLoginState extends State<myLoginScreen> {
                                 } catch (e) {
                                   print(e);
                                   // Handle error
-
-
                                   _showError();
-
                                 }
                               },
                             ),
@@ -490,6 +488,8 @@ class myLoginState extends State<myLoginScreen> {
     ds = new DatabaseService(uid: user.uid);
     ds.updateUserData(user.displayName, 0, "Google", user.phoneNumber, false, []);
 
+    sendSignUpMail(user.email);
+
     if(authResult != null) {
       Navigator.push(
         context,
@@ -498,7 +498,6 @@ class myLoginState extends State<myLoginScreen> {
         ),
       );
     }
-
 //    assert(!user.isAnonymous);
 //    assert(await user.getIdToken() != null);
 //
@@ -506,6 +505,20 @@ class myLoginState extends State<myLoginScreen> {
 //    assert(user.uid == currentUser.uid);
 
     return 'signInWithGoogle succeeded: $user';
+  }
+  void sendSignUpMail(String email) async {
+    var url =
+        'https://us-central1-fbla2020-b50d0.cloudfunctions.net/sendMail?dest=$email';
+    var httpClient = new HttpClient();
+    try {
+      var request = await httpClient.getUrl(Uri.parse(url));
+      var response = await request.close();
+      if (response.statusCode == HttpStatus.OK) {
+        print("email success");
+      }
+    } catch (e) {
+      print(e);
+    }
   }
   _showError() {
     showDialog(
