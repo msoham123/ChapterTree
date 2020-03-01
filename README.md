@@ -186,6 +186,6 @@ This application was programmed completely in Google's Flutter Framework.
 
 
 # Developers 
-* Aryan Vichare - <i>User Interface (UI), Backend, Database, API integration</i>
+* Aryan Vichare - <i>User Interface (UI), Backend, Database, API integration, Server Side Code</i>
 * Soham Manoli - <i>User Interface (UI), User Experience (UX), API integration</i>
 
