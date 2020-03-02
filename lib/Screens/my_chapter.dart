@@ -36,39 +36,6 @@ class _myChapterScreen extends State<myChapterScreen> {
     _pageController = PageController();
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
-    _load();
-    stream = Firestore.instance
-        .collection("fbla_users")
-        .orderBy('count', descending: true)
-        .snapshots()
-        .asyncMap((QuerySnapshot snapshot) => convert(snapshot));
-  }
-
-  Future<List<User>> convert(QuerySnapshot snapshot) {
-    return Future.wait(snapshot.documents.map((DocumentSnapshot docSnap) async {
-      return await groupToPair(docSnap);
-    }).toList());
-  }
-
-  Future<User> groupToPair(DocumentSnapshot documentSnapshot) {
-    return Firestore.instance
-        .collection("fbla_users")
-        .where('chapter', isEqualTo: chapter)
-        .orderBy('createdAt', descending: false)
-        .getDocuments()
-        .then((usersSnap) {
-
-      return User.fromDoc(documentSnapshot);
-    });
-  }
-
-
-  _load() {
-    _data = _firestore
-        .collection('fbla_users')
-//       .where("chapter", isEqualTo: chapter)
-        .orderBy('count', descending: true)
-        .snapshots();
   }
 
   Future<void> _loadChapter() async {

@@ -1,10 +1,15 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intro_slider/intro_slider.dart';
 import 'package:intro_slider/slide_object.dart';
+import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
+import 'package:mobile_app_dev/Screens/pickChapter.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
 import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/Test/introSlider.dart';
@@ -484,9 +489,16 @@ class myLoginState extends State<myLoginScreen> {
 
     final AuthResult authResult = await _auth.signInWithCredential(credential);
     final FirebaseUser user = authResult.user;
+    String userUID = user.uid;
 
-    ds = new DatabaseService(uid: user.uid);
-    ds.updateUserData(user.displayName, 0, "Google", user.phoneNumber, false, []);
+//    DocumentSnapshot documentSnapshot = await ds.getUser(userUID);
+//    bool pickChapter = false;
+//
+//    if(documentSnapshot.data != null) {
+//      pickChapter = false;
+//    } else {
+//      pickChapter = true;
+//    }
 
     sendSignUpMail(user.email);
 
@@ -494,15 +506,10 @@ class myLoginState extends State<myLoginScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => MyDefaultPage(sizingInformation),
+          builder: (context) => PickChapter(userUID, user),
         ),
       );
     }
-//    assert(!user.isAnonymous);
-//    assert(await user.getIdToken() != null);
-//
-//    final FirebaseUser currentUser = await _auth.currentUser();
-//    assert(user.uid == currentUser.uid);
 
     return 'signInWithGoogle succeeded: $user';
   }
