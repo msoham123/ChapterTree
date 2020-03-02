@@ -14,6 +14,9 @@ This application was programmed completely in Google's Flutter Framework.
 # Portfolio
 <img src="assets/instructionImages/1.png" width="430" /><img src="assets/instructionImages/2.png" width="430" />  <img src="assets/instructionImages/3.png" width="430" /><img src="assets/instructionImages/4.png" width="430" /><img src="assets/instructionImages/5.png" width="430" /><img src="assets/instructionImages/6.png" width="430" /><img src="assets/instructionImages/7.png" width="430" /><img src="assets/instructionImages/8.png" width="430" /><img src="assets/instructionImages/9.png" width="430" /><img src="assets/instructionImages/10.png" width="430" /><img src="assets/instructionImages/11.png" width="430" /><img src="assets/instructionImages/12.png" width="430" /><img src="assets/instructionImages/13.png" width="430" /><img src="assets/instructionImages/14.png" width="430" />
 
+<br/>
+<img src="assets/images/technologies.png" />
+
 # Brainstorming and Planning
 - [App Design Flow](https://docs.google.com/document/d/1HiQpNK7N295IVqAyzwiOjUOHYOlEwiSwyGvqaZ7WNi0/edit)
 - [App Brainstorm](https://docs.google.com/document/d/1ZdlabqNYcHull3JlMOZ7KsLOXtSgzFny4yDk9xCPQ4U/edit)
