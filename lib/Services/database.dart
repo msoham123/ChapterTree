@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
 
@@ -18,6 +19,7 @@ class DatabaseService {
       'events': events,
     });
   }
+
   Future addEvent(String event, String user_id) async {
     DocumentReference docRef = fbla_users.document(user_id);
     DocumentSnapshot doc = await docRef.get();
