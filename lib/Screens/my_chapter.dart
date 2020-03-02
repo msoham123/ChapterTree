@@ -11,6 +11,7 @@ import '../main.dart';
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;
 final _auth = FirebaseAuth.instance;
+Stream<List<User>> stream;
 
 class myChapterScreen extends StatefulWidget {
   @override
@@ -36,6 +37,29 @@ class _myChapterScreen extends State<myChapterScreen> {
     getCurrentUser();
     _populateCurrentUser(loggedInUser);
     _load();
+    stream = Firestore.instance
+        .collection("fbla_users")
+        .orderBy('count', descending: true)
+        .snapshots()
+        .asyncMap((QuerySnapshot snapshot) => convert(snapshot));
+  }
+
+  Future<List<User>> convert(QuerySnapshot snapshot) {
+    return Future.wait(snapshot.documents.map((DocumentSnapshot docSnap) async {
+      return await groupToPair(docSnap);
+    }).toList());
+  }
+
+  Future<User> groupToPair(DocumentSnapshot documentSnapshot) {
+    return Firestore.instance
+        .collection("fbla_users")
+        .where('chapter', isEqualTo: chapter)
+        .orderBy('createdAt', descending: false)
+        .getDocuments()
+        .then((usersSnap) {
+
+      return User.fromDoc(documentSnapshot);
+    });
   }
 
 
@@ -82,29 +106,35 @@ class _myChapterScreen extends State<myChapterScreen> {
     print(userSnapshot.data['chapter']);
   }
 
+
   @override
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
-      return Scaffold(
-        backgroundColor: MyApp.backgroundColor,
-        body: StreamBuilder<QuerySnapshot>(
-          stream: _firestore
-          // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
-              .collection('fbla_users')
-//            .where("chapter", isEqualTo: chapter)
-              .orderBy('count', descending: true)
-              .snapshots(),
+      return FutureBuilder(
+        future: _loadChapter(),
           builder: (context, snapshot) {
-            if (!snapshot.hasData)
-              return Center(child: CircularProgressIndicator());
-            return ListView.builder(
-              itemExtent: 80.0,
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context, index) =>
-                  _buildListItem(context, snapshot.data.documents[index]),
+            return Scaffold(
+              backgroundColor: MyApp.backgroundColor,
+              body: StreamBuilder<QuerySnapshot>(
+                stream: _firestore
+                // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
+                    .collection('fbla_users')
+                    .where("chapter", isEqualTo: chapter)
+                    .orderBy('count', descending: true)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData)
+                    return Center(child: CircularProgressIndicator());
+                  return ListView.builder(
+                    itemExtent: 80.0,
+                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) =>
+                        _buildListItem(context, snapshot.data.documents[index]),
+                  );
+                },
+              ),
             );
-          },
-        ),
+          }
       );
     });
   }
