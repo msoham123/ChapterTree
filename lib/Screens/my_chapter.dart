@@ -114,63 +114,92 @@ class _myChapterScreen extends State<myChapterScreen> {
     return Card(
       color: MyApp.botBarColor,
       child: Center(
-        child: GestureDetector(
-          onDoubleTap: () {
-            // RESTRICT ATTENDANCE FEATURE TO OFFICERS ONLY
-            if(isOfficer) {
-              print(isOfficer);
-              document.reference.updateData({'count': document['count'] + 1});
-              setState(() {
-                initCount++;
-              });
-            }
-          },
-          child: FutureBuilder(
-            future: _loadChapter(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-
-                return Container(
-                  color: Colors.white,
-                  child: ListTile(
-                    leading: Image.asset('./assets/images/fbla.png'),
-                    title: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            '${document['full_name']}',
-                            style: TextStyle(color: MyApp.blackTextColor),
+        child: FutureBuilder(
+          future: _loadChapter(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return Container(
+                color: Colors.white,
+                child: ListTile(
+                  leading: Image.asset('./assets/images/fbla.png'),
+                  title: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          '${document['full_name']}',
+                          style: TextStyle(color: MyApp.blackTextColor),
+                        ),
+                      ),
+                      Visibility(
+                        visible: isOfficer,
+                        child: GestureDetector(
+                          onTap: () {
+                            document.reference.updateData({'count': document['count'] - 1});
+                            setState(() {
+                              initCount--;
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10.0),
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              color: Colors.lightBlue,
+                            ),
+                            child: Icon(Icons.remove, color: Colors.white,),
                           ),
                         ),
-                        Container(
-                          height: 40.0,
-                          width: 40.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            color: MyApp.blueGreyColor,
+                      ),
+                      Visibility(
+                        visible: isOfficer,
+                        child: GestureDetector(
+                          onTap: () {
+                            document.reference.updateData({'count': document['count'] + 1});
+                            setState(() {
+                              initCount++;
+                            });
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10.0),
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              color: Colors.blue,
+                            ),
+                            child: Icon(Icons.add, color: Colors.white,),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Center(
-                              child: Text(
-                                initCount.toString(),
-                                style: TextStyle(
-                                    color: MyApp.whiteTextColor,
-                                    fontSize: 15.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                        ),
+                      ),
+                      Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          color: MyApp.blueGreyColor,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Text(
+                              initCount.toString(),
+                              style: TextStyle(
+                                  color: MyApp.whiteTextColor,
+                                  fontSize: 15.0,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                );
-              } else {
-                return CircularProgressIndicator();
-              }
-            },
-          ),
+                ),
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
         ),
       ),
       elevation: 10.0,
