@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 import 'package:mobile_app_dev/Screens/my_chapter.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 import '../main.dart';
 import 'chatbot.dart';
@@ -91,22 +92,25 @@ class _MyDefaultPageState extends State<MyDefaultPage> {
         centerTitle: true,
         titleSpacing: 12,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.sentiment_satisfied),
-            iconSize: 25,
-            color: Colors.white,
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      myChatBotScreen(),
-                ),
-              );
-            },
+          Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: IconButton(
+              icon: Icon(FontAwesome5Solid.robot),
+              iconSize: 25,
+              color: Colors.white,
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        myChatBotScreen(),
+                  ),
+                );
+              },
+            ),
           ),
           SizedBox(
-            width: sizingInformation.myScreenSize.width/55,
+            width: sizingInformation.myScreenSize.width/100,
           ),
         ],
       ),
