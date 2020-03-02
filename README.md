@@ -125,7 +125,19 @@ This application was programmed completely in Google's Flutter Framework.
   
 # Technologies and API's used
 
-- [GitHub](http://github.com)
+- [Flutter](https://flutter.dev/)
+- [Dart](https://dart.dev/)
+- [Node.js](https://nodejs.org/en/)
+- [Nodemailer](https://nodemailer.com/about/)
+- [Dialogflow](https://dialogflow.cloud.google.com/)
+- [Google Cloud Platform](https://cloud.google.com/)
+- [Firebase Authentication](https://firebase.google.com/products/auth)
+- [Firebase Cloud Firestore](https://firebase.google.com/products/firestore)
+- [Firebase Cloud Storage](https://firebase.google.com/products/storage)
+- [Firebase Cloud Functions](https://firebase.google.com/products/functions)
+- [Firebase Crashlytics](https://firebase.google.com/products/crashlytics)
+- [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
+- [Google Analytics](https://analytics.google.com/)
 - [flutter_sms](https://pub.dev/packages/flutter_sms)
 - [http](https://pub.dev/packages/http)
 - [permission](https://pub.dev/packages/permission)
@@ -151,13 +163,6 @@ This application was programmed completely in Google's Flutter Framework.
 - [snaplist](https://pub.dev/packages/snaplist)
 - [giffy_dialog](https://pub.dev/packages/giffy_dialog)
 - [flappy_search_bar](https://pub.dev/packages/flappy_search_bar)
-- [Firebase Authentication](https://firebase.google.com/products/auth)
-- [Firebase Cloud Firestore](https://firebase.google.com/products/firestore)
-- [Firebase Cloud Storage](https://firebase.google.com/products/storage)
-- [Firebase Cloud Functions](https://firebase.google.com/products/functions)
-- [Firebase Crashlytics](https://firebase.google.com/products/crashlytics)
-- [Firebase Performance Monitoring](https://firebase.google.com/products/performance)
-- [Google Analytics](https://analytics.google.com/)
 
 # License 
   ChapterTree is licensed under the MIT License - Please view [LICENCE](https://github.com/msoham123/ChapterTree/blob/master/LICENSE) for more details

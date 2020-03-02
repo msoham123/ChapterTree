@@ -149,7 +149,7 @@ class _myChapterScreen extends State<myChapterScreen> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return Container(
-                color: Colors.white,
+                color: MyApp.botBarColor,
                 child: ListTile(
                   leading: Image.asset('./assets/images/fbla.png'),
                   title: Row(
