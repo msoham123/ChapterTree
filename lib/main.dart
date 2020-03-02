@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/mapScreen.dart';
+import 'package:mobile_app_dev/Screens/pickChapter.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 
 import 'models/appTheme.dart';
@@ -92,7 +93,7 @@ class MyApp extends StatelessWidget{
                 display1: TextStyle(color: Colors.black, fontSize: 25, fontWeight: FontWeight.w800, fontFamily: null)
             )
         ),
-        home: myLoginScreen(),
+        home: myLoginScreen()
       ),
     );
   }
