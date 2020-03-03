@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 
 import '../main.dart';

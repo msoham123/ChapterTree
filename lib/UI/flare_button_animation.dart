@@ -1,8 +1,6 @@
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controls.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app_dev/UI/widgets.dart';
-import 'dart:async';
 
 enum AnimationToPlay {
   Activate,

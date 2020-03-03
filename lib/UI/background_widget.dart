@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
-import 'package:mobile_app_dev/Utils/ui_utils.dart';
 
 import '../main.dart';
 
