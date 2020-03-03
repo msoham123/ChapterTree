@@ -150,7 +150,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                                       30),
                               child: Container(
                                 height:
-                                    sizingInformation.myScreenSize.height / 1.65,
+                                    sizingInformation.myScreenSize.height / 2.00,
                                 decoration: BoxDecoration(
                                   color: MyApp.backgroundColor,
                                   borderRadius: BorderRadius.all(
