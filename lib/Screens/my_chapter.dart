@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/models/user.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../main.dart';
 
@@ -25,6 +27,7 @@ class _myChapterScreen extends State<myChapterScreen> {
   DatabaseService ds = new DatabaseService();
   String chapter = '';
   Stream<QuerySnapshot> _data;
+
 //  Color officerColor = Colors.lightBlueAccent;
 //  Color regColor = Colors.white;
 //  Color officialColor;
@@ -73,18 +76,17 @@ class _myChapterScreen extends State<myChapterScreen> {
     print(userSnapshot.data['chapter']);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BaseWidget(builder: (context, sizingInformation) {
       return FutureBuilder(
-        future: _loadChapter(),
+          future: _loadChapter(),
           builder: (context, snapshot) {
             return Scaffold(
               backgroundColor: MyApp.backgroundColor,
               body: StreamBuilder<QuerySnapshot>(
                 stream: _firestore
-                // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
+                    // SORT THE USERS BY THEIR ATTENDANCE COUNT (HIGHEST ON THE TOP)
                     .collection('fbla_users')
                     .where("chapter", isEqualTo: chapter)
                     .orderBy('count', descending: true)
@@ -101,8 +103,7 @@ class _myChapterScreen extends State<myChapterScreen> {
                 },
               ),
             );
-          }
-      );
+          });
     });
   }
 
@@ -122,29 +123,40 @@ class _myChapterScreen extends State<myChapterScreen> {
                   title: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text(
-                          '${document['full_name']}',
-                          style: TextStyle(color: MyApp.blackTextColor),
-                        ),
+                          child: isOfficer ? Text(
+                            '⭐ ${document['full_name']}',
+                            style: TextStyle(color: MyApp.blackTextColor),
+                          ) : Text(
+                            '${document['full_name']}',
+                            style: TextStyle(color: MyApp.blackTextColor),
+                          ),
                       ),
                       Visibility(
                         visible: isOfficer,
                         child: GestureDetector(
                           onTap: () {
-                            document.reference.updateData({'count': document['count'] - 1});
-                            setState(() {
-                              initCount--;
-                            });
+                            // CAN NOT HAVE NEGATIVE ATTENDANCE
+                            if(initCount > 0) {
+                              document.reference
+                                  .updateData({'count': document['count'] - 1});
+                              setState(() {
+                                initCount--;
+                              });
+                            }
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 10.0),
                             height: 35.0,
                             width: 35.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
                               color: Colors.lightBlue,
                             ),
-                            child: Icon(Icons.remove, color: Colors.white,),
+                            child: Icon(
+                              Icons.remove,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -152,7 +164,8 @@ class _myChapterScreen extends State<myChapterScreen> {
                         visible: isOfficer,
                         child: GestureDetector(
                           onTap: () {
-                            document.reference.updateData({'count': document['count'] + 1});
+                            document.reference
+                                .updateData({'count': document['count'] + 1});
                             setState(() {
                               initCount++;
                             });
@@ -162,10 +175,14 @@ class _myChapterScreen extends State<myChapterScreen> {
                             height: 35.0,
                             width: 35.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
                               color: Colors.blue,
                             ),
-                            child: Icon(Icons.add, color: Colors.white,),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -200,6 +217,23 @@ class _myChapterScreen extends State<myChapterScreen> {
         ),
       ),
       elevation: 10.0,
+    );
+  }
+
+  _showError(String error) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(error),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("Back"),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          )
+        ],
+      ),
     );
   }
 }
