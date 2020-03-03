@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mobile_app_dev/Screens/changeInfo.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Services/database.dart';
@@ -141,7 +142,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                                       30),
                               child: Container(
                                 height:
-                                    sizingInformation.myScreenSize.height / 2.00,
+                                    sizingInformation.myScreenSize.height / 1.5,
                                 decoration: BoxDecoration(
                                   color: MyApp.backgroundColor,
                                   borderRadius: BorderRadius.all(
@@ -323,6 +324,17 @@ class _mySettingsState extends State<mySettingsScreen> {
                                         ],
                                       ),
                                     ),
+                                    FlatButton(
+                                      child: Text("Edit Profile", style: TextStyle(color: MyApp.blueGreyColor),),
+                                      color: MyApp.botBarColor,
+                                      onPressed: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => myChangeScreen()),
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(height: 38.0),
                                   ],
                                 ),
                               ),
