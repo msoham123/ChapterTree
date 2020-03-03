@@ -257,7 +257,7 @@ class myChangeState extends State<myChangeScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  "Officer : ",
+                                  "Are you an officer : ",
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w800),

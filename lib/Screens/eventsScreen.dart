@@ -183,7 +183,7 @@ class _eventScreenState extends State<eventScreen> {
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: sizingInformation.myScreenSize.height*1.3,
+                height: sizingInformation.myScreenSize.height*1.4,
                 decoration: BoxDecoration(
                   color: MyApp.appBarColor,
                 ),
