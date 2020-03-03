@@ -73,7 +73,6 @@ class _mySettingsState extends State<mySettingsScreen> {
     isOfficer = userSnapshot.data['isOfficer'];
     uid = loggedInUser.uid;
     events = userSnapshot.data['events'];
-    print(isOfficer);
   }
 
   // GET ALL THE USERS IN ONE'S CHAPTER FOR SENDING SMS
