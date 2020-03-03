@@ -93,7 +93,7 @@ This application was programmed completely in Google's Flutter Framework.
 ![Signing and Capabilities](./assets/instructionImages/selectteam.png)
 4. You can now view all the iOS code project files and dependencies
 ![Project Files](./assets/instructionImages/project_files.png)
-5. To run the app, connect a lighting cable from your computer to your phone. You should see your device show up as shown below:
+5. To run the app, connect a USB-C to lighting cable from your computer to your phone. You should see your device show up as shown below:
 ![Project Files](./assets/instructionImages/runproject.png)
 6. After the application opens and the Build Succeeds you will be prompted to the login screen
 7. Login with the credentials: 
