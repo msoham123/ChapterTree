@@ -89,110 +89,14 @@ class myChangeState extends State<myChangeScreen> {
                   inAsyncCall: showSpinner,
                   child: Column(
                     children: <Widget>[
-                      BackgroundWidget(sizingInformation),
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: sizingInformation.myScreenSize.height /
-                                18,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 0,
-                                horizontal:
-                                sizingInformation.myScreenSize.width / 10),
-                            height: sizingInformation.myScreenSize.height /
-                                10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: MyApp.blueGradient, //indigo 500
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
-                              ),
-                              child: TextField(
-                                  textAlign: TextAlign.left,
-//                          maxLines: null,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.person,
-                                      color: Colors.white,
-                                    ),
-                                    fillColor: Colors.white,
-                                    labelText: null,
-                                    hintText: 'Full Name',
-                                    labelStyle: null,
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    disabledBorder: InputBorder.none,
-                                    hintStyle: TextStyle(
-                                        fontSize: 18, color: Colors.white),
-                                  ),
-                                  style: TextStyle(
-                                      fontSize: 25, color: Colors.white),
-                                  cursorWidth: 4,
-                                  cursorColor: Colors.white,
-                                  controller: nameController,
-                                  keyboardType: TextInputType.emailAddress,
-                                  onChanged: (value) {
-                                    name = value;
-                                  }),
+                      Expanded(
+                        child: ListView(
+                          children: <Widget>[
+                            SizedBox(
+                              height: sizingInformation.myScreenSize.height /
+                                  18,
                             ),
-                          ),
-                      SizedBox(
-                        height: sizingInformation.myScreenSize.height / 49,
-                      ),
-                          Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 0,
-                                horizontal:
-                                sizingInformation.myScreenSize.width / 10),
-                            height: sizingInformation.myScreenSize.height /
-                                10,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: MyApp.blueGradient, //indigo 500
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(30)),
-                              ),
-                              child: TextField(
-                                  textAlign: TextAlign.left,
-//                          maxLines: null,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(
-                                      Icons.phone,
-                                      color: Colors.white,
-                                    ),
-                                    fillColor: Colors.white,
-                                    labelText: null,
-                                    hintText: 'Phone Number ',
-                                    labelStyle: null,
-                                    border: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    enabledBorder: InputBorder.none,
-                                    errorBorder: InputBorder.none,
-                                    disabledBorder: InputBorder.none,
-                                    hintStyle: TextStyle(
-                                        fontSize: 18, color: Colors.white),
-                                  ),
-                                  style: TextStyle(
-                                      fontSize: 25, color: Colors.white),
-                                  cursorWidth: 4,
-                                  cursorColor: Colors.white,
-                                  controller: phoneController,
-                                  keyboardType: TextInputType.emailAddress,
-                                  onChanged: (value) {
-                                    phone = value;
-                                  }),
-                            ),
-                          ),
-                          SizedBox(
-                            height: sizingInformation.myScreenSize.height / 49,
-                          ),
-                          Container(
+                            Container(
                               alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(
                                   vertical: 0,
@@ -211,12 +115,12 @@ class myChangeState extends State<myChangeScreen> {
 //                          maxLines: null,
                                     decoration: InputDecoration(
                                       prefixIcon: Icon(
-                                        Icons.school,
+                                        Icons.person,
                                         color: Colors.white,
                                       ),
                                       fillColor: Colors.white,
                                       labelText: null,
-                                      hintText: 'Chapter (e.g Fremont)',
+                                      hintText: 'Full Name',
                                       labelStyle: null,
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -230,110 +134,207 @@ class myChangeState extends State<myChangeScreen> {
                                         fontSize: 25, color: Colors.white),
                                     cursorWidth: 4,
                                     cursorColor: Colors.white,
-                                    controller: chapterController,
+                                    controller: nameController,
                                     keyboardType: TextInputType.emailAddress,
                                     onChanged: (value) {
-                                      chapter = value;
+                                      name = value;
                                     }),
-                              )),
-                          SizedBox(
-                            height: sizingInformation.myScreenSize.height / 49,
-                          ),
-
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                "Officer : ",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w800),
                               ),
-                              Checkbox(
-                                value: isOfficer,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isOfficer = value;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-
-                          Container(
-                            width: sizingInformation.myScreenSize.width / 1.5,
-                            child: SimpleRoundButton(
-                                buttonText: Text(
-                                  'Change Profile',
-                                  style: kAuthButtonDecoration,
-                                ),
-                                backgroundColor: MyApp.appBarColor,
-                                onPressed: () async {
-                                  if (name != "" && password != "" &&
-                                      phone != "" && chapter != "") {
-                                    sendSignUpMail(email);
-
-                                    // Create the user here once we have the email and password
-                                    try {
-                                      // TRY TO CREATE A USER IN THE FIREBASE AUTHENTICATION DATABASE
-                                      final result =
-                                      await _auth
-                                          .createUserWithEmailAndPassword(
-                                          email: email, password: password);
-                                      FirebaseUser user = result.user;
-
-                                      // Create a document for the user with the uid
-                                      await DatabaseService(uid: user.uid)
-                                          .updateUserData(
-                                          name, 0, chapter, phone, isOfficer,
-                                          []);
-
-                                      if (result != null) {
-                                        if (MyApp.introSliderEnabled ==
-                                            true) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  IntroScreen(
-                                                      sizingInformation),
-                                            ),
-                                          );
-                                          MyApp.introSliderEnabled = false;
-                                        } else {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MyDefaultPage(
-                                                      sizingInformation),
-                                            ),
-                                          );
-                                        }
-                                        setState(() {
-                                          showSpinner = false;
-                                        });
-                                      }
-                                    } catch (e) {
-                                      // Handle the exception here!
-                                      print(e.toString());
-                                      if (e.toString() ==
-                                          "PlatformException(ERROR_WEAK_PASSWORD, The password must be 6 characters long or more., null)") {
-                                        _showError(
-                                            "Enter a stronger password. Must be 6 characters long or more");
-                                      } else if(e.toString() == "PlatformException(ERROR_INVALID_EMAIL, The email address is badly formatted., null)") {
-                                        _showError(
-                                            "Email not properly formatted");
-                                      }
-                                    }
-                                  } else {
-                                    _showError("Please fill in all fields");
-                                  }
-                                }
                             ),
-                          ),
+                        SizedBox(
+                          height: sizingInformation.myScreenSize.height / 49,
+                        ),
+                            Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 0,
+                                  horizontal:
+                                  sizingInformation.myScreenSize.width / 10),
+                              height: sizingInformation.myScreenSize.height /
+                                  10,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: MyApp.blueGradient, //indigo 500
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(30)),
+                                ),
+                                child: TextField(
+                                    textAlign: TextAlign.left,
+//                          maxLines: null,
+                                    decoration: InputDecoration(
+                                      prefixIcon: Icon(
+                                        Icons.phone,
+                                        color: Colors.white,
+                                      ),
+                                      fillColor: Colors.white,
+                                      labelText: null,
+                                      hintText: 'Phone Number ',
+                                      labelStyle: null,
+                                      border: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      enabledBorder: InputBorder.none,
+                                      errorBorder: InputBorder.none,
+                                      disabledBorder: InputBorder.none,
+                                      hintStyle: TextStyle(
+                                          fontSize: 18, color: Colors.white),
+                                    ),
+                                    style: TextStyle(
+                                        fontSize: 25, color: Colors.white),
+                                    cursorWidth: 4,
+                                    cursorColor: Colors.white,
+                                    controller: phoneController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    onChanged: (value) {
+                                      phone = value;
+                                    }),
+                              ),
+                            ),
+                            SizedBox(
+                              height: sizingInformation.myScreenSize.height / 49,
+                            ),
+                            Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 0,
+                                    horizontal:
+                                    sizingInformation.myScreenSize.width / 10),
+                                height: sizingInformation.myScreenSize.height /
+                                    10,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: MyApp.blueGradient, //indigo 500
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(30)),
+                                  ),
+                                  child: TextField(
+                                      textAlign: TextAlign.left,
+//                          maxLines: null,
+                                      decoration: InputDecoration(
+                                        prefixIcon: Icon(
+                                          Icons.school,
+                                          color: Colors.white,
+                                        ),
+                                        fillColor: Colors.white,
+                                        labelText: null,
+                                        hintText: 'Chapter (e.g Fremont)',
+                                        labelStyle: null,
+                                        border: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
+                                        hintStyle: TextStyle(
+                                            fontSize: 18, color: Colors.white),
+                                      ),
+                                      style: TextStyle(
+                                          fontSize: 25, color: Colors.white),
+                                      cursorWidth: 4,
+                                      cursorColor: Colors.white,
+                                      controller: chapterController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      onChanged: (value) {
+                                        chapter = value;
+                                      }),
+                                )),
+                            SizedBox(
+                              height: sizingInformation.myScreenSize.height / 49,
+                            ),
 
-                        ],
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "Officer : ",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                Checkbox(
+                                  value: isOfficer,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isOfficer = value;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+
+                            Container(
+                              width: sizingInformation.myScreenSize.width / 1.5,
+                              child: SimpleRoundButton(
+                                  buttonText: Text(
+                                    'Change Profile',
+                                    style: kAuthButtonDecoration,
+                                  ),
+                                  backgroundColor: MyApp.appBarColor,
+                                  onPressed: () async {
+                                    if (name != "" && password != "" &&
+                                        phone != "" && chapter != "") {
+                                      sendSignUpMail(email);
+
+                                      // Create the user here once we have the email and password
+                                      try {
+                                        // TRY TO CREATE A USER IN THE FIREBASE AUTHENTICATION DATABASE
+                                        final result =
+                                        await _auth
+                                            .createUserWithEmailAndPassword(
+                                            email: email, password: password);
+                                        FirebaseUser user = result.user;
+
+                                        // Create a document for the user with the uid
+                                        await DatabaseService(uid: user.uid)
+                                            .updateUserData(
+                                            name, 0, chapter, phone, isOfficer,
+                                            []);
+
+                                        if (result != null) {
+                                          if (MyApp.introSliderEnabled ==
+                                              true) {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    IntroScreen(
+                                                        sizingInformation),
+                                              ),
+                                            );
+                                            MyApp.introSliderEnabled = false;
+                                          } else {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MyDefaultPage(
+                                                        sizingInformation),
+                                              ),
+                                            );
+                                          }
+                                          setState(() {
+                                            showSpinner = false;
+                                          });
+                                        }
+                                      } catch (e) {
+                                        // Handle the exception here!
+                                        print(e.toString());
+                                        if (e.toString() ==
+                                            "PlatformException(ERROR_WEAK_PASSWORD, The password must be 6 characters long or more., null)") {
+                                          _showError(
+                                              "Enter a stronger password. Must be 6 characters long or more");
+                                        } else if(e.toString() == "PlatformException(ERROR_INVALID_EMAIL, The email address is badly formatted., null)") {
+                                          _showError(
+                                              "Email not properly formatted");
+                                        }
+                                      }
+                                    } else {
+                                      _showError("Please fill in all fields");
+                                    }
+                                  }
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ),
                     ],
                   ),
