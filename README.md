@@ -12,7 +12,7 @@ Welcome to ChapterTree, an amazing app that allows you to seamlessly manage your
 This application was programmed completely in Google's Flutter Framework.
 
 # Portfolio
-<img src="assets/instructionImages/1.png" width="430" /><img src="assets/instructionImages/2.png" width="430" />  <img src="assets/instructionImages/3.png" width="430" /><img src="assets/instructionImages/4.png" width="430" /><img src="assets/instructionImages/5.png" width="430" /><img src="assets/instructionImages/6.png" width="430" /><img src="assets/instructionImages/7.png" width="430" /><img src="assets/instructionImages/8.png" width="430" /><img src="assets/instructionImages/9.png" width="430" /><img src="assets/instructionImages/10.png" width="430" /><img src="assets/instructionImages/11.png" width="430" /><img src="assets/instructionImages/12.png" width="430" /><img src="assets/instructionImages/13.png" width="430" /><img src="assets/instructionImages/14.png" width="430" />
+<img src="assets/instructionImages/1.png" width="430" /><img src="assets/instructionImages/2.png" width="430" />  <img src="assets/instructionImages/3.png" width="430" /><img src="assets/instructionImages/4.png" width="430" /><img src="assets/instructionImages/5.png" width="430" /><img src="assets/instructionImages/15.png" width="430" /><img src="assets/instructionImages/6.png" width="430" /><img src="assets/instructionImages/7.png" width="430" /><img src="assets/instructionImages/8.png" width="430" /><img src="assets/instructionImages/9.png" width="430" /><img src="assets/instructionImages/10.png" width="430" /><img src="assets/instructionImages/11.png" width="430" /><img src="assets/instructionImages/12.png" width="430" /><img src="assets/instructionImages/13.png" width="430" /><img src="assets/instructionImages/16.png" width="430" /><img src="assets/instructionImages/14.png" width="430" />
 
 <br/>
 <img src="assets/images/technologies.png" />
@@ -93,7 +93,7 @@ This application was programmed completely in Google's Flutter Framework.
 ![Signing and Capabilities](./assets/instructionImages/selectteam.png)
 4. You can now view all the iOS code project files and dependencies
 ![Project Files](./assets/instructionImages/project_files.png)
-5. To run the app, connect a lighting cable from your computer to your phone. You should see your device show up as shown below:
+5. To run the app, connect a USB-C to lighting cable from your computer to your phone. You should see your device show up as shown below:
 ![Project Files](./assets/instructionImages/runproject.png)
 6. After the application opens and the Build Succeeds you will be prompted to the login screen
 7. Login with the credentials: 
