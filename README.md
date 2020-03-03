@@ -34,6 +34,7 @@ This application was programmed completely in Google's Flutter Framework.
 - Beautiful dashboard to view, sign-up, remove local and national events
   - Harnesses the power of cloud data persistence 
 - Social Media Integration to share on many platforms such as Facebook, Twitter, Messenger, Messages, and much more!
+<img src="assets/mockups/socialIntegration.png" />
 - Dynamic calendar to add events seamlessly 
   - Only chapter leaders can track attendance 
 - Google Maps API integration to view user's location event destination through markers
