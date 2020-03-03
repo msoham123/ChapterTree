@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/models/user.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../main.dart';
 
 FirebaseUser loggedInUser;
@@ -27,10 +23,6 @@ class _myChapterScreen extends State<myChapterScreen> {
   DatabaseService ds = new DatabaseService();
   String chapter = '';
   Stream<QuerySnapshot> _data;
-
-//  Color officerColor = Colors.lightBlueAccent;
-//  Color regColor = Colors.white;
-//  Color officialColor;
   bool isOfficer;
 
   @override

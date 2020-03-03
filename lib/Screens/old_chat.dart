@@ -9,7 +9,6 @@ import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobile_app_dev/UI/message_bubble.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
-import 'package:mobile_app_dev/UI/message_bubble.dart';
 
 FirebaseUser loggedInUser;
 final _firestore = Firestore.instance;

@@ -1,18 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/settingsScreen.dart';
 import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:mobile_app_dev/Screens/questionScreen.dart';
 import 'package:mobile_app_dev/Screens/my_chapter.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
 import '../main.dart';
 import 'chatbot.dart';
-import 'mapScreen.dart';
 import 'homeScreen.dart';
 import 'messageScreen.dart';
 

@@ -1,13 +1,8 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intro_slider/intro_slider.dart';
-import 'package:intro_slider/slide_object.dart';
-import 'package:mobile_app_dev/Screens/homeScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Screens/pickChapter.dart';
 import 'package:mobile_app_dev/Screens/signUp.dart';
@@ -17,14 +12,12 @@ import 'package:mobile_app_dev/UI/background_widget.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
 import 'package:mobile_app_dev/UI/sizing_information.dart';
-import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:local_auth/local_auth.dart';
 import 'dart:io' show Platform;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'dart:io';
-
 import '../main.dart';
 
 DatabaseService ds;
@@ -362,6 +355,8 @@ class myLoginState extends State<myLoginScreen> {
                                       .contains(BiometricType.face)) {
                                     await _authenticateUser(
                                         context, sizingInformation);
+                                  } else {
+                                    _showError("This phone does not support Face ID.");
                                   }
                                 },
                               ),

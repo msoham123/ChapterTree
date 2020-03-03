@@ -1,21 +1,14 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:flutter_icons/flutter_icons.dart';
-import 'package:mobile_app_dev/Screens/chatbot.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/cards.dart';
-import 'package:mobile_app_dev/UI/simple_round_icon_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
-import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:mobile_app_dev/Utils/constants.dart';
-
 import '../main.dart';
 
 class myQuestionScreen extends StatefulWidget {

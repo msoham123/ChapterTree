@@ -1,12 +1,8 @@
 import 'package:flutter/rendering.dart';
-import 'package:mobile_app_dev/Screens/eventsScreen.dart';
 import 'package:mobile_app_dev/Test/eventCards.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
-import 'package:mobile_app_dev/UI/cards.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
-import 'package:mobile_app_dev/UI/simple_round_only_icon_button.dart';
-import 'package:mobile_app_dev/UI/sizing_information.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:mobile_app_dev/models/eventListModel.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -14,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mobile_app_dev/models/user.dart';
 import 'package:mobile_app_dev/Services/database.dart';
 
 import '../main.dart';

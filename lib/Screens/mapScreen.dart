@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
 import 'package:mobile_app_dev/UI/widgets.dart';
 import 'package:google_map_polyline/google_map_polyline.dart';
-import 'package:permission/permission.dart';
 import 'package:mobile_app_dev/models/distanceduration.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import '../main.dart';
 
 class myMapScreen extends StatefulWidget {

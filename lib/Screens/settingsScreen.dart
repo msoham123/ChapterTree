@@ -1,27 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile_app_dev/Screens/loginScreen.dart';
 import 'package:mobile_app_dev/Screens/navigation.dart';
 import 'package:mobile_app_dev/Services/database.dart';
 import 'package:mobile_app_dev/Test/toggleSwitch.dart';
-import 'package:mobile_app_dev/UI/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app_dev/UI/base_widget.dart';
-import 'package:mobile_app_dev/UI/flexible_container.dart';
 import 'package:mobile_app_dev/UI/simple_round_button.dart';
-import 'package:mobile_app_dev/UI/widgets.dart';
-import 'package:mobile_app_dev/UI/events_widget.dart';
 import 'package:mobile_app_dev/main.dart';
-import 'package:mobile_app_dev/models/eventListModel.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:mobile_app_dev/UI/flare_button_animation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 
 // CREATE INSTANCE ON CURRENT FIREBASE LOOGED IN USER
 FirebaseUser loggedInUser;
