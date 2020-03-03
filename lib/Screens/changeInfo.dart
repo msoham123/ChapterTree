@@ -181,7 +181,7 @@ class myChangeState extends State<myChangeScreen> {
                                       ),
                                       fillColor: Colors.white,
                                       labelText: null,
-                                      hintText: 'Phone Number ',
+                                      hintText: 'Phone Number',
                                       labelStyle: null,
                                       border: InputBorder.none,
                                       focusedBorder: InputBorder.none,
@@ -202,7 +202,7 @@ class myChangeState extends State<myChangeScreen> {
                                     }),
                               ),
                             ),
-                            SizedBox(
+                              SizedBox(
                               height: sizingInformation.myScreenSize.height / 49,
                             ),
                             Container(
@@ -339,57 +339,6 @@ class myChangeState extends State<myChangeScreen> {
       },
     );
   }
-
-
-
-  /*
-
-  onPressed: () async {
-                                      if (nameController.text != "" &&
-                                          phoneController.text != "" &&
-                                          chapterController.text != "") {
-                                        // Update user information
-                                        try {
-                                          DatabaseService ds =
-                                              new DatabaseService(
-                                                  uid: loggedInUser.uid);
-                                          DocumentSnapshot documentSnapshot =
-                                              await Firestore.instance
-                                                  .collection("fbla_users")
-                                                  .document(loggedInUser.uid)
-                                                  .get();
-                                          List<String> events = documentSnapshot
-                                              .data['events']
-                                              .cast<String>();
-                                          int count =
-                                              documentSnapshot.data['count'];
-                                          ds.updateUserData(
-                                              nameController.text,
-                                              count,
-                                              chapterController.text,
-                                              phoneController.text,
-                                              isOfficer,
-                                              events);
-                                          Navigator.pop(context);
-                                        } catch (e) {
-                                          // Handle the exception here!
-                                          print(e.toString());
-                                          if (e.toString() ==
-                                              "PlatformException(ERROR_WEAK_PASSWORD, The password must be 6 characters long or more., null)") {
-                                            _showError(
-                                                "Enter a stronger password. Must be 6 characters long or more");
-                                          } else if (e.toString() ==
-                                              "PlatformException(ERROR_INVALID_EMAIL, The email address is badly formatted., null)") {
-                                            _showError(
-                                                "Email not properly formatted");
-                                          }
-                                        }
-                                      } else {
-                                        _showError("Please fill in all fields");
-                                      }
-                                    }
-   */
-
 
   _showError(String error) {
     showDialog(
