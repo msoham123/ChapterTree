@@ -491,6 +491,11 @@ class myLoginState extends State<myLoginScreen> {
     final FirebaseUser user = authResult.user;
     String userUID = user.uid;
 
+    DocumentSnapshot documentSnapshot = await Firestore.instance.collection("fbla_users").document(userUID).get();
+    print('DOCUMENT = ${documentSnapshot.data}');
+
+    bool pickChapter = documentSnapshot.data == null ? true : false;
+
 //    DocumentSnapshot documentSnapshot = await ds.getUser(userUID);
 //    bool pickChapter = false;
 //
@@ -503,12 +508,33 @@ class myLoginState extends State<myLoginScreen> {
     sendSignUpMail(user.email);
 
     if(authResult != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => PickChapter(userUID, user),
-        ),
-      );
+      if(pickChapter) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PickChapter(userUID, user),
+          ),
+        );
+      } else {
+        if (MyApp.introSliderEnabled == true) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  IntroScreen(sizingInformation),
+            ),
+          );
+          MyApp.introSliderEnabled = false;
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  MyDefaultPage(sizingInformation),
+            ),
+          );
+        }
+      }
     }
 
     return 'signInWithGoogle succeeded: $user';
