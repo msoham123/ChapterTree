@@ -330,9 +330,13 @@ class myLoginState extends State<myLoginScreen> {
                                     }
                                   }
                                 } catch (e) {
-                                  print(e);
+                                  print(e.toString());
                                   // Handle error
-                                  _showError();
+                                  if(e.toString() == "PlatformException(ERROR_WRONG_PASSWORD, The password is invalid or the user does not have a password., null)") {
+                                    _showError("The password is invalid or the user does not have a password");
+                                  } else if(e.toString() == "PlatformException(ERROR_USER_NOT_FOUND, There is no user record corresponding to this identifier. The user may have been deleted., null)"){
+                                    _showError("No user found. Please check your email");
+                                  }
                                 }
                               },
                             ),
@@ -553,11 +557,11 @@ class myLoginState extends State<myLoginScreen> {
       print(e);
     }
   }
-  _showError() {
+  _showError(String error) {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text("Email or password incorrect. Please try again!"),
+          title: Text(error),
           actions: <Widget>[
             FlatButton(
               child: Text("Back"),
