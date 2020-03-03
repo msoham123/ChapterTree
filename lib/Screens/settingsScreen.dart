@@ -14,6 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_sms/flutter_sms.dart';
 import 'dart:async';
+import 'dart:io';
 
 // CREATE INSTANCE ON CURRENT FIREBASE LOOGED IN USER
 FirebaseUser loggedInUser;
@@ -140,8 +141,8 @@ class _mySettingsState extends State<mySettingsScreen> {
                                   right: sizingInformation.myScreenSize.width /
                                       30),
                               child: Container(
-                                height:
-                                    sizingInformation.myScreenSize.height / 1.5,
+                                height: Platform.isIOS ?
+                                    sizingInformation.myScreenSize.height / 2.0 : sizingInformation.myScreenSize.height / 1.5,
                                 decoration: BoxDecoration(
                                   color: MyApp.backgroundColor,
                                   borderRadius: BorderRadius.all(
@@ -185,7 +186,7 @@ class _mySettingsState extends State<mySettingsScreen> {
                                     ),
                                     SizedBox(height: 18.0),
                                     Text(
-                                      name,
+                                      isOfficer ? '$name ⭐' : name,
                                       style: TextStyle(
                                           color: MyApp.blackTextColor,
                                           fontWeight: FontWeight.w900,
@@ -526,64 +527,3 @@ class _mySettingsState extends State<mySettingsScreen> {
     );
   }
 }
-
-//Scaffold(
-//body: Column(
-//mainAxisAlignment: MainAxisAlignment.center,
-//children: <Widget>[
-//Expanded(
-//child: Container(
-//alignment: Alignment.center,
-//color: Colors.white,
-//child: ListView(
-//children: <Widget>[
-//Padding(
-//padding: EdgeInsets.only(
-//left: 0,
-//right: 0,
-//top: sizingInformation.myScreenSize.height / 25,
-//bottom: 0)),
-//
-//
-//Padding(
-//padding: EdgeInsets.only(
-//left: 0,
-//right: 0,
-//top: sizingInformation.myScreenSize.height / 25,
-//bottom: 0)),
-//],
-//),
-//),
-//),
-//],
-//),
-//          body: Column(
-//            mainAxisAlignment: MainAxisAlignment.center,
-//            children: <Widget>[
-//              Expanded(
-//                child: Container(
-//                  alignment: Alignment.center,
-//                  color: Colors.white,
-//                  child: ListView(
-//                    children: <Widget>[
-//                      Padding(
-//                          padding: EdgeInsets.only(
-//                              left: 0,
-//                              right: 0,
-//                              top: sizingInformation.myScreenSize.height / 25,
-//                              bottom: 0)),
-//
-//
-//                      Padding(
-//                          padding: EdgeInsets.only(
-//                              left: 0,
-//                              right: 0,
-//                              top: sizingInformation.myScreenSize.height / 25,
-//                              bottom: 0)),
-//                    ],
-//                  ),
-//                ),
-//              ),
-//            ],
-//          ),
-//);

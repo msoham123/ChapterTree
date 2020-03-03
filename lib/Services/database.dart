@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class DatabaseService {
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final String uid;
   DatabaseService({this.uid});
 
@@ -18,6 +19,10 @@ class DatabaseService {
       'isOfficer': isOfficer,
       'events': events,
     });
+  }
+
+  Future removeUser(String uid) async {
+    await fbla_users.document(uid).delete();
   }
 
   Future addEvent(String event, String user_id) async {

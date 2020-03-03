@@ -495,15 +495,6 @@ class myLoginState extends State<myLoginScreen> {
 
     bool pickChapter = documentSnapshot.data == null ? true : false;
 
-//    DocumentSnapshot documentSnapshot = await ds.getUser(userUID);
-//    bool pickChapter = false;
-//
-//    if(documentSnapshot.data != null) {
-//      pickChapter = false;
-//    } else {
-//      pickChapter = true;
-//    }
-
     sendSignUpMail(user.email);
 
     if(authResult != null) {

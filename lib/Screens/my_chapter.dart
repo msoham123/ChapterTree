@@ -64,8 +64,6 @@ class _myChapterScreen extends State<myChapterScreen> {
     }
     chapter = userSnapshot.data['chapter'].toString();
     isOfficer = userSnapshot.data['isOfficer'];
-
-    print(userSnapshot.data['chapter']);
   }
 
   @override
