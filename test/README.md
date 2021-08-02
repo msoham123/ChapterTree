@@ -13,21 +13,21 @@ Additionally, Connectify implements several API's that enhance the user experien
 
 
 # Portfolio
-<img src="assets/portfolio/slanding.png" width="430" /><img src="assets/portfolio/ssign.png" width="430" /> <img src="assets/portfolio/slog.png" width="430" />
-<img src="assets/portfolio/sgoogle.png" width="430" /> <img src="assets/portfolio/sstate.png" width="430" /><img src="assets/portfolio/sschool.png" width="430" />
-<img src="assets/portfolio/sintro.png" width="430" /><img src="assets/portfolio/ssplash.png" width="430" /><img src="assets/portfolio/shome.png" width="430" />
-<img src="assets/portfolio/spost.png" width="430" /><img src="assets/portfolio/sstartup.png" width="430" /><img src="assets/portfolio/screate.png" width="430" />
-<img src="assets/portfolio/schat.png" width="430" /><img src="assets/portfolio/ssearch.png" width="430" /><img src="assets/portfolio/sprofile.png" width="430" />
-<img src="assets/portfolio/sedit.png" width="430" /><img src="assets/portfolio/ssettings.png" width="430" /><img src="assets/portfolio/srefresh.png" width="430" />
-<img src="assets/portfolio/sdark.png" width="430" />
+<img src="slanding.png" width="430" /><img src="ssign.png" width="430" /> <img src="slog.png" width="430" />
+<img src="sgoogle.png" width="430" /> <img src="sstate.png" width="430" /><img src="sschool.png" width="430" />
+<img src="sintro.png" width="430" /><img src="ssplash.png" width="430" /><img src="shome.png" width="430" />
+<img src="spost.png" width="430" /><img src="sstartup.png" width="430" /><img src="screate.png" width="430" />
+<img src="schat.png" width="430" /><img src="ssearch.png" width="430" /><img src="sprofile.png" width="430" />
+<img src="sedit.png" width="430" /><img src="ssettings.png" width="430" /><img src="srefresh.png" width="430" />
+<img src="sdark.png" width="430" />
 
 
 # Brainstorming and Planning
 - As developers, we wanted to ensure that we developed Connectify with the utmost efficiency, precision, and industry leading practices. With this in mind, we decided to go with the Agile Development Flow.
-<img src="assets/portfolio/agile.png" width="430" />
+<img src="agile.png" width="430" />
 
 - In order to manage our development flow, we used Jira, Project Management Software, where we can utilize the full power of Agile Development through sprints, stories, and epics.
-<img src="assets/portfolio/jira.png" width="430" />
+<img src="jira.png" width="430" />
 
 - Additionally, we used Whimsical and the power of flowcharts to map out the navigation and flow of our application. Here is the [link](https://whimsical.com/connectify-ui-XNmngw3TDiF2i3nm9hPaLx) to the flowchart.
 
