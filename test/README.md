@@ -1,6 +1,6 @@
 # Connectify
 
-<img class="round" src="./assets/images/logo.png" width="100" height="100"/>
+<img class="round" src="logo.png" width="100" height="100"/>
 
 Fremont High School Mobile App Development
 <br/>
